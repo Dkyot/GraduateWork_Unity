@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+
 public class DungeonData
 {
     public HashSet<Vector2Int> corridors;
@@ -36,19 +38,30 @@ public class DungeonData
     }
 
     public void Debuger() {
-        //Debug.ClearDeveloperConsole();
-        //Debug.Log(rooms.Count);
-        //Debug.Log("=======");
+        // //Debug.ClearDeveloperConsole();
+        // //Debug.Log(rooms.Count);
+        // //Debug.Log("=======");
+        // foreach (RoomData room in rooms) {
+        //     if (room.edges.Count > 2) {
+        //     Debug.Log(room.center + " " + room.edges.Count + "||| ");
+        //     // Debug.Log("tl:"+room.tr+" br:"+room.bl);
+        //     for (int i = 0; i < room.edges.Count; i++) {
+        //         Debug.Log(room.edges[i].connectedRoom.center + " _" + room.edges[i].edgeWeight);
+        //     }
+        //     // Debug.Log("_______________");
+        //     }
+        // }
+
+        int i = 0;
         foreach (RoomData room in rooms) {
-            if (room.edges.Count > 2) {
-            Debug.Log(room.center + " " + room.edges.Count + "||| ");
-            // Debug.Log("tl:"+room.tr+" br:"+room.bl);
-            for (int i = 0; i < room.edges.Count; i++) {
-                Debug.Log(room.edges[i].connectedRoom.center + " _" + room.edges[i].edgeWeight);
-            }
-            // Debug.Log("_______________");
-            }
+            Debug.Log(room.center + " _" + i);
+            i++;
         }
+
+        DijkstraAlgorithm deb = new DijkstraAlgorithm();
+        
+        deb.RunAlgorithm(CorvertToMatrix(), 0, rooms.Count);
+
     }
 
     public bool EdgeExists(RoomData room1, RoomData room2) {
@@ -57,6 +70,25 @@ public class DungeonData
                 return true;
         }
         return false;
+    }
+
+    private int FindEdgeWeight(RoomData room1, RoomData room2) {
+        foreach (GraphEdge edge in room1.edges) {
+            if (room2.Equals(edge.connectedRoom))
+                return edge.edgeWeight;
+        }
+        return 0;
+    }
+
+    private int[,] CorvertToMatrix() {
+        int[,] graph = new int[rooms.Count, rooms.Count];
+        for (int i = 0; i < rooms.Count; i++) {
+            for (int j = 0; j < rooms.Count; j++) {
+                if (EdgeExists(rooms[i], rooms[j]))
+                    graph[i, j] = FindEdgeWeight(rooms[i], rooms[j]);
+            }
+        }
+        return graph;
     }
 }
 
@@ -93,3 +125,42 @@ public class GraphEdge
         edgeWeight = weight;
     }
 }
+
+public class DijkstraAlgorithm {
+    private int MinimumDistance(int[] distance, bool[] shortestPathTreeSet, int verticesCount) {
+        int min = int.MaxValue;
+        int minIndex = 0;
+        for (int v = 0; v < verticesCount; ++v) {
+            if (shortestPathTreeSet[v] == false && distance[v] <= min) {
+                min = distance[v];
+                minIndex = v;
+            }
+        }
+        return minIndex;
+    }
+ 
+    private void Print(int[] distance, int verticesCount) {
+        Debug.Log("Вершина    Расстояние от источника");
+        for (int i = 0; i < verticesCount; ++i)
+            Debug.Log(i+"--"+distance[i]);
+    }
+
+    public void RunAlgorithm(int[,] graph, int source, int verticesCount) {
+        int[] distance = new int[verticesCount];
+        bool[] shortestPathTreeSet = new bool[verticesCount];
+        for (int i = 0; i < verticesCount; ++i) {
+            distance[i] = int.MaxValue;
+            shortestPathTreeSet[i] = false;
+        }
+        distance[source] = 0;
+        for (int count = 0; count < verticesCount - 1; ++count) {
+            int u = MinimumDistance(distance, shortestPathTreeSet, verticesCount);
+            shortestPathTreeSet[u] = true;
+            for (int v = 0; v < verticesCount; ++v)
+                if (!shortestPathTreeSet[v] && Convert.ToBoolean(graph[u, v]) && distance[u] != int.MaxValue && distance[u] + graph[u, v] < distance[v])
+                    distance[v] = distance[u] + graph[u, v];
+        }
+        Print(distance, verticesCount);
+    }
+}
+

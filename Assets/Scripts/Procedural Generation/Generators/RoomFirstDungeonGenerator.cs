@@ -120,7 +120,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
             roomCenters.Remove(closest);
             HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest);
             if (flag == false)
-                dungeonData.AddEdge(currentRoomCenter, closest, newCorridor.Count);
+                dungeonData.AddEdge(currentRoomCenter, closest, (int)Vector2.Distance(currentRoomCenter, closest));
             else
                 flag = false;
             currentRoomCenter = closest;
@@ -158,18 +158,18 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
                 if (position.x >= room.bl.x && position.x <= room.tr.x) {
                     if (position.y >= room.bl.y && position.y <= room.tr.y) {                       
                         if (!dungeonData.EdgeExists(dungeonData.FindRoom(currentRoomCenter), room)) {
-                            dungeonData.AddEdge(currentRoomCenter, room.center, corridor.Count);
-                            Debug.Log("+");
+                            dungeonData.AddEdge(currentRoomCenter, room.center, (int)Vector2.Distance(currentRoomCenter, room.center));
+                            //Debug.Log("+");
                             flag = true;                            
                         }
                         if (!dungeonData.EdgeExists(dungeonData.FindRoom(destination), room)) {
-                            dungeonData.AddEdge(destination, room.center, corridor.Count);
-                            Debug.Log("-");
+                            dungeonData.AddEdge(destination, room.center, (int)Vector2.Distance(destination, room.center));
+                            //Debug.Log("-");
                             flag = true;                           
                         }
                         if (dungeonData.EdgeExists(dungeonData.FindRoom(currentRoomCenter), room) && dungeonData.EdgeExists(dungeonData.FindRoom(destination), room)) {
                             flag = true;
-                            Debug.Log("*");
+                            //Debug.Log("*");
                         }
                         
                     }
