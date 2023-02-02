@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     private PlayerMovementStateMachine movementStateMachine;
     public PlayerInput input { get; private set;}
     public new Rigidbody2D rigidbody2D { get; private set;}
+
+    [field: Header("References")]
+    [field: SerializeField] public PlayerSO data { get; private set;}
     
     private void Awake()
     {
@@ -26,6 +29,8 @@ public class Player : MonoBehaviour
     {
         movementStateMachine.HandleInput();
         movementStateMachine.Update();
+
+        //Debug.Log(movementStateMachine.reusableData.shouldWalk);
     }
 
     private void FixedUpdate()

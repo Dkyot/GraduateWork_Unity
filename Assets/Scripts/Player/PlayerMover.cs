@@ -32,7 +32,7 @@ public class PlayerMover : MonoBehaviour
     private void FixedUpdate() {
         
         
-        if (rollingFlag) {// кувырок
+        if (rollingFlag) {// 
             float rollSpeedMultiplier = 5f;
             rollSpeed -= rollSpeed * rollSpeedMultiplier * Time.deltaTime;
             float rollSpeedMinimum = 30f;
@@ -46,7 +46,7 @@ public class PlayerMover : MonoBehaviour
     }
 
     private void Move(object sender, EventArgs e) {
-        // // работает как телепорт
+        // работает как телепорт
         // Vector3 dashPosition = transform.position + moveDirection * 10f;
         // RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, moveDirection, 10f, dashLayerMask);
         // if (raycastHit2D.collider != null) {
