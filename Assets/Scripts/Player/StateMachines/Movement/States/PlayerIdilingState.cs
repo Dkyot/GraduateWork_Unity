@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerIdilingState : PlayerGroundedState
 {
@@ -27,6 +28,13 @@ public class PlayerIdilingState : PlayerGroundedState
         }
 
         OnMove();
+    }
+    #endregion
+
+    #region Input Mehtods
+    protected override void OnRollStarted(InputAction.CallbackContext context)
+    {
+        //
     }
     #endregion
 }

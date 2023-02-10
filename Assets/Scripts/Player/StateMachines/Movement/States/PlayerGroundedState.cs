@@ -16,8 +16,7 @@ public class PlayerGroundedState : PlayerMovementState
 
         stateMachine.player.input.playerActions.Movement.canceled += OnMovementCanceled;
 
-        //stateMachine.player.input.playerActions.Roll.started += OnRollStarted;
-        //stateMachine.player.input.playerActions.Roll.canceled += OnRollCanceled;////////
+        stateMachine.player.input.playerActions.Roll.started += OnRollStarted;
     }
 
     protected override void RemoveInputActionsCallbacks() {
@@ -25,8 +24,7 @@ public class PlayerGroundedState : PlayerMovementState
 
         stateMachine.player.input.playerActions.Movement.canceled -= OnMovementCanceled;
 
-        //stateMachine.player.input.playerActions.Roll.started -= OnRollStarted;
-        //stateMachine.player.input.playerActions.Roll.canceled -= OnRollCanceled;////////
+        stateMachine.player.input.playerActions.Roll.started -= OnRollStarted;
     }
 
     protected virtual void OnMove()
@@ -45,12 +43,8 @@ public class PlayerGroundedState : PlayerMovementState
         stateMachine.ChangeState(stateMachine.IdilingState);
     }
 
-    // protected virtual void OnRollStarted(InputAction.CallbackContext context) {
-    //     stateMachine.ChangeState(stateMachine.RollingState);
-    // }
-
-    // protected virtual void OnRollCanceled(InputAction.CallbackContext context) {
-    //     //stateMachine.ChangeState(stateMachine.IdilingState);
-    // }
+    protected virtual void OnRollStarted(InputAction.CallbackContext context) {
+        stateMachine.ChangeState(stateMachine.RollingState);
+    }
     #endregion
 }

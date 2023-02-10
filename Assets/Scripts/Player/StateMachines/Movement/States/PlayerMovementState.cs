@@ -45,7 +45,7 @@ public class PlayerMovementState : IState
         stateMachine.reusableData.movementInput = stateMachine.player.input.playerActions.Movement.ReadValue<Vector2>();
     }
 
-    private void Move() {
+    protected virtual void Move() {
         Vector3 moveDirection = GetMovementInputDirection();
         float movementSpeed = GetMovementSpeed();
 

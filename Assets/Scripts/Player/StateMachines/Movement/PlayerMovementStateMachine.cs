@@ -10,7 +10,7 @@ public class PlayerMovementStateMachine : StateMachine
     public PlayerIdilingState IdilingState   { get; private set;}
     public PlayerWallkingState WallkingState { get; private set;}
     public PlayerRunningState RunningState   { get; private set;}
-    //public PlayerRollingState RollingState   { get; private set;}
+    public PlayerRollingState RollingState   { get; private set;}
 
     public PlayerMovementStateMachine(Player player) {
         this.player = player;
@@ -19,6 +19,6 @@ public class PlayerMovementStateMachine : StateMachine
         IdilingState = new PlayerIdilingState(this);
         WallkingState = new PlayerWallkingState(this);
         RunningState = new PlayerRunningState(this);
-        //RollingState = new PlayerRollingState(this);
+        RollingState = new PlayerRollingState(this);
     }
 }
