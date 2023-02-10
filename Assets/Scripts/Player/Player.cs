@@ -7,6 +7,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private PlayerMovementStateMachine movementStateMachine;
+    private PlayerCombatStateMachine combatStateMachine;
+
     public PlayerInput input { get; private set;}
     public new Rigidbody2D rigidbody2D { get; private set;}
 
@@ -18,11 +20,13 @@ public class Player : MonoBehaviour
         input = GetComponent<PlayerInput>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         movementStateMachine = new PlayerMovementStateMachine(this);
+        combatStateMachine = new PlayerCombatStateMachine(this);
     }
     
     private void Start()
     {
         movementStateMachine.ChangeState(movementStateMachine.IdilingState);
+        combatStateMachine.ChangeState(combatStateMachine.InactiveState);
     }
 
     private void Update()
@@ -30,11 +34,14 @@ public class Player : MonoBehaviour
         movementStateMachine.HandleInput();
         movementStateMachine.Update();
 
-        //Debug.Log(movementStateMachine.reusableData.shouldWalk);
+        combatStateMachine.HandleInput();
+        combatStateMachine.Update();
     }
 
     private void FixedUpdate()
     {
         movementStateMachine.PhysicsUpdate();
+
+        combatStateMachine.PhysicsUpdate();
     }
 }
