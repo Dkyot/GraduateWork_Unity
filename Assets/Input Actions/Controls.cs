@@ -71,6 +71,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""f36ce1b1-ceb4-4298-bd9c-d12732f80fd1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc70e41f-477d-493a-976b-5ec228e8b619"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_InGamePlayerInput_Roll = m_InGamePlayerInput.FindAction("Roll", throwIfNotFound: true);
         m_InGamePlayerInput_PointerPosition = m_InGamePlayerInput.FindAction("PointerPosition", throwIfNotFound: true);
         m_InGamePlayerInput_Attack = m_InGamePlayerInput.FindAction("Attack", throwIfNotFound: true);
+        m_InGamePlayerInput_Block = m_InGamePlayerInput.FindAction("Block", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,6 +270,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGamePlayerInput_Roll;
     private readonly InputAction m_InGamePlayerInput_PointerPosition;
     private readonly InputAction m_InGamePlayerInput_Attack;
+    private readonly InputAction m_InGamePlayerInput_Block;
     public struct InGamePlayerInputActions
     {
         private @Controls m_Wrapper;
@@ -258,6 +280,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Roll => m_Wrapper.m_InGamePlayerInput_Roll;
         public InputAction @PointerPosition => m_Wrapper.m_InGamePlayerInput_PointerPosition;
         public InputAction @Attack => m_Wrapper.m_InGamePlayerInput_Attack;
+        public InputAction @Block => m_Wrapper.m_InGamePlayerInput_Block;
         public InputActionMap Get() { return m_Wrapper.m_InGamePlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -282,6 +305,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnAttack;
+                @Block.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnBlock;
+                @Block.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnBlock;
+                @Block.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnBlock;
             }
             m_Wrapper.m_InGamePlayerInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -301,6 +327,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Block.started += instance.OnBlock;
+                @Block.performed += instance.OnBlock;
+                @Block.canceled += instance.OnBlock;
             }
         }
     }
@@ -312,5 +341,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnRoll(InputAction.CallbackContext context);
         void OnPointerPosition(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnBlock(InputAction.CallbackContext context);
     }
 }

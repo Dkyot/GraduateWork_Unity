@@ -17,57 +17,70 @@ public class PlayerCombatState : IState
     }
     
     #region  IState Methods
-    public void Enter()
+    public virtual void Enter()
     {
         Debug.Log("Combat state: " + GetType().Name);
 
         AddInputActionsCallbacks();
     }
 
-    public void Exit()
+    public virtual void Exit()
     {
         RemoveInputActionsCallbacks();
     }
 
-    public void HandleInput()
+    public virtual void HandleInput()
     {
-        ReadCombatInput();
+        //ReadCombatInput();
     }
 
-    public void PhysicsUpdate()
+    public virtual void PhysicsUpdate()
     {
         
     }
 
-    public void Update()
+    public virtual void Update()
     {
         
     }
     #endregion
 
     #region Main Methods
-    private void ReadCombatInput() {
-        //stateMachine.reusableData.movementInput = stateMachine.player.input.playerActions.Movement.ReadValue<Vector2>();
-    }
+    // private void ReadCombatInput() {
+    //     //stateMachine.reusableData.movementInput = stateMachine.player.input.playerActions.Movement.ReadValue<Vector2>();
+    // }
     #endregion
 
     #region Reusable Mehtods
     protected virtual void AddInputActionsCallbacks() {
         stateMachine.player.input.playerActions.Attack.started += OnAttackToggleStarted;
-        stateMachine.player.input.playerActions.Attack.canceled += OnAttackToggleStarted;
+        //stateMachine.player.input.playerActions.Attack.canceled += OnAttackToggleStarted;
+
+        stateMachine.player.input.playerActions.Block.started += OnBlockToggleStarted;
+        stateMachine.player.input.playerActions.Block.canceled += OnBlockToggleStarted;
     }
 
     protected virtual void RemoveInputActionsCallbacks() {
         stateMachine.player.input.playerActions.Attack.started -= OnAttackToggleStarted;
-        stateMachine.player.input.playerActions.Attack.canceled -= OnAttackToggleStarted;
+        //stateMachine.player.input.playerActions.Attack.canceled -= OnAttackToggleStarted;
+
+        stateMachine.player.input.playerActions.Block.started -= OnBlockToggleStarted;
+        stateMachine.player.input.playerActions.Block.canceled -= OnBlockToggleStarted;
     }
     #endregion
 
     #region Input Mehtods
     protected virtual void OnAttackToggleStarted(InputAction.CallbackContext context)
     {
-        if (context.started) Debug.Log(true);
-        else Debug.Log(false);
+        // if (context.started) stateMachine.reusableData.shouldAttack = true;
+        // else stateMachine.reusableData.shouldAttack = false;
+        stateMachine.ChangeState(stateMachine.AttackingState);
+    }
+
+    protected virtual void OnBlockToggleStarted(InputAction.CallbackContext context)
+    {
+        if (context.started) stateMachine.reusableData.shouldBlock = true;
+        else stateMachine.reusableData.shouldBlock = false;
     }
     #endregion
 }
