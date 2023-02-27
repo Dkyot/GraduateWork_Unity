@@ -22,12 +22,16 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
     private bool randomWalkRooms = false;
 
     private DungeonData dungeonData;
+    private DungeonRoomsDataExtractor extractor;
 
-    protected override void RunProceduralGenetation()
-    {
-        dungeonData = new DungeonData();
+    protected override void RunProceduralGenetation() {
+        dungeonData = GetComponent<DungeonData>();
+        dungeonData.ResetData();
+        extractor = GetComponent<DungeonRoomsDataExtractor>();
+
         CreateRooms();
-        dungeonData.Debuger();
+        //dungeonData.Debuger();
+        extractor.ProcessRooms();
     }
 
     private void CreateRooms() {
@@ -51,6 +55,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
 
         tilemapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
+
+        dungeonData.corridors = corridors;
     }
 
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
