@@ -24,14 +24,23 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
     private DungeonData dungeonData;
     private DungeonRoomsDataExtractor extractor;
 
+    //
+    public PropPlacementManager propPlacementManager;
+
     protected override void RunProceduralGenetation() {
         dungeonData = GetComponent<DungeonData>();
         dungeonData.ResetData();
         extractor = GetComponent<DungeonRoomsDataExtractor>();
 
+        //
+        //propPlacementManager = GetComponent<PropPlacementManager>();
+
         CreateRooms();
         //dungeonData.Debuger();
         extractor.ProcessRooms();
+
+        //
+        propPlacementManager.ProcessRooms();
     }
 
     private void CreateRooms() {
