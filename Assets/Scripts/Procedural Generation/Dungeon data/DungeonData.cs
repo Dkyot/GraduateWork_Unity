@@ -13,6 +13,12 @@ public class DungeonData : MonoBehaviour
     }
 
     public void ResetData() {
+        foreach(RoomData room in rooms) {
+            foreach(GameObject prop in room.PropObjectReferences) {
+                DestroyImmediate(prop, false);
+            }
+        }
+
         rooms = new List<RoomData>();
         corridors = new HashSet<Vector2Int>();
     }
