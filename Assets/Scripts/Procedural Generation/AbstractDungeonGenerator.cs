@@ -12,7 +12,7 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
     public void GenerateDungeon() {
         tilemapVisualizer.Clear();
         RunProceduralGenetation();
-        tilemapVisualizer.AddFloorColider();
+        tilemapVisualizer.AddWallColider();
     }
 
     protected abstract void RunProceduralGenetation();

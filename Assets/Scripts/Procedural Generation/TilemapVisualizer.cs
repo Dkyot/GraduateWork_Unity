@@ -13,8 +13,8 @@ public class TilemapVisualizer : MonoBehaviour
     private Tilemap wallTilemap;
     [SerializeField]
     private TileBase floorTile, wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull,
-    wallInnerCornerDownLeft, wallInnerCornerDownRight,
-    wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
+                     wallInnerCornerDownLeft, wallInnerCornerDownRight,
+                     wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions) {
         PaintFloorTiles(floorPositions, floorTilemap, floorTile);
@@ -56,18 +56,18 @@ public class TilemapVisualizer : MonoBehaviour
         wallTilemap.ClearAllTiles();
     }
 
-    public void AddFloorColider() {
-        var floor = floorTilemap.gameObject;
+    public void AddWallColider() {
+        var walls = wallTilemap.gameObject;
 
-        if (floor.GetComponent<TilemapCollider2D>() == null) 
-            floor.AddComponent(typeof(TilemapCollider2D));
-        if (floor.GetComponent<CompositeCollider2D>() == null)
-            floor.AddComponent(typeof(CompositeCollider2D));
+        if (walls.GetComponent<TilemapCollider2D>() == null) 
+            walls.AddComponent(typeof(TilemapCollider2D));
+        if (walls.GetComponent<CompositeCollider2D>() == null)
+            walls.AddComponent(typeof(CompositeCollider2D));
         
-        floor.GetComponent<CompositeCollider2D>().geometryType =  CompositeCollider2D.GeometryType.Polygons;
-        floor.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        walls.GetComponent<CompositeCollider2D>().geometryType =  CompositeCollider2D.GeometryType.Polygons;
+        walls.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
-        floor.GetComponent<TilemapCollider2D>().usedByComposite = true;
+        walls.GetComponent<TilemapCollider2D>().usedByComposite = true;
 
     }
 
