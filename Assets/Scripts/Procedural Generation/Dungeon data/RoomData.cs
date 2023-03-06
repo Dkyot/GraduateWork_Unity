@@ -10,6 +10,8 @@ public class RoomData
     public Vector2Int tr;
     public Vector2Int bl;
 
+    public TypesOfRooms roomType = TypesOfRooms.EmptyRoom;
+
     public HashSet<Vector2Int> NearWallTilesUp { get; set; } = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> NearWallTilesDown { get; set; } = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> NearWallTilesLeft { get; set; } = new HashSet<Vector2Int>();

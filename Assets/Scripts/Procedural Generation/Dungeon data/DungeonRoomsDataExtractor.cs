@@ -44,14 +44,23 @@ public class DungeonRoomsDataExtractor : MonoBehaviour
             room.NearWallTilesLeft.ExceptWith(room.CornerTiles);
             room.NearWallTilesRight.ExceptWith(room.CornerTiles);          
         }
+
+        dungeonData.AddRoomTypes();
     }
 
     private void OnDrawGizmosSelected() {
         if (dungeonData == null || showGizmo == false)
             return;
         foreach (RoomData room in dungeonData.rooms) {
-            // inner tiles
-            Gizmos.color = Color.yellow;
+            // inner tiles..
+            switch (room.roomType) {
+                case TypesOfRooms.EmptyRoom: Gizmos.color = Color.gray; break;
+                case TypesOfRooms.StartRoom: Gizmos.color = Color.blue; break;
+                case TypesOfRooms.ExitRoom: Gizmos.color = Color.black; break;
+                case TypesOfRooms.TreasureRoom: Gizmos.color = Color.yellow; break;
+                case TypesOfRooms.EnemyRoom: Gizmos.color = Color.cyan; break;
+                case TypesOfRooms.BossRoom: Gizmos.color = Color.magenta; break;
+            }
             foreach (Vector2Int floorPosition in room.InnerTiles) {
                 if (dungeonData.corridors.Contains(floorPosition)) {
                     continue;

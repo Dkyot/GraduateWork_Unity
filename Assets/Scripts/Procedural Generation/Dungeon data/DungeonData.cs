@@ -100,4 +100,24 @@ public class DungeonData : MonoBehaviour
         }
         return graph;
     }
+
+    public void AddRoomTypes() {
+        if(rooms.Count >= 6) {
+            rooms[0].roomType = TypesOfRooms.EmptyRoom;
+            rooms[1].roomType = TypesOfRooms.StartRoom;
+            rooms[2].roomType = TypesOfRooms.ExitRoom;
+            rooms[3].roomType = TypesOfRooms.TreasureRoom;
+            rooms[4].roomType = TypesOfRooms.EnemyRoom;
+            rooms[5].roomType = TypesOfRooms.BossRoom;
+        }
+    }
+}
+
+public enum TypesOfRooms {
+    EmptyRoom,
+    StartRoom,
+    ExitRoom,
+    TreasureRoom,
+    EnemyRoom,
+    BossRoom
 }

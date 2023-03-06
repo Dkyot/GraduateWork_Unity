@@ -8,16 +8,16 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
 {
     
     [SerializeField]
-    private int minRoomWidth = 4;
+    private int minRoomWidth = 10;
     [SerializeField]
-    private int minRoomHeight = 4;
+    private int minRoomHeight = 8;
     [SerializeField]
-    private int dungeonWidth = 20;
+    private int dungeonWidth = 40;
     [SerializeField]
-    private int dungeonHeight = 20;
+    private int dungeonHeight = 50;
     [SerializeField]
     [Range(0, 5)]
-    private int offset = 1;
+    private int offset = 2;
 
     private DungeonData dungeonData;
     private bool intersectionFlag = false;
@@ -39,8 +39,19 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
 
     #region Methods of building a dungeon
     private void CreateRooms() {
-        List<BoundsInt> roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
+        List<BoundsInt> roomsList;
+
+        if ((dungeonWidth * dungeonHeight)/6 < minRoomWidth * minRoomHeight) {
+            Debug.Log("incorrect proportions");
+            minRoomHeight = 8;
+            minRoomWidth = 10;
+            dungeonHeight = 25;
+            dungeonWidth = 25;
+        }
+        do {
+            roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
             new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
+        } while (roomsList.Count < 6 || roomsList.Count > 12);
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
         floor = CreareSimpleRoom(roomsList);
