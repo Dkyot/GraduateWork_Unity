@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
+public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
 {
     
     [SerializeField]
@@ -16,43 +16,34 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
     [SerializeField]
     private int dungeonHeight = 20;
     [SerializeField]
-    [Range(0, 10)]
+    [Range(0, 5)]
     private int offset = 1;
-    [SerializeField]
-    private bool randomWalkRooms = false;
 
     private DungeonData dungeonData;
-    private DungeonRoomsDataExtractor extractor;
+    private bool intersectionFlag = false;
 
-    //
-    public PropPlacementManager propPlacementManager;
+    [SerializeField]
+    private UnityEvent OnEndOfGeneration;
+    [SerializeField]
+    private UnityEvent OnEndOfDataExtraction;
 
     protected override void RunProceduralGenetation() {
         dungeonData = GetComponent<DungeonData>();
         dungeonData.ResetData();
-        extractor = GetComponent<DungeonRoomsDataExtractor>();
-
-        //
-        //propPlacementManager = GetComponent<PropPlacementManager>();
 
         CreateRooms();
-        //dungeonData.Debuger();
-        extractor.ProcessRooms();
 
-        //
-        propPlacementManager.ProcessRooms();
+        OnEndOfGeneration?.Invoke();
+        OnEndOfDataExtraction?.Invoke();
     }
 
+    #region Methods of building a dungeon
     private void CreateRooms() {
-        List<BoundsInt> roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int
-        (dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
+        List<BoundsInt> roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
+            new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
-        
-        if (randomWalkRooms) 
-            floor = CreateRoomsRandomly(roomsList);
-        else 
-            floor = CreareSimpleRoom(roomsList);
+        floor = CreareSimpleRoom(roomsList);
         
         List<Vector2Int> roomCenters = new List<Vector2Int>();
         foreach (BoundsInt room in roomsList) {
@@ -60,47 +51,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
         }
 
         HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
+        dungeonData.corridors = corridors;
         floor.UnionWith(corridors);
 
         tilemapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
-
-        dungeonData.corridors = corridors;
-    }
-
-    private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
-    {
-        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
-        for (int i = 0; i < roomsList.Count; i++) {
-            BoundsInt roomBounds = roomsList[i];
-            Vector2Int roomCenter = new Vector2Int(Mathf.RoundToInt(roomBounds.center.x), Mathf.RoundToInt(roomBounds.center.y));
-            HashSet<Vector2Int> roomFloor = RunRandomWalk(randomWalkParameters, roomCenter);
-            
-            Vector2Int tr = new Vector2Int(int.MinValue, int.MinValue);
-            Vector2Int bl = new Vector2Int(int.MaxValue, int.MaxValue);
-            
-            foreach (Vector2Int position in roomFloor) {
-                if(position.x >= (roomBounds.xMin + offset) 
-                && position.x <= (roomBounds.xMax - offset)
-                && position.y >= (roomBounds.yMin - offset) 
-                && position.y <= (roomBounds.yMax - offset)) {
-                    floor.Add(position);
-                    if (position.x > tr.x)                    
-                        tr.x = position.x;
-                    if (position.y > tr.y)                    
-                        tr.y = position.y;
-                    if (position.x < bl.x)                    
-                        bl.x = position.x;
-                    if (position.y < bl.y)                    
-                        bl.y = position.y;
-                }
-            }
-            tr.x++;tr.y++;
-            bl.x--;bl.y--; 
-
-            dungeonData.AddRoom(new RoomData(roomFloor, roomCenter, tr, bl));
-        }
-        return floor;
     }
 
     private HashSet<Vector2Int> CreareSimpleRoom(List<BoundsInt> roomsList) {
@@ -123,8 +78,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
         return floor;
     }
 
-    private bool flag = false;
-    
     private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters) {
         HashSet<Vector2Int> corridors = new HashSet<Vector2Int>();
         Vector2Int currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
@@ -134,10 +87,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
             Vector2Int closest = FindClosestPointTo(currentRoomCenter, roomCenters);
             roomCenters.Remove(closest);
             HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest);
-            if (flag == false)
+            if (intersectionFlag == false)
                 dungeonData.AddEdge(currentRoomCenter, closest, (int)Vector2.Distance(currentRoomCenter, closest));
             else
-                flag = false;
+                intersectionFlag = false;
             currentRoomCenter = closest;
             corridors.UnionWith(newCorridor);
         }
@@ -174,17 +127,14 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
                     if (position.y >= room.bl.y && position.y <= room.tr.y) {                       
                         if (!dungeonData.EdgeExists(dungeonData.FindRoom(currentRoomCenter), room)) {
                             dungeonData.AddEdge(currentRoomCenter, room.center, (int)Vector2.Distance(currentRoomCenter, room.center));
-                            //Debug.Log("+");
-                            flag = true;                            
+                            intersectionFlag = true;                            
                         }
                         if (!dungeonData.EdgeExists(dungeonData.FindRoom(destination), room)) {
                             dungeonData.AddEdge(destination, room.center, (int)Vector2.Distance(destination, room.center));
-                            //Debug.Log("-");
-                            flag = true;                           
+                            intersectionFlag = true;                           
                         }
                         if (dungeonData.EdgeExists(dungeonData.FindRoom(currentRoomCenter), room) && dungeonData.EdgeExists(dungeonData.FindRoom(destination), room)) {
-                            flag = true;
-                            //Debug.Log("*");
+                            intersectionFlag = true;
                         }
                         
                     }
@@ -205,4 +155,5 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkMapGenerator
         }
         return closest;
     }
+    #endregion
 }
