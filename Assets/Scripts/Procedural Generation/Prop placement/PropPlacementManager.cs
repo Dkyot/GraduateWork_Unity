@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PropPlacementManager : MonoBehaviour
 {
@@ -11,7 +9,19 @@ public class PropPlacementManager : MonoBehaviour
     private DungeonData dungeonData;
 
     [SerializeField]
-    private List<PropSO> propsToPlace;
+    private RoomTypeSO EmptyRoom;
+    [SerializeField]
+    private RoomTypeSO StartRoom;
+    [SerializeField]
+    private RoomTypeSO ExitRoom;
+    [SerializeField]
+    private RoomTypeSO TreasureRoom;
+    [SerializeField]
+    private RoomTypeSO EnemyRoom;
+    [SerializeField]
+    private RoomTypeSO BossRoom;
+
+    private RoomTypeSO propsToPlace;
 
     [SerializeField, Range(0, 1)]
     private float cornerPropPlacementChance = 0.7f;
@@ -23,12 +33,24 @@ public class PropPlacementManager : MonoBehaviour
         if (dungeonData == null)
             return;
         foreach (RoomData room in dungeonData.rooms) {
+            switch (room.roomType) {
+                case TypesOfRooms.EmptyRoom: propsToPlace = EmptyRoom; break;
+                case TypesOfRooms.StartRoom: propsToPlace = StartRoom; break;
+                case TypesOfRooms.ExitRoom: propsToPlace = ExitRoom; break;
+                case TypesOfRooms.TreasureRoom: propsToPlace = TreasureRoom; break;
+                case TypesOfRooms.EnemyRoom: propsToPlace = EnemyRoom; break;
+                case TypesOfRooms.BossRoom: propsToPlace = BossRoom; break;
+                default: continue;
+            }
+            if (propsToPlace.roomProps.Count == 0)
+                continue;
+
             //Place props place props in the corners
-            List<PropSO> cornerProps = propsToPlace.Where(x => x.Corner).ToList();
+            List<PropSO> cornerProps = propsToPlace.roomProps.Where(x => x.Corner).ToList();
             PlaceCornerProps(room, cornerProps);
 
             //Place props near LEFT wall
-            List<PropSO> leftWallProps = propsToPlace
+            List<PropSO> leftWallProps = propsToPlace.roomProps
             .Where(x => x.NearWallLeft)
             .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
             .ToList();
@@ -36,7 +58,7 @@ public class PropPlacementManager : MonoBehaviour
             PlaceProps(room, leftWallProps, room.NearWallTilesLeft, PlacementOriginCorner.BottomLeft);
 
             //Place props near RIGHT wall
-            List<PropSO> rightWallProps = propsToPlace
+            List<PropSO> rightWallProps = propsToPlace.roomProps
             .Where(x => x.NearWallRight)
             .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
             .ToList();
@@ -44,7 +66,7 @@ public class PropPlacementManager : MonoBehaviour
             PlaceProps(room, rightWallProps, room.NearWallTilesRight, PlacementOriginCorner.TopRight);
 
             //Place props near UP wall
-            List<PropSO> topWallProps = propsToPlace
+            List<PropSO> topWallProps = propsToPlace.roomProps
             .Where(x => x.NearWallUP)
             .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
             .ToList();
@@ -52,7 +74,7 @@ public class PropPlacementManager : MonoBehaviour
             PlaceProps(room, topWallProps, room.NearWallTilesUp, PlacementOriginCorner.TopLeft);
 
             //Place props near DOWN wall
-            List<PropSO> downWallProps = propsToPlace
+            List<PropSO> downWallProps = propsToPlace.roomProps
             .Where(x => x.NearWallDown)
             .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
             .ToList();
@@ -60,7 +82,7 @@ public class PropPlacementManager : MonoBehaviour
             PlaceProps(room, downWallProps, room.NearWallTilesDown, PlacementOriginCorner.BottomLeft);
 
             //Place inner props
-            List<PropSO> innerProps = propsToPlace
+            List<PropSO> innerProps = propsToPlace.roomProps
                 .Where(x => x.Inner)
                 .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
                 .ToList();
