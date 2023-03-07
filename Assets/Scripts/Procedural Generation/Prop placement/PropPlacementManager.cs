@@ -47,7 +47,8 @@ public class PropPlacementManager : MonoBehaviour
 
             //Place props place props in the corners
             List<PropSO> cornerProps = propsToPlace.roomProps.Where(x => x.Corner).ToList();
-            PlaceCornerProps(room, cornerProps);
+            if (cornerProps.Count != 0)
+                PlaceCornerProps(room, cornerProps);
 
             //Place props near LEFT wall
             List<PropSO> leftWallProps = propsToPlace.roomProps
