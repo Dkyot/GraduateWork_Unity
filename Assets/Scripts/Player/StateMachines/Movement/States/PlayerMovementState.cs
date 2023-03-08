@@ -18,7 +18,7 @@ public class PlayerMovementState : IState
     
     #region  IState Methods
     public virtual void Enter() {
-        Debug.Log("State: " + GetType().Name);
+        //Debug.Log("State: " + GetType().Name);
 
         AddInputActionsCallbacks();
     }

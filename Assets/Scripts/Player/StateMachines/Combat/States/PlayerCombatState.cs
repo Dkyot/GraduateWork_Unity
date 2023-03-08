@@ -19,7 +19,7 @@ public class PlayerCombatState : IState
     #region  IState Methods
     public virtual void Enter()
     {
-        Debug.Log("Combat state: " + GetType().Name);
+        //Debug.Log("Combat state: " + GetType().Name);
 
         AddInputActionsCallbacks();
     }
