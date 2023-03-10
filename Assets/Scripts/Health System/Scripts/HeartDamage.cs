@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class HeartHeal : MonoBehaviour
+public class HeartDamage : MonoBehaviour
 {
     [SerializeField] private int healAmount;
 
@@ -8,7 +8,7 @@ public class HeartHeal : MonoBehaviour
         CharacterHealth player = collider.GetComponent<CharacterHealth>();
          if (player != null) {
             //if (healAmount >= 0)
-                player.GetHealthSystem().Heal(healAmount);
+                player.GetHealthSystem().Damage(healAmount);
             // else
             //     player.GetHealthSystem().Damage(healAmount);
             // //Destroy(gameObject);

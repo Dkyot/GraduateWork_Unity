@@ -15,13 +15,21 @@ public class HeartsHealthSystem
     public HeartsHealthSystem(int heartAmount) {
         heartList = new List<Heart>();
         for (int i = 0; i < heartAmount; i++) {
-            Heart heart = new Heart(4);
+            Heart heart = new Heart();
             heartList.Add(heart);
         }
     }
 
     public List<Heart> GetHeartList() {
         return heartList;
+    }
+
+    public int GetCurrentHP() {
+        int currentHP = 0;
+        foreach (Heart heart in heartList) {
+            currentHP += heart.GetFragmentAmount();
+        }
+        return currentHP;
     }
 
     public void Damage(int damageAmount) {
@@ -61,42 +69,6 @@ public class HeartsHealthSystem
     }
 
     public bool IsDead() {
-        return heartList[0].GetFragmentAmount() == 0;
-    }
-}
-
-public class Heart 
-{
-    private int fragments;
-    private const int MAX_FRAGMENT_AMOUNT = 4;
-
-    public Heart(int fragments) {
-        this.fragments = fragments;
-    }
-
-    public int GetFragmentAmount() {
-        return fragments;
-    }
-
-    public void SetFragments(int fragments) {
-        this.fragments = fragments;
-    }
-
-    public void Damage(int damageAmount) {
-        if (damageAmount >= fragments) {
-            fragments = 0;
-        } 
-        else {
-            fragments -= damageAmount;
-        }
-    }
-
-    public void Heal(int healAmount) {
-        if (fragments + healAmount > MAX_FRAGMENT_AMOUNT) {
-            fragments = MAX_FRAGMENT_AMOUNT;
-        } 
-        else {
-            fragments += healAmount;
-        }
+        return GetCurrentHP() == 0;
     }
 }
