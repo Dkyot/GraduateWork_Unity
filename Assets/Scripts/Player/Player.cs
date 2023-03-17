@@ -14,11 +14,15 @@ public class Player : MonoBehaviour
 
     [field: Header("References")]
     [field: SerializeField] public PlayerSO data { get; private set;}
+
+    public AnimController animController;////////////////////
     
     private void Awake()
     {
         input = GetComponent<PlayerInput>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animController = GetComponent<AnimController>();////////////////////
+
         movementStateMachine = new PlayerMovementStateMachine(this);
         combatStateMachine = new PlayerCombatStateMachine(this);
     }

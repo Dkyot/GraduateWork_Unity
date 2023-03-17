@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAttackingState : PlayerActiveState
 {
@@ -14,10 +14,12 @@ public class PlayerAttackingState : PlayerActiveState
     public override void Enter()
     {
         base.Enter();
-
+        
         timer = 0;
         
         stateMachine.reusableData.shouldAttack = true;
+
+        stateMachine.player.animController?.weaponAnimator.SetTrigger("Attack");
     }
 
     public override void Update()
@@ -26,7 +28,7 @@ public class PlayerAttackingState : PlayerActiveState
 
         timer += Time.deltaTime;
 
-        if (timer > 3f) {
+        if (timer > 0.5f) {
             if (stateMachine.reusableData.shouldBlock == true)
                 stateMachine.ChangeState(stateMachine.BlockingState);
             else 
@@ -39,6 +41,13 @@ public class PlayerAttackingState : PlayerActiveState
         base.Exit();
 
         stateMachine.reusableData.shouldAttack = false;
+    }
+    #endregion
+
+    #region Input Mehtods
+    protected override void OnAttackToggleStarted(InputAction.CallbackContext context)
+    {
+        //Debug.Log("атака уже совершанется");
     }
     #endregion
 }

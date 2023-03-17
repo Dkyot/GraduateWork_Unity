@@ -5,11 +5,6 @@ public class PlayerSO : ScriptableObject
 {
     [field: SerializeField] public PlayerGroundedData groundedData { get; private set;}
 
-    // [SerializeField]
-    // private PlayerGroundedData groundedData;
-
-    // public PlayerGroundedData GroundedData { 
-    //     get {return groundedData;}
-    //     private set {groundedData = value;}
-    // }
+    //[field: SerializeField] public Animator weaponAnimator;
+    //[field: SerializeField] public Animation idle;
 }
