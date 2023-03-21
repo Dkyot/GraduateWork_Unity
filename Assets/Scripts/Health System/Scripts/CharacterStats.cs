@@ -1,14 +1,13 @@
 using UnityEngine;
 
-public class CharacterHealth : MonoBehaviour
+public class CharacterStats : MonoBehaviour
 {
     [SerializeField]
     private int healthPoints = 5;
 
     private HeartsHealthSystem heartsHealth;
 
-    void Start()
-    {
+    void Start() {
         heartsHealth = new HeartsHealthSystem(healthPoints);
         Debug.Log(heartsHealth.GetCurrentHP());
     }

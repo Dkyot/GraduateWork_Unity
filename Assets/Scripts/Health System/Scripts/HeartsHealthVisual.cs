@@ -16,7 +16,7 @@ public class HeartsHealthVisual : MonoBehaviour
     public Sprite heart4Sprite =>   _heart4Sprite;
 
     [SerializeField]
-    private CharacterHealth characterHealth;
+    private CharacterStats characterStats;
     private HeartsHealthSystem heartsHealthSystem;
 
     private List<HeartImage> heartImageList;
@@ -30,7 +30,7 @@ public class HeartsHealthVisual : MonoBehaviour
 
     private void Start() {
         //FunctionPeriodic.Create(HealingAnimatedPeriodic, .05f);
-        SetHeartsHealthSystem(characterHealth.GetHealthSystem());
+        SetHeartsHealthSystem(characterStats.GetHealthSystem());
     }
 
     public void SetHeartsHealthSystem(HeartsHealthSystem heartsHealthSystem) {

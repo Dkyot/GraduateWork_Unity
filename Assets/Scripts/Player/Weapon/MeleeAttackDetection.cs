@@ -16,6 +16,10 @@ public class MeleeAttackDetection : MonoBehaviour
     public void DetectColliders() {
         foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius)) {
             Debug.Log(collider.name);
+            CharacterStats health = collider.GetComponent<CharacterStats>();
+            if (health == null || this.gameObject.layer == collider.gameObject.layer) continue;
+            health.GetHealthSystem().Damage(1);
+            Debug.Log("enemy hp: " + health.GetHealthSystem().GetCurrentHP());
         }
     }
 }
