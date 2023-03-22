@@ -7,9 +7,9 @@ public class CharacterStats : MonoBehaviour
 
     private HeartsHealthSystem heartsHealth;
 
-    void Start() {
+    void Awake() {
         heartsHealth = new HeartsHealthSystem(healthPoints);
-        Debug.Log(heartsHealth.GetCurrentHP());
+        //Debug.Log(heartsHealth.GetCurrentHP());
     }
 
     public HeartsHealthSystem GetHealthSystem() {

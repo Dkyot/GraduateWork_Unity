@@ -60,18 +60,18 @@ public class HeartsHealthVisual : MonoBehaviour
     }
 
     private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e) {
-        Debug.Log("Dead!");
+        Debug.Log("Player is Dead!");
     }
 
     private void HeartsHealthSystem_OnHealed(object sender, System.EventArgs e) {
         RefreshAllHearts();
-        Debug.Log("+: " + heartsHealthSystem.GetCurrentHP());
+        //Debug.Log("+: " + heartsHealthSystem.GetCurrentHP());
         //isHealing = true;
     }
 
     private void HeartsHealthSystem_OnDamaged(object sender, System.EventArgs e) {
         RefreshAllHearts();
-        Debug.Log("-: " + heartsHealthSystem.GetCurrentHP());
+        //Debug.Log("-: " + heartsHealthSystem.GetCurrentHP());
     }
 
     private void RefreshAllHearts() {
