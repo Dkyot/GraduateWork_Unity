@@ -508,6 +508,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: damage
       objectReference: {fileID: 0}
+    - target: {fileID: 7033427701561434698, guid: e769ac1e4995cd54aa7efe4ac8e3f733, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e769ac1e4995cd54aa7efe4ac8e3f733, type: 3}
 --- !u!1 &164940759
@@ -653,6 +657,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
   - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
   - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
+  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
+  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
+  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
 --- !u!114 &164940765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,8 +742,68 @@ PrefabInstance:
       propertyPath: m_Name
       value: heal
       objectReference: {fileID: 0}
+    - target: {fileID: 611655139965786079, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2311140994731396887, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
+      propertyPath: m_Mass
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2311140994731396887, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
+--- !u!1 &352181577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 352181578}
+  - component: {fileID: 352181579}
+  m_Layer: 8
+  m_Name: MagneticField
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &352181578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352181577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 665911269}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &352181579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352181577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27bfde09b520584695edbdf4703f3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleOrigin: {fileID: 352181578}
+  radius: 4.94
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &480744060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,6 +1086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: damage (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7033427701561434698, guid: e769ac1e4995cd54aa7efe4ac8e3f733, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e769ac1e4995cd54aa7efe4ac8e3f733, type: 3}
 --- !u!1 &665911264
@@ -1119,6 +1190,7 @@ Transform:
   m_Children:
   - {fileID: 1973033181}
   - {fileID: 927409513}
+  - {fileID: 352181578}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1202,6 +1274,10 @@ PrefabInstance:
     - target: {fileID: 611655139965786079, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
       propertyPath: m_Name
       value: heal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 611655139965786079, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
@@ -1579,7 +1655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleOrigin: {fileID: 87225936}
-  radius: 0.7
+  radius: 23.6
 --- !u!1 &1209182481
 GameObject:
   m_ObjectHideFlags: 0
