@@ -13,13 +13,12 @@ public class OnDeathDrop : MonoBehaviour
     {
         characterStats = GetComponent<CharacterStats>();
         heartsHealthSystem = characterStats.GetHealthSystem();
-        if (heartsHealthSystem == null) Debug.Log("null");
-
-        heartsHealthSystem.OnDead += HeartsHealthSystem_OnDead;
+        if (heartsHealthSystem != null) 
+            heartsHealthSystem.OnDead += HeartsHealthSystem_OnDead;
     }
 
     private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e) {
-        Debug.Log("Enemy is Dead!");
+        //Debug.Log("Enemy is Dead!");
         OnDeath?.Invoke();
         Destroy(gameObject);
     }

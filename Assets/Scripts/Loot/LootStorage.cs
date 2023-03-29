@@ -10,8 +10,11 @@ public class LootStorage : MonoBehaviour
         List<LootSO> possibleIteams = new List<LootSO>();
         foreach (LootSO item in lootList) {
             if (randomNumber <= item.dropChance) {
-                possibleIteams.Add(item);
-                // добавить нужное количество
+                if (item.minAmountOfLoot > 0 && item.maxAmountOfLoot >= item.minAmountOfLoot) {
+                    int i = Random.Range(item.minAmountOfLoot, item.maxAmountOfLoot + 1);
+                    for (int j = 0; j < i; j++)
+                        possibleIteams.Add(item);
+                }
             }  
         }
         return possibleIteams;
@@ -23,9 +26,7 @@ public class LootStorage : MonoBehaviour
 
         foreach (LootSO item in dropList) {
             GameObject lootObject = Instantiate(item.lootPrefab, transform.position, Quaternion.identity);
-
             Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            // выбрасывание
             lootObject.GetComponent<Rigidbody2D>()?.AddForce(dropDirection * item.dropForce, ForceMode2D.Impulse);
         }
     }

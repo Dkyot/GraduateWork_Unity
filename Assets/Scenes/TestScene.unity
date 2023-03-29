@@ -654,12 +654,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootList:
   - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
-  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
-  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
-  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
-  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
-  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
-  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
 --- !u!114 &164940765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,7 +746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2311140994731396887, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
       propertyPath: m_Constraints
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
@@ -1088,7 +1082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7033427701561434698, guid: e769ac1e4995cd54aa7efe4ac8e3f733, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e769ac1e4995cd54aa7efe4ac8e3f733, type: 3}
