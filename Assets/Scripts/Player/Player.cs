@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Controls))]
@@ -15,13 +13,13 @@ public class Player : MonoBehaviour
     [field: Header("References")]
     [field: SerializeField] public PlayerSO data { get; private set;}
 
-    public AnimController animController;////////////////////
-    
+    public CombatManager combatManager;
+
     private void Awake()
     {
         input = GetComponent<PlayerInput>();
         rigidbody2D = GetComponent<Rigidbody2D>();
-        animController = GetComponent<AnimController>();////////////////////
+        combatManager = GetComponent<CombatManager>();
 
         movementStateMachine = new PlayerMovementStateMachine(this);
         combatStateMachine = new PlayerCombatStateMachine(this);

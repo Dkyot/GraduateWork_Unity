@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +18,7 @@ public class PlayerAttackingState : PlayerActiveState
         
         stateMachine.reusableData.shouldAttack = true;
 
-        stateMachine.player.animController?.weaponAnimator.SetTrigger("Attack");
+        stateMachine.player.combatManager?.AttackHandler();
     }
 
     public override void Update()
