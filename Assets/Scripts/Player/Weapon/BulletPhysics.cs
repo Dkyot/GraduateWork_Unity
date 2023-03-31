@@ -20,7 +20,7 @@ public class BulletPhysics : MonoBehaviour
 
         rigidbody2D.AddForce(shootDir * moveSpeed, ForceMode2D.Impulse);
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
@@ -33,7 +33,7 @@ public class BulletPhysics : MonoBehaviour
         CharacterStats target = collider.gameObject.GetComponent<CharacterStats>();
         if (target != null) {
             target.GetHealthSystem().Damage(damageAmount);
-            Debug.Log("enemy hp: " + target.GetHealthSystem().GetCurrentHP());
+            //Debug.Log("enemy hp: " + target.GetHealthSystem().GetCurrentHP());
             Destroy(gameObject);
         }
     }

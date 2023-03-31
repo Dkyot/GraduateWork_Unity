@@ -60,7 +60,7 @@ public class HeartsHealthVisual : MonoBehaviour
     }
 
     private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e) {
-        Debug.Log("Player is Dead!");
+        //Debug.Log("Player is Dead!");
     }
 
     private void HeartsHealthSystem_OnHealed(object sender, System.EventArgs e) {
