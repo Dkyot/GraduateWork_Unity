@@ -14,6 +14,7 @@ public class BulletHellPatternSO : ScriptableObject
     public float cooldownBetweenBursts = 0;
 
     public bool useRotation = false;
+    public bool clockwise = false;
     public bool useSin = false;
     [Range(1f, 360f)]
     public float rotationSpeed = 5f;

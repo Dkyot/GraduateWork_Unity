@@ -4,7 +4,9 @@ using UnityEngine;
 public class BulletHellShoot : MonoBehaviour
 {
     [SerializeField] private BulletHellPatternSO bulletHellData;
-    [SerializeField] private Transform bulletPhysics;
+    [SerializeField] private GameObject bulletPhysics;
+
+    [SerializeField] private PoolManager poolManager;
 
     private List<Vector2> shootDirections;
 
@@ -54,6 +56,7 @@ public class BulletHellShoot : MonoBehaviour
                 float angle = bulletHellData.useSin ? 
                     bulletHellData.rotationSpeed * Time.deltaTime *  Mathf.Sin(Time.time) : 
                     bulletHellData.rotationSpeed * Time.deltaTime;
+                if (bulletHellData.clockwise) angle *= -1;
                 shootDirections[i] = RotateVector(shootDirections[i], angle); 
             }
         }
@@ -84,8 +87,12 @@ public class BulletHellShoot : MonoBehaviour
     }
 
     public void Shoot(Vector2 vector) {
-        Transform bulletTransform = Instantiate(bulletPhysics, transform.position, Quaternion.identity);
-        bulletTransform.GetComponent<BulletPhysics>().Setup(vector.normalized, gameObject.layer);
+        GameObject bullet;
+        if (poolManager == null)
+            return;
+        else 
+            bullet = poolManager.Spawn(bulletPhysics, transform.position, Quaternion.identity);
+        bullet.GetComponent<BulletPhysics>().Setup(poolManager, vector.normalized, gameObject.layer);
     }
 
     private void OnDrawGizmos() {

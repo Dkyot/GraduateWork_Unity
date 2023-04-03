@@ -2,18 +2,23 @@ using UnityEngine;
 
 public class ShootProjectiles : MonoBehaviour
 {
+    [SerializeField] private PoolManager poolManager;
+    
     [SerializeField]
-    private Transform bulletPhysics;
+    private GameObject bulletPhysics;
     [SerializeField]
     private PlayerInput input;
     [SerializeField]
     private Transform shootPosition;
 
+    private void Start() {
+        //poolManager.Preload(bulletPhysics, 5);
+    }
+
     public void Shoot() {
-        Transform bulletTransform = Instantiate(bulletPhysics, shootPosition.position, Quaternion.identity);
+        GameObject bullet = poolManager.Spawn(bulletPhysics, transform.position, Quaternion.identity);
         Vector3 direction = (GetPointerInput() - (Vector2)transform.position).normalized;
-        bulletTransform.GetComponent<BulletPhysics>().Setup(direction, gameObject.layer);
-        //Debug.Log(direction);
+        bullet.GetComponent<BulletPhysics>().Setup(poolManager, direction, gameObject.layer);
     }
 
     private Vector2 GetPointerInput() {
