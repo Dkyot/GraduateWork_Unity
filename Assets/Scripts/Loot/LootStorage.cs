@@ -6,12 +6,12 @@ public class LootStorage : MonoBehaviour
     public List<LootSO> lootList = new List<LootSO>();
 
     private List<LootSO> GetDroppedItems() {
-        int randomNumber = Random.Range(1, 101);
+        int randomNumber = Random.Range(1, 100);
         List<LootSO> possibleIteams = new List<LootSO>();
         foreach (LootSO item in lootList) {
             if (randomNumber <= item.dropChance) {
                 if (item.minAmountOfLoot > 0 && item.maxAmountOfLoot >= item.minAmountOfLoot) {
-                    int i = Random.Range(item.minAmountOfLoot, item.maxAmountOfLoot + 1);
+                    int i = Random.Range(item.minAmountOfLoot, item.maxAmountOfLoot);
                     for (int j = 0; j < i; j++)
                         possibleIteams.Add(item);
                 }

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class HeartsHealthSystem 
+public class HeartsHealthSystem
 {
-
     public const int MAX_FRAGMENT_AMOUNT = 4;
 
     public event EventHandler OnDamaged;

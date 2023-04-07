@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552040a39a9da246bd009d9bb7c4124, type: 3}
   m_Name: BH_test
   m_EditorClassIdentifier: 
-  directionsAmount: 4
-  cooldown: 0.5
-  useBurst: 0
-  cooldownBetweenBursts: 0.55
+  directionsAmount: 6
+  cooldown: 0.137
+  useBurst: 1
+  cooldownBetweenBursts: 0.5
   useRotation: 1
-  clockwise: 1
-  useSin: 1
-  rotationSpeed: 47
+  clockwise: 0
+  useSin: 0
+  rotationSpeed: 76
