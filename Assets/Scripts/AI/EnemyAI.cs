@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,18 +16,13 @@ public class EnemyAI : MonoBehaviour
     private float attackDelay = 1;
     private float passedTime = 1;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (player == null)  return;
 
         float distance = Vector2.Distance(player.position, transform.position);
         if (distance < chaseDistanceThreshold) {
-            OnPointerInput?.Invoke(player.position);
+            OnPointerInput?.Invoke(player.position - transform.position);
             if (distance <= attackDistanceThreshold) {
                 OnMovementInput?.Invoke(Vector2.zero);
                 if (passedTime >= attackDelay) {

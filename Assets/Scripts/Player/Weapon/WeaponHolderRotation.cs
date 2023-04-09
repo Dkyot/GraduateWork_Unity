@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class WeaponHolderRotation : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerInput input;
+    public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
+
+    private Vector2 pointerInput;
 
     void Update()
     {
-        Vector2 direction = (GetPointerInput() - (Vector2)transform.position).normalized;
-        //transform.right = direction;
-        transform.right = Vector3.Lerp(transform.right, direction, 0.1f);
+        transform.right = Vector3.Lerp(transform.right, pointerInput, 0.1f);
 
         Vector2 scale = transform.localScale;
-        if (direction.x < 0)
+        if (pointerInput.x < 0)
             scale.y = -1;
         else
             scale.y = 1;
@@ -22,11 +21,5 @@ public class WeaponHolderRotation : MonoBehaviour
 
 
         transform.localScale = scale;    
-    }
-
-    private Vector2 GetPointerInput() {
-        Vector3 mousePos = input.inputActions.InGamePlayerInput.PointerPosition.ReadValue<Vector2>();
-        mousePos.z = Camera.main.nearClipPlane;
-        return Camera.main.ScreenToWorldPoint(mousePos);
     }
 }

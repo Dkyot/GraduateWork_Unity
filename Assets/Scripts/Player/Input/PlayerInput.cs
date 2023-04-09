@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
@@ -8,9 +8,15 @@ public class PlayerInput : MonoBehaviour
     public Controls inputActions { get; private set;}
     public Controls.InGamePlayerInputActions playerActions { get; private set;}
 
+    public UnityEvent<Vector2> OnPointerInput;
+
     private void Awake() {
         inputActions = new Controls();
         playerActions = inputActions.InGamePlayerInput;
+    }
+
+    private void Update() {
+        OnPointerInput?.Invoke((GetPointerInput() - (Vector2)transform.position).normalized);
     }
 
     private void OnEnable() {
@@ -29,5 +35,11 @@ public class PlayerInput : MonoBehaviour
         action.Disable();
         yield return new WaitForSeconds(seconds);
         action.Enable();
+    }
+
+    private Vector2 GetPointerInput() {
+        Vector3 mousePos = inputActions.InGamePlayerInput.PointerPosition.ReadValue<Vector2>();
+        mousePos.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePos);
     }
 }
