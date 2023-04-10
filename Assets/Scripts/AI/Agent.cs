@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
+    [SerializeField]
+    private CombatManager combatManager;
+
     private AgentMover agentMover;
 
     public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
@@ -14,7 +17,7 @@ public class Agent : MonoBehaviour
     }
 
     public void PerformAttack() {
-        //weaponParent.Attack();
+        combatManager?.AttackHandler();
     }
 
     private void Awake() {

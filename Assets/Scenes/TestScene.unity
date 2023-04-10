@@ -533,7 +533,9 @@ GameObject:
   - component: {fileID: 164940768}
   - component: {fileID: 164940766}
   - component: {fileID: 164940769}
-  m_Layer: 0
+  - component: {fileID: 164940770}
+  - component: {fileID: 164940771}
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,6 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cbd4a69c2a69a47895d70c7ebdbebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatManager: {fileID: 164940770}
 --- !u!114 &164940769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,6 +793,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2033053859}
+        m_TargetAssemblyTypeName: ShootProjectiles, Assembly-CSharp
+        m_MethodName: set_PointerInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnAttack:
     m_PersistentCalls:
       m_Calls:
@@ -809,6 +824,33 @@ MonoBehaviour:
   chaseDistanceThreshold: 5
   attackDistanceThreshold: 2
   attackDelay: 1
+--- !u!114 &164940770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164940759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a4b7a4a2cba3242a74d0426833a18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animController: {fileID: 164940771}
+  shootProjectiles: {fileID: 2033053859}
+--- !u!114 &164940771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164940759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698610485b989d546937b1ae2f385fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAnimator: {fileID: 354049483}
 --- !u!1001 &270180290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -938,8 +980,8 @@ GameObject:
   - component: {fileID: 354049484}
   - component: {fileID: 354049483}
   - component: {fileID: 354049482}
-  m_Layer: 8
-  m_Name: Weapon_1
+  m_Layer: 10
+  m_Name: enemy_Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1469,6 +1511,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 927409517}
+        m_TargetAssemblyTypeName: ShootProjectiles, Assembly-CSharp
+        m_MethodName: set_PointerInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &665911266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,7 +1701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 742491066}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Weapon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1678,7 +1732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 772206788}
   - component: {fileID: 772206789}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2058,7 +2112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolManager: {fileID: 610102148}
   bulletPhysics: {fileID: 4546647228140594423, guid: 74d9841c431b8694e93c0271ea6b04d6, type: 3}
-  input: {fileID: 665911265}
   shootPosition: {fileID: 1340602270}
 --- !u!1 &1164486134
 GameObject:
@@ -2235,7 +2288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1218084946}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: shootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2456,7 +2509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1764757660}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: CircleOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2703,7 +2756,7 @@ GameObject:
   - component: {fileID: 2033053861}
   - component: {fileID: 2033053860}
   - component: {fileID: 2033053859}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2729,14 +2782,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033053857}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 826f1424219484b4596f845c1e528af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   poolManager: {fileID: 610102148}
   bulletPhysics: {fileID: 4546647228140594423, guid: 74d9841c431b8694e93c0271ea6b04d6, type: 3}
-  input: {fileID: 665911265}
   shootPosition: {fileID: 1218084946}
 --- !u!114 &2033053860
 MonoBehaviour:
@@ -2759,7 +2811,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033053857}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fa900812c0f69147a570658c2554124, type: 3}
   m_Name: 

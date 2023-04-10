@@ -9,7 +9,7 @@ public class CombatManager : MonoBehaviour
     
     public void AttackHandler() {
         animController?.weaponAnimator.SetTrigger("Attack");
-        //Debug.Log("+");
+        Debug.Log("+");
         shootProjectiles.Shoot();
     }
 }
