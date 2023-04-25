@@ -23,6 +23,7 @@ public class ShootProjectiles : MonoBehaviour
     public void Shoot() {
         GameObject bullet = poolManager.Spawn(bulletPhysics, transform.position, Quaternion.identity);
         //Vector3 direction = (GetPointerInput() - (Vector2)transform.position).normalized;
+        //Debug.Log(pointerInput);
         bullet.GetComponent<BulletPhysics>().Setup(poolManager, pointerInput, gameObject.layer);
     }
 

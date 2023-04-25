@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BH_test 2
   m_EditorClassIdentifier: 
   directionsAmount: 8
-  cooldown: 0.05
+  cooldown: 0.2
   useBurst: 0
   cooldownBetweenBursts: 0.8
   useRotation: 1

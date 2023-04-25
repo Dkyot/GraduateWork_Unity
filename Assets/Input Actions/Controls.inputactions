@@ -63,7 +63,18 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "592ea138-67bf-46aa-aa24-9f5f7aaffd7e",
+                    "id": "edab5fec-847a-4bf3-a80d-fb63f504a4ec",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "PointerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5b9877f-8780-4c8d-a137-307d89d1381d",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
@@ -140,8 +151,30 @@
                 },
                 {
                     "name": "",
+                    "id": "23923ec5-1426-4766-a6f2-d039e6260deb",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6e6b6ea9-b098-410d-81f0-1ec5f5e1b944",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26e1cc88-e59b-4084-ab29-b5142257c848",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

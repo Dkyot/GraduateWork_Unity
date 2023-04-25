@@ -16,7 +16,10 @@ public class PlayerInput : MonoBehaviour
     }
 
     private void Update() {
-        OnPointerInput?.Invoke((GetPointerInput() - (Vector2)transform.position).normalized);
+        if (Application.isMobilePlatform)
+            OnPointerInput?.Invoke(inputActions.InGamePlayerInput.PointerPosition.ReadValue<Vector2>());
+        else
+            OnPointerInput?.Invoke((GetPointerInput() - (Vector2)transform.position).normalized);
     }
 
     private void OnEnable() {
