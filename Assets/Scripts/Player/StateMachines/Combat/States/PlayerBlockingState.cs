@@ -9,14 +9,30 @@ public class PlayerBlockingState : PlayerActiveState
     {
     }
 
+    private float timer;
+
+    #region IState Methods
+    public override void Enter()
+    {
+        base.Enter();
+        
+        timer = 0;
+
+        stateMachine.player.combatManager?.AttackHandler();
+    }
+    #endregion
+
     #region IState Methods
     public override void Update()
     {
         base.Update();
 
-        // if (stateMachine.reusableData.shouldAttack == true || stateMachine.reusableData.shouldBlock == true) {
-        //     return;
-        // }
+        timer += Time.deltaTime;
+
+        if (timer > 0.2f) {
+            stateMachine.player.combatManager?.AttackHandler();
+            timer = 0;
+        }
 
         OnInactive();
     }

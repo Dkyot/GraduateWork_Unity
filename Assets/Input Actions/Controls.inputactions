@@ -74,7 +74,7 @@
                 },
                 {
                     "name": "",
-                    "id": "d5b9877f-8780-4c8d-a137-307d89d1381d",
+                    "id": "604d8ad1-e00f-47ff-9798-ad5598bc6556",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
@@ -86,7 +86,18 @@
                 {
                     "name": "",
                     "id": "fd1d301f-4cd9-4c42-863e-ff525e7a2205",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8fca80bb-49d9-4808-a7be-bd723cb6f6a1",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -196,7 +207,7 @@
                 {
                     "name": "",
                     "id": "cc70e41f-477d-493a-976b-5ec228e8b619",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
