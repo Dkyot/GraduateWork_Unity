@@ -51,49 +51,48 @@ public class PlayerCombatState : IState
     // }
     #endregion
 
+    bool mobileDebug = false;
+
     #region Reusable Mehtods
     protected virtual void AddInputActionsCallbacks() {
-        
-        
+        if (Application.isMobilePlatform || mobileDebug) {
+            //stateMachine.player.input.playerActions.PointerPosition.started += OnAttackToggleStarted;
 
-        stateMachine.player.input.playerActions.Block.started += OnBlockToggleStarted;
-        stateMachine.player.input.playerActions.Block.canceled += OnBlockToggleStarted;
-
-        if (Application.isMobilePlatform)
-            stateMachine.player.input.playerActions.PointerPosition.started += OnAttackToggleStarted;/////////////////////////////////
-        else {
-            stateMachine.player.input.playerActions.Attack.started += OnAttackToggleStarted;
-            //stateMachine.player.input.playerActions.Attack.canceled += OnAttackToggleStarted;
+            stateMachine.player.input.playerActions.PointerPosition.started += OnBlockToggleStarted;
+            stateMachine.player.input.playerActions.PointerPosition.canceled += OnBlockToggleStarted;
         }
+        else {
+            //stateMachine.player.input.playerActions.Attack.started += OnAttackToggleStarted;
+
+            stateMachine.player.input.playerActions.Block.started += OnBlockToggleStarted;
+            stateMachine.player.input.playerActions.Block.canceled += OnBlockToggleStarted;
+        }
+
+        stateMachine.player.input.playerActions.Attack.started += OnAttackToggleStarted;
     }
 
     protected virtual void RemoveInputActionsCallbacks() {
-        
+        if (Application.isMobilePlatform || mobileDebug) {
+            //stateMachine.player.input.playerActions.PointerPosition.started -= OnAttackToggleStarted;
 
-        stateMachine.player.input.playerActions.Block.started -= OnBlockToggleStarted;
-        stateMachine.player.input.playerActions.Block.canceled -= OnBlockToggleStarted;
-
-        if (Application.isMobilePlatform)
-            stateMachine.player.input.playerActions.PointerPosition.started -= OnAttackToggleStarted;/////////////////////////////////
-        else {
-            stateMachine.player.input.playerActions.Attack.started -= OnAttackToggleStarted;
-            //stateMachine.player.input.playerActions.Attack.canceled -= OnAttackToggleStarted;
+            stateMachine.player.input.playerActions.PointerPosition.started -= OnBlockToggleStarted;
+            stateMachine.player.input.playerActions.PointerPosition.canceled -= OnBlockToggleStarted;
         }
+        else {
+            //stateMachine.player.input.playerActions.Attack.started -= OnAttackToggleStarted;
+
+            stateMachine.player.input.playerActions.Block.started -= OnBlockToggleStarted;
+            stateMachine.player.input.playerActions.Block.canceled -= OnBlockToggleStarted;
+        }
+
+        stateMachine.player.input.playerActions.Attack.started -= OnAttackToggleStarted;
     }
     #endregion
 
     #region Input Mehtods
     protected virtual void OnAttackToggleStarted(InputAction.CallbackContext context)
     {
-        if (Application.isMobilePlatform) {
-            if (stateMachine.player.input.playerActions.PointerPosition.ReadValue<Vector2>() == Vector2.zero) return;
-            stateMachine.ChangeState(stateMachine.AttackingState);
-        }
-        else {
-            // if (context.started) stateMachine.reusableData.shouldAttack = true;
-            // else stateMachine.reusableData.shouldAttack = false;
-            stateMachine.ChangeState(stateMachine.AttackingState);
-        }
+        stateMachine.ChangeState(stateMachine.AttackingState);
     }
 
     protected virtual void OnBlockToggleStarted(InputAction.CallbackContext context)

@@ -18,7 +18,9 @@ public class PlayerAttackingState : PlayerActiveState
         
         stateMachine.reusableData.shouldAttack = true;
 
-        stateMachine.player.combatManager?.AttackHandler();
+        //stateMachine.player.combatManager?.AttackHandler();
+        Debug.Log("способность");
+
     }
 
     public override void Update()
@@ -27,7 +29,7 @@ public class PlayerAttackingState : PlayerActiveState
 
         timer += Time.deltaTime;
 
-        if (timer > 0.5f) {
+        if (timer > 1f) {
             if (stateMachine.reusableData.shouldBlock == true)
                 stateMachine.ChangeState(stateMachine.BlockingState);
             else 
@@ -46,7 +48,7 @@ public class PlayerAttackingState : PlayerActiveState
     #region Input Mehtods
     protected override void OnAttackToggleStarted(InputAction.CallbackContext context)
     {
-        //Debug.Log("атака уже совершанется");
+        Debug.Log("способность уже совершанется");
     }
     #endregion
 }
