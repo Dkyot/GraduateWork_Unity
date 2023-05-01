@@ -24,8 +24,8 @@ public class LootMagnet : MonoBehaviour
         foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius)) {
             if ((layerMask.value & (1 << collider.gameObject.layer)) == 0) continue;
             
-            if(collider.TryGetComponent<HeartHeal>(out HeartHeal heal)) {
-                heal.SetTarget(transform.position);
+            if(collider.TryGetComponent<LootBase>(out LootBase drop)) {
+                drop.SetTarget(transform.position);
             }
         }
     }
