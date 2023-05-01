@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class OnCollisionCoin : LootBase
 {
-    [SerializeField] 
-    protected int coinAmount;
+    [SerializeField] private int coinAmount;
     
     private void OnCollisionEnter2D(Collision2D collider) {
         if (collider.gameObject.CompareTag("Player")) {

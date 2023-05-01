@@ -5,12 +5,12 @@ public abstract class LootBase : MonoBehaviour
     protected new Rigidbody2D rigidbody2D;
     
     protected float time = 0;
-    protected float timeToStop = 0.5f;
+    protected float timeToStop = 0.4f;
     protected bool stopped = false;
 
     protected bool hasTarget;
     protected Vector3 targetPosition;
-    protected float magnetSpeed = 5f;
+    protected float magnetSpeed = 15f;
 
     [SerializeField] 
     protected bool isMagnetic = false;

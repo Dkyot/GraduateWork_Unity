@@ -2,8 +2,7 @@
 
 public class OnCollisionHeal : LootBase
 {
-    [SerializeField] 
-    protected int healAmount;
+    [SerializeField] private int healAmount;
     
     private void OnCollisionEnter2D(Collision2D collider) {
         if (collider.gameObject.CompareTag("Player")) {
