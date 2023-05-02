@@ -4,7 +4,8 @@ using UnityEngine;
 public class PropSO : ScriptableObject
 {
     [Header("Prop data:")]
-    public Sprite PropSprite;
+    //public Sprite PropSprite;
+    public GameObject propPrefab;
 
     public Vector2Int PropSize = Vector2Int.one;
 

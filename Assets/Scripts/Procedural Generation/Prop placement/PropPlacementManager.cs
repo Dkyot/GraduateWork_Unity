@@ -26,9 +26,6 @@ public class PropPlacementManager : MonoBehaviour
     [SerializeField, Range(0, 1)]
     private float cornerPropPlacementChance = 0.7f;
 
-    [SerializeField]
-    private GameObject propPrefab;
-
     public void ProcessRooms() {
         if (dungeonData == null)
             return;
@@ -45,12 +42,10 @@ public class PropPlacementManager : MonoBehaviour
             if (propsToPlace.roomProps.Count == 0)
                 continue;
 
-            //Place props place props in the corners
             List<PropSO> cornerProps = propsToPlace.roomProps.Where(x => x.Corner).ToList();
             if (cornerProps.Count != 0)
                 PlaceCornerProps(room, cornerProps);
 
-            //Place props near LEFT wall
             List<PropSO> leftWallProps = propsToPlace.roomProps
             .Where(x => x.NearWallLeft)
             .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
@@ -58,7 +53,6 @@ public class PropPlacementManager : MonoBehaviour
 
             PlaceProps(room, leftWallProps, room.NearWallTilesLeft, PlacementOriginCorner.BottomLeft);
 
-            //Place props near RIGHT wall
             List<PropSO> rightWallProps = propsToPlace.roomProps
             .Where(x => x.NearWallRight)
             .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
@@ -66,7 +60,6 @@ public class PropPlacementManager : MonoBehaviour
 
             PlaceProps(room, rightWallProps, room.NearWallTilesRight, PlacementOriginCorner.TopRight);
 
-            //Place props near UP wall
             List<PropSO> topWallProps = propsToPlace.roomProps
             .Where(x => x.NearWallUP)
             .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
@@ -74,7 +67,6 @@ public class PropPlacementManager : MonoBehaviour
 
             PlaceProps(room, topWallProps, room.NearWallTilesUp, PlacementOriginCorner.TopLeft);
 
-            //Place props near DOWN wall
             List<PropSO> downWallProps = propsToPlace.roomProps
             .Where(x => x.NearWallDown)
             .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
@@ -82,7 +74,6 @@ public class PropPlacementManager : MonoBehaviour
 
             PlaceProps(room, downWallProps, room.NearWallTilesDown, PlacementOriginCorner.BottomLeft);
 
-            //Place inner props
             List<PropSO> innerProps = propsToPlace.roomProps
                 .Where(x => x.Inner)
                 .OrderByDescending(x => x.PropSize.x * x.PropSize.y)
@@ -237,31 +228,8 @@ public class PropPlacementManager : MonoBehaviour
     }
 
     private GameObject PlacePropGameObjectAt(RoomData room, Vector2Int placementPostion, PropSO propToPlace) {
-        //Instantiat the prop at this positon
-        GameObject prop = Instantiate(propPrefab);
-        SpriteRenderer propSpriteRenderer = prop.GetComponentInChildren<SpriteRenderer>();
-        
-        //set the sprite
-        propSpriteRenderer.sprite = propToPlace.PropSprite;
-
-        //Add a collider
-        CapsuleCollider2D collider 
-            = propSpriteRenderer.gameObject.AddComponent<CapsuleCollider2D>();
-        collider.offset = Vector2.zero;
-        if(propToPlace.PropSize.x > propToPlace.PropSize.y)
-        {
-            collider.direction = CapsuleDirection2D.Horizontal;
-        }
-        Vector2 size 
-            = new Vector2(propToPlace.PropSize.x*0.8f, propToPlace.PropSize.y*0.8f);
-        collider.size = size;
-
-        prop.transform.localPosition = (Vector2)placementPostion;
-        //adjust the position to the sprite
-        propSpriteRenderer.transform.localPosition 
-            = (Vector2)propToPlace.PropSize * 0.5f;
-
-        //Save the prop in the room data (so in the dunbgeon data)
+        GameObject prop = Instantiate(propToPlace.propPrefab);
+        prop.transform.localPosition = new Vector2(placementPostion.x + 0.5f, placementPostion.y + 0.5f);
         room.PropPositions.Add(placementPostion);
         room.PropObjectReferences.Add(prop);
         return prop;

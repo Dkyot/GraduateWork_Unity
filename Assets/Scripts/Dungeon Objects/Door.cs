@@ -17,7 +17,7 @@ public class Door : MonoBehaviour
         if (playerKeys == null) return;
 
         switch (key) {
-            case KeyColors.Red:   if (playerKeys.redKey)   Open.Invoke(); Debug.Log("fd");break;
+            case KeyColors.Red:   if (playerKeys.redKey)   Open.Invoke(); break;
             case KeyColors.Green: if (playerKeys.greenKey) Open.Invoke(); break;
             case KeyColors.White: if (playerKeys.whiteKey) Open.Invoke(); break;
             default: return;
