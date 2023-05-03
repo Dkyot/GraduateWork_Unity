@@ -15,4 +15,8 @@ public class CharacterStats : MonoBehaviour
     public HeartsHealthSystem GetHealthSystem() {
         return heartsHealth;
     }
+
+    // private void Update() {
+    //     Debug.Log(heartsHealth.GetCurrentHP());
+    // }
 }

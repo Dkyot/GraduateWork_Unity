@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +35,15 @@ public class HeartsHealthVisual : MonoBehaviour
     }
 
     public void SetHeartsHealthSystem(HeartsHealthSystem heartsHealthSystem) {
+        SetHeartList(heartsHealthSystem);
+
+        heartsHealthSystem.OnDamaged += HeartsHealthSystem_OnDamaged;
+        heartsHealthSystem.OnHealed += HeartsHealthSystem_OnHealed;
+        heartsHealthSystem.OnDead += HeartsHealthSystem_OnDead;
+        heartsHealthSystem.OnSet += HeartsHealthSystem_OnSet;
+    }
+
+    private void SetHeartList(HeartsHealthSystem heartsHealthSystem) {
         this.heartsHealthSystem = heartsHealthSystem;
 
         List<Heart> heartList = heartsHealthSystem.GetHeartList();
@@ -53,10 +63,11 @@ public class HeartsHealthVisual : MonoBehaviour
                 col = 0;
             }
         }
+    }
 
-        heartsHealthSystem.OnDamaged += HeartsHealthSystem_OnDamaged;
-        heartsHealthSystem.OnHealed += HeartsHealthSystem_OnHealed;
-        heartsHealthSystem.OnDead += HeartsHealthSystem_OnDead;
+    private void HeartsHealthSystem_OnSet(object sender, EventArgs e) {
+        RefreshAllHearts();
+        Debug.Log("HP was changed!");
     }
 
     private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e) {
@@ -65,12 +76,14 @@ public class HeartsHealthVisual : MonoBehaviour
 
     private void HeartsHealthSystem_OnHealed(object sender, System.EventArgs e) {
         RefreshAllHearts();
+        //Debug.Log("Was Healed!");
         //Debug.Log("+: " + heartsHealthSystem.GetCurrentHP());
         //isHealing = true;
     }
 
     private void HeartsHealthSystem_OnDamaged(object sender, System.EventArgs e) {
         RefreshAllHearts();
+        //Debug.Log("Was Damaged!");
         //Debug.Log("-: " + heartsHealthSystem.GetCurrentHP());
     }
 

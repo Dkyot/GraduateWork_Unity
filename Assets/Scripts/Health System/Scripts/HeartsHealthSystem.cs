@@ -8,6 +8,7 @@ public class HeartsHealthSystem
     public event EventHandler OnDamaged;
     public event EventHandler OnHealed;
     public event EventHandler OnDead;
+    public event EventHandler OnSet;
 
     private List<Heart> heartList;
 
@@ -31,39 +32,54 @@ public class HeartsHealthSystem
         return currentHP;
     }
 
-    public void Damage(int damageAmount) {
+    private void DecreaseHP(int amount) {
         for (int i = heartList.Count - 1; i >= 0; i--) {
             Heart heart = heartList[i];
-            if (damageAmount > heart.GetFragmentAmount()) {
-                damageAmount -= heart.GetFragmentAmount();
+            if (amount > heart.GetFragmentAmount()) {
+                amount -= heart.GetFragmentAmount();
                 heart.Damage(heart.GetFragmentAmount());
             } 
             else {
-                heart.Damage(damageAmount);
+                heart.Damage(amount);
                 break;
             }
         }
+    }
 
+    private void IncreaseHP(int amount) {
+        for (int i = 0; i < heartList.Count; i++) {
+            Heart heart = heartList[i];
+            int missingFragments = MAX_FRAGMENT_AMOUNT - heart.GetFragmentAmount();
+            if (amount > missingFragments) {
+                amount -= missingFragments;
+                heart.Heal(missingFragments);
+            } 
+            else {
+                heart.Heal(amount);
+                break;
+            }
+        }
+    }
+
+    public void SetHP(int hp) {
+        if (hp > heartList.Count * 4 || hp <= 0) return;
+        if (hp > GetCurrentHP()) IncreaseHP(hp - GetCurrentHP());
+        else if (hp < GetCurrentHP()) DecreaseHP(GetCurrentHP() - hp);
+
+        OnSet(this, EventArgs.Empty);
+    } 
+
+    public void Damage(int damageAmount) {
+        if (damageAmount <= 0) return;
+        DecreaseHP(damageAmount);
         if (OnDamaged != null) OnDamaged(this, EventArgs.Empty);
-
         if (IsDead()) {
             if (OnDead != null) OnDead(this, EventArgs.Empty);
         }
     }
 
     public void Heal(int healAmount) {
-        for (int i = 0; i < heartList.Count; i++) {
-            Heart heart = heartList[i];
-            int missingFragments = MAX_FRAGMENT_AMOUNT - heart.GetFragmentAmount();
-            if (healAmount > missingFragments) {
-                healAmount -= missingFragments;
-                heart.Heal(missingFragments);
-            } 
-            else {
-                heart.Heal(healAmount);
-                break;
-            }
-        }
+        IncreaseHP(healAmount);
         if (OnHealed != null) OnHealed(this, EventArgs.Empty);
     }
 

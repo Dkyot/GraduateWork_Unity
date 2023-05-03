@@ -577,7 +577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &164940760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1091,7 +1091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611655139965786079, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2311140994731396887, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
       propertyPath: m_Mass
@@ -2295,11 +2295,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611655139965786048, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.643065
+      value: -15.27
       objectReference: {fileID: 0}
     - target: {fileID: 611655139965786048, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.147413
+      value: 6.94
       objectReference: {fileID: 0}
     - target: {fileID: 611655139965786048, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2339,7 +2339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611655139965786079, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
@@ -5295,7 +5295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5290013827011366117, guid: f4136d0c3c2e2484d9fd2d9f173ced83, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5290013827011366138, guid: f4136d0c3c2e2484d9fd2d9f173ced83, type: 3}
       propertyPath: m_RootOrder
@@ -7668,6 +7668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest
       objectReference: {fileID: 0}
+    - target: {fileID: 3747543856993666423, guid: e17491b6ccfbdcf47968f2368b31f8b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e17491b6ccfbdcf47968f2368b31f8b5, type: 3}
 --- !u!1001 &3791883435883875481
@@ -7724,6 +7728,10 @@ PrefabInstance:
     - target: {fileID: 2180560402522781206, guid: 812895f3565a4b74eab09365b90bba6c, type: 3}
       propertyPath: m_Name
       value: Exit Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180560402522781206, guid: 812895f3565a4b74eab09365b90bba6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2180560403609392922, guid: 812895f3565a4b74eab09365b90bba6c, type: 3}
       propertyPath: playerKeys
