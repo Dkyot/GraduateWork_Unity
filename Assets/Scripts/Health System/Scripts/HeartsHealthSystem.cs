@@ -10,6 +10,8 @@ public class HeartsHealthSystem
     public event EventHandler OnDead;
     public event EventHandler OnSet;
 
+    public event EventHandler OnChangeHeartAmount;
+
     private List<Heart> heartList;
 
     public HeartsHealthSystem(int heartAmount) {
@@ -18,6 +20,27 @@ public class HeartsHealthSystem
             Heart heart = new Heart();
             heartList.Add(heart);
         }
+    }
+
+    public void AddHeart() {
+        Heart heart = new Heart();
+        heartList.Add(heart);
+        RefreshAllHearts();
+        OnChangeHeartAmount(this, EventArgs.Empty);
+    }
+
+    public void RemoveHeart() {
+        if (heartList.Count <= 1) return;
+        Heart heart = new Heart();
+        heartList.RemoveAt(heartList.Count - 1);
+        RefreshAllHearts();
+        OnChangeHeartAmount(this, EventArgs.Empty);
+        
+    }
+
+    private void RefreshAllHearts() {
+        int currHP = GetCurrentHP();
+        IncreaseHP(heartList.Count * 4 - currHP);
     }
 
     public List<Heart> GetHeartList() {

@@ -41,6 +41,7 @@ public class HeartsHealthVisual : MonoBehaviour
         heartsHealthSystem.OnHealed += HeartsHealthSystem_OnHealed;
         heartsHealthSystem.OnDead += HeartsHealthSystem_OnDead;
         heartsHealthSystem.OnSet += HeartsHealthSystem_OnSet;
+        heartsHealthSystem.OnChangeHeartAmount += HeartsHealthSystem_OnOnChangeHeartAmount;
     }
 
     private void SetHeartList(HeartsHealthSystem heartsHealthSystem) {
@@ -65,9 +66,17 @@ public class HeartsHealthVisual : MonoBehaviour
         }
     }
 
+    private void HeartsHealthSystem_OnOnChangeHeartAmount(object sender, EventArgs e) {
+        //Debug.Log("Hearts amount was changed!");
+        ClearUI();
+        heartImageList = new List<HeartImage>();
+        SetHeartsHealthSystem(characterStats.GetHealthSystem());
+        RefreshAllHearts();
+    }
+
     private void HeartsHealthSystem_OnSet(object sender, EventArgs e) {
         RefreshAllHearts();
-        Debug.Log("HP was changed!");
+        //Debug.Log("HP was changed!");
     }
 
     private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e) {
@@ -91,6 +100,13 @@ public class HeartsHealthVisual : MonoBehaviour
         List<Heart> heartList = heartsHealthSystem.GetHeartList();
         for (int i = 0; i < heartImageList.Count; i++) {
             heartImageList[i].SetHeartFraments(heartList[i].GetFragmentAmount());
+        }
+    }
+
+    private void ClearUI() {
+        Transform parent = gameObject.transform;
+        foreach(Transform child in parent) {
+            Destroy(child.gameObject);
         }
     }
 

@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
                 if (passedTime >= attackDelay) {
                     passedTime = 0;
                     OnAttack?.Invoke();
-                    Debug.Log("enemy attack!");
+                    //Debug.Log("enemy attack!");
                 }
             }
             else {
