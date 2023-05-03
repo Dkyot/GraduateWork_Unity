@@ -9,8 +9,9 @@ public class HeartsHealthSystem
     public event EventHandler OnHealed;
     public event EventHandler OnDead;
     public event EventHandler OnSet;
-
     public event EventHandler OnChangeHeartAmount;
+
+    public bool isImmortal = false;
 
     private List<Heart> heartList;
 
@@ -26,7 +27,7 @@ public class HeartsHealthSystem
         Heart heart = new Heart();
         heartList.Add(heart);
         RefreshAllHearts();
-        OnChangeHeartAmount(this, EventArgs.Empty);
+        if (OnChangeHeartAmount != null) OnChangeHeartAmount(this, EventArgs.Empty);
     }
 
     public void RemoveHeart() {
@@ -34,8 +35,7 @@ public class HeartsHealthSystem
         Heart heart = new Heart();
         heartList.RemoveAt(heartList.Count - 1);
         RefreshAllHearts();
-        OnChangeHeartAmount(this, EventArgs.Empty);
-        
+        if (OnChangeHeartAmount != null) OnChangeHeartAmount(this, EventArgs.Empty);
     }
 
     private void RefreshAllHearts() {
@@ -89,11 +89,11 @@ public class HeartsHealthSystem
         if (hp > GetCurrentHP()) IncreaseHP(hp - GetCurrentHP());
         else if (hp < GetCurrentHP()) DecreaseHP(GetCurrentHP() - hp);
 
-        OnSet(this, EventArgs.Empty);
+        if (OnSet != null) OnSet(this, EventArgs.Empty);
     } 
 
     public void Damage(int damageAmount) {
-        if (damageAmount <= 0) return;
+        if (damageAmount <= 0 || isImmortal) return;
         DecreaseHP(damageAmount);
         if (OnDamaged != null) OnDamaged(this, EventArgs.Empty);
         if (IsDead()) {
