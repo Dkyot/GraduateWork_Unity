@@ -6,9 +6,9 @@ public class OnCollisionCoin : LootBase
     
     private void OnCollisionEnter2D(Collision2D collider) {
         if (collider.gameObject.CompareTag("Player")) {
-            CharacterStats player = collider.gameObject.GetComponent<CharacterStats>();
+            CoinStorage player = collider.gameObject.GetComponentInChildren<CoinStorage>();
             if (player != null) {
-                //player.GetHealthSystem().Heal(coinAmount);
+                player.AddCoins(coinAmount);
                 Destroy(gameObject);
             }
         }
