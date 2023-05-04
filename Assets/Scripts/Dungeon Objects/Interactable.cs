@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
+    [SerializeField] private PlayerInput input;
+    
     private bool isInRange;
     [SerializeField] private KeyCode interactKey;
     [SerializeField] private GameObject obj;
@@ -14,8 +16,9 @@ public class Interactable : MonoBehaviour
     private bool isUsed;
 
     void Update() {
+        if (input == null) return;
         if (isInRange && !isUsed) {
-            if (Input.GetKeyDown(interactKey)) {
+            if (input.playerActions.Interact.IsPressed()) {
                 if (isDisposable) isUsed = true;
                 interactAction?.Invoke();
                 if (onFinishDestroy) Destroy(obj);
@@ -24,7 +27,10 @@ public class Interactable : MonoBehaviour
     }
 
     private void OnTriggerEnter2D (Collider2D collision) {
-        if (collision.gameObject.CompareTag("Player")) isInRange = true;
+        if (collision.gameObject.CompareTag("Player")) {
+            isInRange = true;
+            if (input == null) input = collision.GetComponent<PlayerInput>();
+        }
     }
 
     private void OnTriggerExit2D (Collider2D collision) {
