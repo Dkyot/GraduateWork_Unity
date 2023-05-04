@@ -89,6 +89,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MobileInteract"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a1d9ba95-8d50-46f0-946b-2e9c766c01b3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +265,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a126bc4-88e8-48e1-9c68-2ae4cfb82445"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MobileInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -271,6 +291,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_InGamePlayerInput_Attack = m_InGamePlayerInput.FindAction("Attack", throwIfNotFound: true);
         m_InGamePlayerInput_Block = m_InGamePlayerInput.FindAction("Block", throwIfNotFound: true);
         m_InGamePlayerInput_Interact = m_InGamePlayerInput.FindAction("Interact", throwIfNotFound: true);
+        m_InGamePlayerInput_MobileInteract = m_InGamePlayerInput.FindAction("MobileInteract", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +358,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGamePlayerInput_Attack;
     private readonly InputAction m_InGamePlayerInput_Block;
     private readonly InputAction m_InGamePlayerInput_Interact;
+    private readonly InputAction m_InGamePlayerInput_MobileInteract;
     public struct InGamePlayerInputActions
     {
         private @Controls m_Wrapper;
@@ -348,6 +370,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_InGamePlayerInput_Attack;
         public InputAction @Block => m_Wrapper.m_InGamePlayerInput_Block;
         public InputAction @Interact => m_Wrapper.m_InGamePlayerInput_Interact;
+        public InputAction @MobileInteract => m_Wrapper.m_InGamePlayerInput_MobileInteract;
         public InputActionMap Get() { return m_Wrapper.m_InGamePlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -378,6 +401,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnInteract;
+                @MobileInteract.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnMobileInteract;
+                @MobileInteract.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnMobileInteract;
+                @MobileInteract.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnMobileInteract;
             }
             m_Wrapper.m_InGamePlayerInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -403,6 +429,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @MobileInteract.started += instance.OnMobileInteract;
+                @MobileInteract.performed += instance.OnMobileInteract;
+                @MobileInteract.canceled += instance.OnMobileInteract;
             }
         }
     }
@@ -416,5 +445,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnMobileInteract(InputAction.CallbackContext context);
     }
 }
