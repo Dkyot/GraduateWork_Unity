@@ -3093,6 +3093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa900812c0f69147a570658c2554124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 1973033182}
+  weaponRenderer: {fileID: 96443768}
 --- !u!114 &927409516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5336,6 +5338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa900812c0f69147a570658c2554124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 164940762}
+  weaponRenderer: {fileID: 354049484}
 --- !u!4 &2033053862
 Transform:
   m_ObjectHideFlags: 0

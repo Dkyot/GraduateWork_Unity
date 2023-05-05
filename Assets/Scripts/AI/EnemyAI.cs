@@ -6,7 +6,6 @@ public class EnemyAI : MonoBehaviour
     public UnityEvent<Vector2> OnMovementInput, OnPointerInput;
     public UnityEvent OnAttack;
     
-    [SerializeField]
     private Transform player;
 
     [SerializeField]
@@ -15,6 +14,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private float attackDelay = 1;
     private float passedTime = 1;
+
+    private void Start() {
+        player = FindObjectOfType<Player>().transform;
+    }
 
     void Update()
     {
