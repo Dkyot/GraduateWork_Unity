@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour
     private bool isInRange;
     private CircleCollider2D circle;
     private float radius;
-    [SerializeField] private GameObject obj;
+    //[SerializeField] private GameObject obj;
     public UnityEvent interactAction;
 
     [SerializeField] private bool onFinishDestroy;
@@ -57,7 +57,7 @@ public class Interactable : MonoBehaviour
         if(isUsed) return;
         if (isDisposable) isUsed = true;
         interactAction?.Invoke();
-        if (onFinishDestroy) Destroy(obj);
+        if (onFinishDestroy) Destroy(transform.parent.gameObject);
     }
 
     private void OnTriggerEnter2D (Collider2D collision) {

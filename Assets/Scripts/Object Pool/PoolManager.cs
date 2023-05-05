@@ -1,12 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PoolManager : MonoBehaviour
 {
-    private Dictionary<string, Pool> pools = new Dictionary<string, Pool>();
+    private Dictionary<string, Pool> pools;
+
+    private void Start() {
+        pools= new Dictionary<string, Pool>();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        pools= new Dictionary<string, Pool>();
+        Debug.Log("OnSceneLoaded: " + scene.name);
+    }
     
     public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation) {
         Initialization(prefab);
+        //GameObject obj = pools[prefab.name].CreateObject(position, rotation);
+        //if (obj == null) Debug.Log("0");
         return pools[prefab.name].CreateObject(position, rotation);
     }
 
