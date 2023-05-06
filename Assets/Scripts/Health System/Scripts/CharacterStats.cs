@@ -19,8 +19,8 @@ public class CharacterStats : MonoBehaviour
     }
 
     private void Update() {
-        if (gameObject.tag == "Player")
-            Debug.Log(heartsHealth.GetCurrentHP());
+        //if (gameObject.tag == "Player")
+            //Debug.Log(heartsHealth.GetCurrentHP());
     }
 
     IEnumerator Regeneration(int hp, float timeInterval) {

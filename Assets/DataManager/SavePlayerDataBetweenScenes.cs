@@ -12,7 +12,7 @@ public class SavePlayerDataBetweenScenes : MonoBehaviour
     }
 
     public void InitializeData() {
-        Debug.Log("InitializeData");
+        //Debug.Log("InitializeData");
         currentData.maxHeartsAmount = defaultData.maxHeartsAmount;
         currentData.currentHP = defaultData.currentHP;
         savedData.maxHeartsAmount = defaultData.maxHeartsAmount;
@@ -22,7 +22,7 @@ public class SavePlayerDataBetweenScenes : MonoBehaviour
 
     public void SaveData() {
         if (playerStats != null) {
-            Debug.Log("SaveData");
+            //Debug.Log("SaveData");
             int maxH = playerStats.GetHealthSystem().GetHeartList().Count;
             int currHP = playerStats.GetHealthSystem().GetCurrentHP();
             savedData.maxHeartsAmount = maxH;
@@ -34,7 +34,7 @@ public class SavePlayerDataBetweenScenes : MonoBehaviour
     }
 
     public void LoadData() {
-        Debug.Log("LoadData");
+        //Debug.Log("LoadData");
         currentData.maxHeartsAmount = savedData.maxHeartsAmount;
         currentData.currentHP = savedData.currentHP;
     }
