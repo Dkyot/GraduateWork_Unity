@@ -7,4 +7,7 @@ public class PlayerSO : ScriptableObject
 
     public int maxHeartsAmount;
     public int currentHP;
+
+    public int coins;
 }
+

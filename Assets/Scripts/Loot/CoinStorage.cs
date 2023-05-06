@@ -27,6 +27,10 @@ public class CoinStorage : MonoBehaviour
         OnSpend?.Invoke();
     }
 
+    public int GetCoinAmount() {
+        return coins;
+    }
+
     public void SetCoinAmount(int coinAmount) {
         coins = coinAmount;
     }

@@ -8,7 +8,8 @@ public class OnCollisionHeal : LootBase
         if (collider.gameObject.CompareTag("Player")) {
             CharacterStats player = collider.gameObject.GetComponent<CharacterStats>();
             if (player != null) {
-                player.GetHealthSystem().Heal(healAmount);
+                //player.GetHealthSystem().Heal(healAmount);
+                player.GetHealthSystem().AddHeart();
                 Destroy(gameObject);
             }
         }
