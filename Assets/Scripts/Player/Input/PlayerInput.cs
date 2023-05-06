@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,25 +10,12 @@ public class PlayerInput : MonoBehaviour
 
     public UnityEvent<Vector2> OnPointerInput;
 
-    //public Vector2 touchPos {get; private set;}
-
     private void Awake() {
         inputActions = new Controls();
         playerActions = inputActions.InGamePlayerInput;
     }
 
     private bool mobileDebug = false;
-
-    private void Start() {
-        //playerActions.MobileInteract.performed += ctx => Touch(ctx);
-    }
-
-    // private void Touch(InputAction.CallbackContext ctx)
-    // {
-    //     Vector2 touchC = playerActions.MobileInteract.ReadValue<Vector2>();
-    //     touchPos = Camera.main.ScreenToWorldPoint(touchC);
-    //     //Debug.Log(touchPos);
-    // }
 
     private void Update() {
         if (Application.isMobilePlatform || mobileDebug)
@@ -39,15 +25,11 @@ public class PlayerInput : MonoBehaviour
     }
 
     private void OnEnable() {
-        //playerActions.MobileInteract.performed += ctx => Touch(ctx);
-        inputActions.Enable();
-        
+        inputActions.Enable();  
     }
 
     private void OnDisable() {
-        //playerActions.MobileInteract.performed -= ctx => Touch(ctx);
-        inputActions.Disable();
-        
+        inputActions.Disable();  
     }
 
     public void DisableActionFor (InputAction action, float seconds) {

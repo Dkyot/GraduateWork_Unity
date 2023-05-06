@@ -23,14 +23,12 @@ public class HeartsHealthVisual : MonoBehaviour
     private List<HeartImage> heartImageList;
 
     public AnimationClip heartFullAnimationClip;
-    //private bool isHealing;
 
     private void Awake() {
         heartImageList = new List<HeartImage>();
     }
 
     private void Start() {
-        //FunctionPeriodic.Create(HealingAnimatedPeriodic, .05f);
         SetHeartsHealthSystem(characterStats.GetHealthSystem());
     }
 
@@ -86,14 +84,11 @@ public class HeartsHealthVisual : MonoBehaviour
     private void HeartsHealthSystem_OnHealed(object sender, System.EventArgs e) {
         RefreshAllHearts();
         //Debug.Log("Was Healed!");
-        //Debug.Log("+: " + heartsHealthSystem.GetCurrentHP());
-        //isHealing = true;
     }
 
     private void HeartsHealthSystem_OnDamaged(object sender, System.EventArgs e) {
         RefreshAllHearts();
         //Debug.Log("Was Damaged!");
-        //Debug.Log("-: " + heartsHealthSystem.GetCurrentHP());
     }
 
     private void RefreshAllHearts() {
@@ -110,47 +105,18 @@ public class HeartsHealthVisual : MonoBehaviour
         }
     }
 
-    // private void HealingAnimatedPeriodic() {
-    //     if (isHealing) {
-    //         bool fullyHealed = true;
-    //         List<Heart> heartList = heartsHealthSystem.GetHeartList();
-    //         for (int i = 0; i < heartList.Count; i++) {
-    //             HeartImage heartImage = heartImageList[i];
-    //             Heart heart = heartList[i];
-    //             if (heartImage.GetFragmentAmount() != heart.GetFragmentAmount()) {
-    //                 // Visual is different from logic
-    //                 heartImage.AddHeartVisualFragment();
-    //                 if (heartImage.GetFragmentAmount() == HeartsHealthSystem.MAX_FRAGMENT_AMOUNT) {
-    //                     // This heart was fully healed
-    //                     heartImage.PlayHeartFullAnimation();
-    //                 }
-    //                 fullyHealed = false;
-    //                 break;
-    //             }
-    //         }
-    //         if (fullyHealed) {
-    //             isHealing = false;
-    //         }
-    //     }
-    // }
-
     private HeartImage CreateHeartImage(Vector2 anchoredPosition) {
-        // Create Game Object
         GameObject heartGameObject = new GameObject("Heart", typeof(Image), typeof(Animation));
 
-        // Set as child of this transform
-        //heartGameObject.transform.parent = transform;
         heartGameObject.transform.SetParent(transform, false);
         heartGameObject.transform.localPosition = Vector3.zero;
         heartGameObject.transform.localScale = Vector3.one;
 
-        // Locate and Size heart
         heartGameObject.GetComponent<RectTransform>().anchoredPosition = anchoredPosition;
         heartGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(35, 35);
 
         heartGameObject.GetComponent<Animation>().AddClip(heartFullAnimationClip, "HeartFull");
 
-        // Set heart sprite
         Image heartImageUI = heartGameObject.GetComponent<Image>();
         heartImageUI.sprite = heart4Sprite;
 

@@ -11,10 +11,6 @@ public class Heart
         return fragments;
     }
 
-    // public void SetFragments(int fragments) {
-    //     this.fragments = fragments;
-    // }
-
     public void Damage(int damageAmount) {
         if (damageAmount >= fragments) {
             fragments = 0;

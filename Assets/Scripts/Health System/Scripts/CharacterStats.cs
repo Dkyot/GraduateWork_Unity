@@ -16,12 +16,6 @@ public class CharacterStats : MonoBehaviour
         }
         else
             heartsHealth = new HeartsHealthSystem(healthPoints);
-        //StartCoroutine(Regeneration(8, 1));
-        //StartCoroutine(PeriodicDamage(8, 1));
-    }
-    
-    private void Update() {
-        Debug.Log(heartsHealth.GetCurrentHP());  
     }
 
     IEnumerator Regeneration(int hp, float timeInterval) {
