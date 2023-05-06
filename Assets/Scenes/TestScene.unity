@@ -617,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 2
+  playerData: {fileID: 0}
 --- !u!212 &164940762
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -856,7 +857,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  player: {fileID: 665911269}
   chaseDistanceThreshold: 5
   attackDistanceThreshold: 2
   attackDelay: 1
@@ -2312,6 +2312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 3
+  playerData: {fileID: 11400000, guid: e4b4731cdecc2804183db99ab9aeb6a1, type: 2}
 --- !u!114 &665911271
 MonoBehaviour:
   m_ObjectHideFlags: 0

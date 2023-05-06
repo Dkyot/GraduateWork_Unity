@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerGroundedCombatState : PlayerCombatState
 {
     public PlayerGroundedCombatState(PlayerCombatStateMachine playerCombatStateMachine) : base(playerCombatStateMachine)
@@ -18,9 +14,5 @@ public class PlayerGroundedCombatState : PlayerCombatState
         if (stateMachine.reusableData.shouldAttack == false && stateMachine.reusableData.shouldBlock == false)
             stateMachine.ChangeState(stateMachine.InactiveState);
     }
-    #endregion
-
-    #region Input Mehtods 
-    //
     #endregion
 }

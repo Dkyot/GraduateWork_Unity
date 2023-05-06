@@ -3,22 +3,25 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    [SerializeField] private int healthPoints = 5;
+    [SerializeField] private int healthPoints = 1;
+    [SerializeField] private PlayerSO playerData = null;
 
     private HeartsHealthSystem heartsHealth;
 
-    private void Awake() {
-        heartsHealth = new HeartsHealthSystem(healthPoints);
-    }
-
     private void Start() {
-        //heartsHealth.SetHP(1);
+        if (gameObject.tag == "Player") {
+            heartsHealth = new HeartsHealthSystem(playerData.maxHeartsAmount);
+            if (playerData.currentHP != 0)
+                heartsHealth.SetHP(playerData.currentHP);
+        }
+        else
+            heartsHealth = new HeartsHealthSystem(healthPoints);
         //StartCoroutine(Regeneration(8, 1));
         //StartCoroutine(PeriodicDamage(8, 1));
     }
     
     private void Update() {
-        //Debug.Log(heartsHealth.GetCurrentHP());  
+        Debug.Log(heartsHealth.GetCurrentHP());  
     }
 
     IEnumerator Regeneration(int hp, float timeInterval) {

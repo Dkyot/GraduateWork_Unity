@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,12 +5,12 @@ public class PlayerCombatState : IState
 {
     protected PlayerCombatStateMachine stateMachine;
 
-    protected PlayerGroundedData movementData;
+    //protected PlayerGroundedData movementData;
 
     public PlayerCombatState(PlayerCombatStateMachine playerCombatStateMachine) {
         stateMachine = playerCombatStateMachine;
 
-        movementData = stateMachine.player.data.groundedData;// добавить новые данные
+        //movementData = stateMachine.player.data.groundedData;// добавить новые данные
     }
     
     #region  IState Methods
