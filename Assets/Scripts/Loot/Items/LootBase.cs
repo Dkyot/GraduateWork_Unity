@@ -9,7 +9,7 @@ public abstract class LootBase : MonoBehaviour
     protected bool stopped = false;
 
     protected bool hasTarget;
-    protected Vector3 targetPosition;
+    protected Transform targetTransform;
     protected float magnetSpeed = 15f;
 
     [SerializeField] 
@@ -39,13 +39,13 @@ public abstract class LootBase : MonoBehaviour
 
     private void MagnetToTarget() {
         if (hasTarget) {
-            Vector2 targetDirection = (targetPosition - transform.position).normalized;
+            Vector2 targetDirection = (targetTransform.position - transform.position).normalized;
             rigidbody2D.velocity = new Vector2(targetDirection.x, targetDirection.y) * magnetSpeed;
         }
     }
 
-    public void SetTarget(Vector3 position) {
-        targetPosition = position;
+    public void SetTarget(Transform transform) {
+        targetTransform = transform;
         hasTarget = true;
     }
 }

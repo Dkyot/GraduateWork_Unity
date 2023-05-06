@@ -25,7 +25,7 @@ public class LootMagnet : MonoBehaviour
             if ((layerMask.value & (1 << collider.gameObject.layer)) == 0) continue;
             
             if(collider.TryGetComponent<LootBase>(out LootBase drop)) {
-                drop.SetTarget(transform.position);
+                drop.SetTarget(transform);
             }
         }
     }
