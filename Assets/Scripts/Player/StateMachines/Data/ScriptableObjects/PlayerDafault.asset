@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c7a34dab4783ce4b9c0118fb1d3369e, type: 3}
-  m_Name: Player
+  m_Name: PlayerDafault
   m_EditorClassIdentifier: 
   <groundedData>k__BackingField:
     <baseSpeed>k__BackingField: 5
@@ -23,4 +23,4 @@ MonoBehaviour:
       <rollSpeed>k__BackingField: 20
       <rollSpeedMinimum>k__BackingField: 5
   maxHeartsAmount: 4
-  currentHP: 1
+  currentHP: 0
