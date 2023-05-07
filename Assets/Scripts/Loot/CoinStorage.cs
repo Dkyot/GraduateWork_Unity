@@ -4,13 +4,14 @@ using UnityEngine.Events;
 public class CoinStorage : MonoBehaviour
 {
     [SerializeField] private int coins;
+    [SerializeField] private PlayerSO currentData;
 
     [SerializeField] private UnityEvent OnSpend;
     [SerializeField] private UnityEvent OnSpendFail;
     [SerializeField] private UnityEvent OnAdd;
 
     private void Start() {
-        coins = 0;
+        coins = currentData.coins;
     }
 
     public void AddCoins(int coinAmount) {
@@ -18,13 +19,14 @@ public class CoinStorage : MonoBehaviour
         OnAdd?.Invoke();
     }
 
-    public void SpendCoins(int coinAmount) {
+    public bool SpendCoins(int coinAmount) {
         if (coins < coinAmount) {
             OnSpendFail?.Invoke();
-            return;
+            return false;
         }
         coins -= coinAmount;
         OnSpend?.Invoke();
+        return true;
     }
 
     public int GetCoinAmount() {

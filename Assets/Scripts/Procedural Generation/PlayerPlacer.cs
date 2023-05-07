@@ -8,8 +8,8 @@ public class PlayerPlacer : MonoBehaviour
     public void PlacePlayerInStartRoom() {
         if (dungeonData != null && player != null) {
             RoomData room = dungeonData.GetStartRoom();
-            if (room != null)
-                player.position = (Vector3Int)room.center;
+            //if (room != null)
+                //player.position = (Vector3Int)room.center;
         }
     }
 }

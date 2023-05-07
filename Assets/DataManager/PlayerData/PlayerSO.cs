@@ -9,5 +9,8 @@ public class PlayerSO : ScriptableObject
     public int currentHP;
 
     public int coins;
+
+    //////////////////
+    public bool useMagneticField;
 }
 
