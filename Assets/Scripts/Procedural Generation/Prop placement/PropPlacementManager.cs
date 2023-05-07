@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PropPlacementManager : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class PropPlacementManager : MonoBehaviour
 
     [SerializeField, Range(0, 1)]
     private float cornerPropPlacementChance = 0.7f;
+
+    [SerializeField]
+    private UnityEvent OnEndOfPropPlacement;
 
     public void ProcessRooms() {
         if (dungeonData == null)
@@ -80,6 +84,7 @@ public class PropPlacementManager : MonoBehaviour
                 .ToList();
             PlaceProps(room, innerProps, room.InnerTiles, PlacementOriginCorner.BottomLeft);
         }
+        OnEndOfPropPlacement?.Invoke();
     }
 
     private void PlaceProps(RoomData room, List<PropSO> wallProps, HashSet<Vector2Int> availableTiles, PlacementOriginCorner placement) {

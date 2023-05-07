@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -110,6 +111,14 @@ public class DungeonData : MonoBehaviour
             rooms[4].roomType = TypesOfRooms.EnemyRoom;
             rooms[5].roomType = TypesOfRooms.BossRoom;
         }
+    }
+
+    public RoomData GetStartRoom() {
+        foreach (RoomData room in rooms) {
+            if (room.roomType == TypesOfRooms.StartRoom) 
+                return room;
+        }
+        return null;
     }
 }
 

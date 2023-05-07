@@ -26,6 +26,10 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
     [SerializeField]
     private UnityEvent OnEndOfDataExtraction;
 
+    private void Start() {
+        GenerateDungeon();
+    }
+
     protected override void RunProceduralGenetation() {
         dungeonData = GetComponent<DungeonData>();
         dungeonData.ResetData();
@@ -50,7 +54,7 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
         do {
             roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
             new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
-        } while (roomsList.Count < 6 || roomsList.Count > 12);
+        } while (roomsList.Count < 7 || roomsList.Count > 12);
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
         floor = CreareSimpleRoom(roomsList);
