@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Player", menuName = "Characters/Player")]
@@ -10,7 +11,6 @@ public class PlayerSO : ScriptableObject
 
     public int coins;
 
-    //////////////////
-    public bool useMagneticField;
+    public List<Command> commands = new List<Command>();
 }
 

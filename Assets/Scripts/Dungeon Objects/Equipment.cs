@@ -4,9 +4,19 @@ public class Equipment : MonoBehaviour
 {
     [SerializeField] PlayerSO data;
 
-    public GameObject magnet;
+    public void AddCommand(Command command) {
+        data.commands.Add(command);
+    }
 
     public void UpdateData() {
-        magnet?.SetActive(data.useMagneticField);
+        if (data.commands.Count == 0) {
+            //Debug.Log("вещей нет");
+            return;
+        }
+
+        //Debug.Log("вещи есть");
+        foreach (Command c in data.commands) {
+            c.Execute(data, transform, this);
+        }
     }
 }

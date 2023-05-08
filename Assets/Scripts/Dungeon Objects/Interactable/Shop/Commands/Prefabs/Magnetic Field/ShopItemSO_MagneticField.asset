@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1eed65da0052d547887524464f943f1, type: 3}
-  m_Name: ShopItemSO_Heart
+  m_Name: ShopItemSO_MagneticField
   m_EditorClassIdentifier: 
-  itemName: Heart
-  itemDescription: Heart
-  itemCost: 1
-  isHeart: 0
+  itemName: 'Magnetic Field '
+  itemDescription: Magnetic Field
+  itemCost: 2
+  command: {fileID: 3642423689414310638, guid: a18b84685713c0746910c77c6920a8fc, type: 3}

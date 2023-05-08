@@ -16,13 +16,14 @@ public class BuyItem : MonoBehaviour
         PlayerSO data = player.GetComponent<Player>().data;
         
         if (storage != null) {
+            if (item.command.isActive) return;
             if (storage.SpendCoins(item.itemCost)) {
-                item.GetItem(data);
-                equipment.UpdateData();
-                Debug.Log("успешно");
+                item.GetItem(data, player.transform, equipment);
+                //equipment.UpdateData();
+                //Debug.Log("успешно");
             }
             else {
-                Debug.Log("нужно больше денег");
+                //Debug.Log("нужно больше денег");
             }
         }
     }

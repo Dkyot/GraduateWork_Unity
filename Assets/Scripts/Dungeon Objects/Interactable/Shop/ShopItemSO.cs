@@ -7,10 +7,10 @@ public class ShopItemSO : ScriptableObject
     public string itemDescription;
     public int itemCost;
 
-    public bool isHeart;
+    public Command command;
 
-    public void GetItem(PlayerSO data) {
-        data.useMagneticField = true;
+    public void GetItem(PlayerSO data, Transform player, Equipment equipment) {
+        command.Execute(data, player, equipment);
     }
 
 }
