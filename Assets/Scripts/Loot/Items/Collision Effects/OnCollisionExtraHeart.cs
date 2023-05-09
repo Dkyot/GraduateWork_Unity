@@ -1,15 +1,15 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class OnCollisionHeal : LootBase
+public class OnCollisionExtraHeart : LootBase
 {
-    [SerializeField] private int healAmount;
-    
     private void OnCollisionEnter2D(Collision2D collider) {
         if (collider.gameObject.CompareTag("Player")) {
             CharacterStats player = collider.gameObject.GetComponent<CharacterStats>();
             if (player != null) {
-                player.GetHealthSystem().Heal(healAmount);
-                //player.GetHealthSystem().AddHeart();
+                HeartsHealthSystem health =  player.GetHealthSystem();
+                int currentHP = health.GetCurrentHP();
+                health.AddHeart();
+                health.SetHP(currentHP);
                 Destroy(gameObject);
             }
         }
