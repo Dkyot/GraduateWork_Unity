@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerRollingState : PlayerGroundedState
 {
@@ -20,6 +17,8 @@ public class PlayerRollingState : PlayerGroundedState
         base.Enter();
         isRolling = true;
         rollSpeed = rollData.rollSpeed;
+
+        stateMachine.player.combatManager?.Dash();
     }
 
     public override void Update()
