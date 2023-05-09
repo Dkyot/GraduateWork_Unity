@@ -18,7 +18,7 @@ public class BuyItem : MonoBehaviour
         if (storage != null) {
             if (item.command.isActive) return;
             if (storage.SpendCoins(item.itemCost)) {
-                item.GetItem(data, player.transform, equipment);
+                item.GetItem(data, equipment.transform, equipment);
                 //equipment.UpdateData();
                 //Debug.Log("успешно");
             }
