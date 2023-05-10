@@ -14,6 +14,7 @@ public class BulletPhysics : MonoBehaviour
     [SerializeField]
     private LayerMask wallLayer;
 
+    [SerializeField]
     private float ttl = 2f;
     private float timer = 0;
 

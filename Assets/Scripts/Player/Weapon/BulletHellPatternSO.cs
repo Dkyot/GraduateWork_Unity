@@ -6,7 +6,7 @@ public class BulletHellPatternSO : ScriptableObject
     [Range(1, 36)]
     public int directionsAmount = 1;
 
-    [Range(0.05f, 1f)]
+    [Range(0.05f, 5f)]
     public float cooldown = 0.3f;
 
     public bool useBurst = false;
