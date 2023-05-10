@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff12887e640437a49a062b692f2f30bf, type: 3}
   m_Name: RoomType_ exit
   m_EditorClassIdentifier: 
-  roomProps: []
+  roomProps:
+  - {fileID: 11400000, guid: a8101b75aa138324284ab4160a4a01c1, type: 2}
+  - {fileID: 11400000, guid: beafb5e1ba19ebc4a8fa18326824fb9e, type: 2}

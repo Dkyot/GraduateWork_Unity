@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff12887e640437a49a062b692f2f30bf, type: 3}
   m_Name: RoomType_boss
   m_EditorClassIdentifier: 
-  roomProps:
-  - {fileID: 11400000, guid: 5dbf504a55383a44e9d3feaa53c295ae, type: 2}
-  - {fileID: 11400000, guid: ced02b4f5411de24790713f915335f8a, type: 2}
+  roomProps: []

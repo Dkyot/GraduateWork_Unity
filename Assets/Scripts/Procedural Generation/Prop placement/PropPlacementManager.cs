@@ -24,6 +24,9 @@ public class PropPlacementManager : MonoBehaviour
 
     private RoomTypeSO propsToPlace;
 
+    [SerializeField]
+    private Transform parentObject;
+
     [SerializeField, Range(0, 1)]
     private float cornerPropPlacementChance = 0.7f;
 
@@ -234,7 +237,8 @@ public class PropPlacementManager : MonoBehaviour
 
     private GameObject PlacePropGameObjectAt(RoomData room, Vector2Int placementPostion, PropSO propToPlace) {
         GameObject prop = Instantiate(propToPlace.propPrefab);
-        prop.transform.localPosition = new Vector2(placementPostion.x + 0.5f, placementPostion.y + 0.5f);
+        prop.transform.localPosition = new Vector2((placementPostion.x + 0.5f) * 2.5f, (placementPostion.y + 0.5f) * 2.5f);
+        prop.transform.SetParent(parentObject);
         room.PropPositions.Add(placementPostion);
         room.PropObjectReferences.Add(prop);
         return prop;

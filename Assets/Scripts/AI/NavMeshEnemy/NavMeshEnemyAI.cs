@@ -10,6 +10,9 @@ public class NavMeshEnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        target = FindObjectOfType<Player>().transform;
+        agent.speed = Random.Range(2f, 5f);
     }
 
     private void Update() {

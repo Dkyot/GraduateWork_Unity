@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class KeyManager : MonoBehaviour
 {
-    public bool redKey   {get; private set;}
-    public bool greenKey {get; private set;}
-    public bool whiteKey {get; private set;}
+    public bool redKey;
+    public bool greenKey;
+    public bool whiteKey;
 
     public void PickKey(KeyColors pickedKey) {
         switch (pickedKey) {

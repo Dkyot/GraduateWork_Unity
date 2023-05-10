@@ -147,7 +147,7 @@ namespace NavMeshPlus.Components
             var buildSettings = NavMesh.GetSettingsByID(m_AgentTypeID);
             if (buildSettings.agentTypeID == -1)
             {
-                if (!m_HideEditorLogs) Debug.LogWarning("No build settings for agent type ID " + agentTypeID, this);
+                if (!m_HideEditorLogs) //Debug.LogWarning("No build settings for agent type ID " + agentTypeID, this);
                 buildSettings.agentTypeID = m_AgentTypeID;
             }
 
@@ -510,7 +510,7 @@ namespace NavMeshPlus.Components
         {
             if (UnshareNavMeshAsset())
             {
-                if (!m_HideEditorLogs) Debug.LogWarning("Duplicating NavMeshSurface does not duplicate the referenced navmesh data", this);
+                if (!m_HideEditorLogs) //Debug.LogWarning("Duplicating NavMeshSurface does not duplicate the referenced navmesh data", this);
                 m_NavMeshData = null;
             }
 

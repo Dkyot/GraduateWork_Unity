@@ -19,16 +19,13 @@ public class BossHealthBar : MonoBehaviour
 
     public UnityEvent OnFinish;
 
+    private bool set;
+
     private void Start() {
         timer = 0;
         fill = 1f;
         healthBar.gameObject.SetActive(false);
         hbBackground.gameObject.SetActive(false);
-
-        bHealth = boss.GetHealthSystem();
-        bHealth.OnDamaged += HeartsHealthSystem_OnDamaged;
-        bHealth.OnDead += HeartsHealthSystem_OnDead;
-        maxHealth = bHealth.GetCurrentHP();
     }
 
     private void HeartsHealthSystem_OnDamaged(object sender, EventArgs e) {
@@ -43,7 +40,13 @@ public class BossHealthBar : MonoBehaviour
     }
 
     private void Update() {
-        //Debug.Log(bHealth.GetCurrentHP());
+        if (!set) {
+            bHealth = boss.GetHealthSystem();
+            bHealth.OnDamaged += HeartsHealthSystem_OnDamaged;
+            bHealth.OnDead += HeartsHealthSystem_OnDead;
+            maxHealth = bHealth.GetCurrentHP();
+            set = true;
+        }
         
         if (!isAppeared) {
             timer += Time.deltaTime;
