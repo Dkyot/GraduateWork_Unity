@@ -13,12 +13,18 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject mobileInput;
 
+    private bool deathScreen;
+
+    public void Death() {
+        deathScreen = true;
+    }
+
     private void Start() {
         Play();
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !deathScreen) {
             if (paused)
                 Play();
             else
@@ -54,5 +60,9 @@ public class PauseMenu : MonoBehaviour
 
     public void ToMainMenu() {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ToHub() {
+        SceneManager.LoadScene("HubScene");
     }
 }
