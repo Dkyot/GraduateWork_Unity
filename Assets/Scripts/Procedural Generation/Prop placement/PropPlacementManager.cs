@@ -237,8 +237,9 @@ public class PropPlacementManager : MonoBehaviour
 
     private GameObject PlacePropGameObjectAt(RoomData room, Vector2Int placementPostion, PropSO propToPlace) {
         GameObject prop = Instantiate(propToPlace.propPrefab);
-        prop.transform.localPosition = new Vector2((placementPostion.x + 0.5f) * 2.5f, (placementPostion.y + 0.5f) * 2.5f);
+        prop.transform.localPosition = new Vector3((placementPostion.x + 0.5f) * 2.5f, (placementPostion.y + 0.5f) * 2.5f, -1f);
         prop.transform.SetParent(parentObject);
+        prop.transform.localPosition = new Vector3(prop.transform.localPosition.x, prop.transform.localPosition.y, -1f);
         room.PropPositions.Add(placementPostion);
         room.PropObjectReferences.Add(prop);
         return prop;

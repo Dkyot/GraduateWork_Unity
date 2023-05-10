@@ -20,6 +20,6 @@ public class OnDeathSceneSwitcher : MonoBehaviour
 
     private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e) {
         OnDeath?.Invoke();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("HubScene");
     }
 }

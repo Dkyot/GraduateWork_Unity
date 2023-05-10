@@ -9,10 +9,6 @@ public class SavePlayerDataBetweenScenes : MonoBehaviour
     public CharacterStats playerStats;
     public CoinStorage playerCoins;
     public Equipment equipment;
-    
-    private void Awake() {
-
-    }
 
     public void InitializeData() {
         //Debug.Log("InitializeData");
@@ -30,7 +26,7 @@ public class SavePlayerDataBetweenScenes : MonoBehaviour
     }
 
     public void SaveData() {
-        //Debug.Log("SaveData");
+        Debug.Log("SaveData");
         int maxH = playerStats.GetHealthSystem().GetHeartList().Count;
         int currHP = playerStats.GetHealthSystem().GetCurrentHP();
         savedData.maxHeartsAmount = maxH;
@@ -39,27 +35,30 @@ public class SavePlayerDataBetweenScenes : MonoBehaviour
         int coins = playerCoins.GetCoinAmount();
         savedData.coins = coins; 
 
-            //savedData.useMagneticField = currentData.useMagneticField;
-
-            // savedData.commands = new List<Command>();
-            // savedData.commands = currentData.commands;
-            // currentData.commands = new List<Command>();
-
-            // List<YourType> oldList = new List<YourType>();
-            // List<YourType> newList = new List<YourType>(oldList.Count);
-
-            // oldList.ForEach((item)=>{
-            //     newList.Add(new YourType(item));
-            // });
-
-            //currentData.commands = new List<Command>();
             savedData.commands = new List<Command>(currentData.commands.Count);
-            //Debug.Log(currentData.commands.Count);
 
             foreach (Command c in currentData.commands) {
                 savedData.commands.Add(c);
             }
             currentData.commands = new List<Command>();
+    }
+
+    public void DeathSave() {
+        //Debug.Log("DeathSave");
+        // int maxH = playerStats.GetHealthSystem().GetHeartList().Count;
+        // int currHP = playerStats.GetHealthSystem().GetCurrentHP();
+        // savedData.maxHeartsAmount = maxH;
+        // savedData.currentHP = currHP;
+
+        int coins = playerCoins.GetCoinAmount();
+        savedData.coins = coins / 2; 
+
+            // savedData.commands = new List<Command>(currentData.commands.Count);
+
+            // foreach (Command c in currentData.commands) {
+            //     savedData.commands.Add(c);
+            // }
+            // currentData.commands = new List<Command>();
     }
 
     public void LoadData() {
@@ -68,16 +67,9 @@ public class SavePlayerDataBetweenScenes : MonoBehaviour
         currentData.currentHP = savedData.currentHP;
         currentData.coins = savedData.coins;
 
-            //currentData.commands = new List<Command>();
-            // currentData.commands = savedData.commands;
-            // savedData.commands = new List<Command>();
-
-            //equipment.UpdateData();
             foreach (Command c in savedData.commands) {
                     currentData.commands.Add(c);
             }
-
             equipment.UpdateData();
-            
     }
 }
