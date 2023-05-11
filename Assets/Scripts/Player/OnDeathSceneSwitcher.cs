@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class OnDeathSceneSwitcher : MonoBehaviour
 {
@@ -21,7 +20,5 @@ public class OnDeathSceneSwitcher : MonoBehaviour
 
     private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e) {
         OnDeath?.Invoke();
-        //SceneManager.LoadScene("HubScene");
-        Time.timeScale = 0;
     }
 }

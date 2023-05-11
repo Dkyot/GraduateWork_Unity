@@ -792,6 +792,8 @@ MonoBehaviour:
   fpsCounter: {fileID: 1785312419}
   coinCounter: {fileID: 506889711}
   health: {fileID: 1339083248}
+  deathScreen: {fileID: 1351735559}
+  bossHealthBar: {fileID: 0}
   playerInput: {fileID: 665911265}
   mobileInput: {fileID: 1465545574}
 --- !u!1001 &244911779
@@ -2134,9 +2136,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1351735559}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

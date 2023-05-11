@@ -8,15 +8,29 @@ public class PauseMenu : MonoBehaviour
     public GameObject fpsCounter;
     public GameObject coinCounter;
     public GameObject health;
+    public GameObject deathScreen;
+
+    public GameObject bossHealthBar;
 
     public PlayerInput playerInput;
 
     public GameObject mobileInput;
 
-    private bool deathScreen;
+    private bool death;
 
     public void Death() {
-        deathScreen = true;
+        death = true;
+        deathScreen.SetActive(true);
+        fpsCounter.SetActive(false);
+        coinCounter.SetActive(false);
+        health.SetActive(false);
+        playerInput.inputActions.InGamePlayerInput.Disable();
+
+            mobileInput.SetActive(false);
+
+        if (bossHealthBar != null) bossHealthBar.SetActive(false);
+
+        Time.timeScale = 0;
     }
 
     private void Start() {
@@ -24,7 +38,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape) && !deathScreen) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !death) {
             if (paused)
                 Play();
             else
@@ -53,6 +67,8 @@ public class PauseMenu : MonoBehaviour
         playerInput.inputActions.InGamePlayerInput.Disable();
 
             mobileInput.SetActive(false);
+
+        if (bossHealthBar != null) bossHealthBar.SetActive(false);
 
         Time.timeScale = 0;
         paused = true;

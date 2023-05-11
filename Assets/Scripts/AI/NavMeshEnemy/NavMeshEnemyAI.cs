@@ -12,7 +12,7 @@ public class NavMeshEnemyAI : MonoBehaviour
         agent.updateUpAxis = false;
 
         target = FindObjectOfType<Player>().transform;
-        agent.speed = Random.Range(2f, 5f);
+        agent.speed = Random.Range(5f, 10f);
     }
 
     private void Update() {
