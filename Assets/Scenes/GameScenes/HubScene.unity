@@ -2053,6 +2053,7 @@ Transform:
   - {fileID: 789822327}
   - {fileID: 444472500}
   - {fileID: 27827121}
+  - {fileID: 1772263931}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2097,6 +2098,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animController: {fileID: 665911271}
   shootProjectiles: {fileID: 927409517}
+  AbilityAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1772263932}
+        m_TargetAssemblyTypeName: BulletHellShoot, Assembly-CSharp
+        m_MethodName: ShootOnce
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &665911273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5843,6 +5859,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1772263930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1772263931}
+  - component: {fileID: 1772263932}
+  m_Layer: 8
+  m_Name: Bullet Hell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1772263931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772263930}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 665911269}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1772263932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772263930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c021378eb23faf942a1d7c95ca27120b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletHellData: {fileID: 11400000, guid: 7a65e518039fe844396cc3970560348c, type: 2}
+  bulletPhysics: {fileID: 4546647228140594423, guid: 74d9841c431b8694e93c0271ea6b04d6, type: 3}
+  poolManager: {fileID: 610102148}
+  shouldShoot: 0
 --- !u!1 &1785312419
 GameObject:
   m_ObjectHideFlags: 0

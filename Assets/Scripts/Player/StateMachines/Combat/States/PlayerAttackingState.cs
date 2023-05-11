@@ -19,7 +19,8 @@ public class PlayerAttackingState : PlayerActiveState
         stateMachine.reusableData.shouldAttack = true;
 
         //stateMachine.player.combatManager?.AttackHandler();
-        Debug.Log("способность");
+        //Debug.Log("способность");
+        stateMachine.player.combatManager?.Ability();
 
     }
 

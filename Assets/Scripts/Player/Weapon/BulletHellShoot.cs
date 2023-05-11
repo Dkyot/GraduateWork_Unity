@@ -15,6 +15,8 @@ public class BulletHellShoot : MonoBehaviour
     private float burstTimer;
     private bool inBurst;
 
+    public bool shouldShoot = true;
+
     private void Awake() {
         shootDirections = CalculateDiractions();
         cooldownTimer = 0;
@@ -28,10 +30,16 @@ public class BulletHellShoot : MonoBehaviour
 
         Rotation();
 
-        if (Cooldown() && Burst())
+        if (Cooldown() && Burst() && shouldShoot)
             foreach(Vector2 vector in shootDirections)
                 Shoot(vector);
-    }  
+    }
+
+    public void ShootOnce() {
+        //Debug.Log("выстрел");
+        foreach(Vector2 vector in shootDirections)
+            Shoot(vector);
+    }
 
     private bool Cooldown() {
         if (cooldownTimer >= bulletHellData.cooldown) {
