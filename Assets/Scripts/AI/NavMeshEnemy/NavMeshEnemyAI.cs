@@ -11,15 +11,20 @@ public class NavMeshEnemyAI : MonoBehaviour
     [SerializeField] private float attackingDistance = 2.5f;
     [SerializeField] private float chasingDistance = 25f;
 
+    [SerializeField] private float runawayDistance = 5f;
+    //[SerializeField] private float runDis = 2f;
+
     private float chTimer = 0;
     private float aTimer = 0;
-    [SerializeField] private float chasingInterval = 0.5f;
+    [SerializeField] private float chasingInterval = 0.2f;
     [SerializeField] private float attackDelay = 0.5f;
 
     public UnityEvent<Vector2> OnPointerInput;
     public UnityEvent OnAttack;
 
     private float distance = 99;
+
+     [SerializeField] private bool runningAway;
     
     private void Start() {
         agent = GetComponent<NavMeshAgent>();
@@ -28,32 +33,63 @@ public class NavMeshEnemyAI : MonoBehaviour
 
         target = FindObjectOfType<Player>().transform;
 
-        agent.speed = Random.Range(3f, 6f);
-        agent.stoppingDistance = stoppingDistance;
+        agent.speed = Random.Range(1.5f, 2.5f);
+
+        if (runningAway) {
+            agent.stoppingDistance = runawayDistance - 0.5f;
+            attackingDistance = runawayDistance + 3;
+        }
+        else agent.stoppingDistance = stoppingDistance;
     }
 
     private void Update() {
         chTimer += Time.deltaTime;
-        if (chTimer >= chasingInterval) {
-            distance = Vector2.Distance(target.position, transform.position);
-            chTimer = 0;
 
-            if (distance > chasingDistance) {
-                //idle
-            }
-            else {
-                agent.SetDestination(target.position); 
-            }
-        }
-        
+        distance = Vector2.Distance(target.position, transform.position);
+
+        Attack();
+        TakeDistance();
+    }
+
+    private void OnDrawGizmos() {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 pos = transform.position - (direction * runawayDistance);
+        Gizmos.DrawLine(transform.position, pos);
+    }
+
+    private void RunAway() {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 pos = transform.position - (direction * runawayDistance);
+        agent.SetDestination(pos);
+    }
+
+    private void Attack() {
         if (distance <= chasingDistance) {
             aTimer += Time.deltaTime;
             OnPointerInput?.Invoke(target.position - transform.position);
             if (distance <= attackingDistance) {
                 if (aTimer >= attackDelay) {
                     OnAttack?.Invoke();
-                    //Debug.Log("attack");
                     aTimer = 0;
+                }
+            }
+        }
+    }
+
+    private void TakeDistance() {
+        if (chTimer >= chasingInterval) {
+            chTimer = 0;
+            if (distance <= chasingDistance) {
+                if (runningAway) {
+                    if (distance < runawayDistance) {
+                        RunAway();
+                    }
+                    else {
+                        agent.SetDestination(target.position);
+                    }
+                }
+                else {
+                    agent.SetDestination(target.position); 
                 }
             }
         }

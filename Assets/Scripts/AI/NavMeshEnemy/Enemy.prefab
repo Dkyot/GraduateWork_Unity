@@ -368,13 +368,14 @@ MonoBehaviour:
   stoppingDistance: 2
   attackingDistance: 2.5
   chasingDistance: 25
-  chasingInterval: 0.5
+  runawayDistance: 5
+  chasingInterval: 0.2
   attackDelay: 0.5
   OnPointerInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6530733600668937355}
-        m_TargetAssemblyTypeName: ShootProjectiles, Assembly-CSharp
+      - m_Target: {fileID: 951952427948374632}
+        m_TargetAssemblyTypeName: WeaponHolderRotation, Assembly-CSharp
         m_MethodName: set_PointerInput
         m_Mode: 0
         m_Arguments:
@@ -385,8 +386,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 951952427948374632}
-        m_TargetAssemblyTypeName: WeaponHolderRotation, Assembly-CSharp
+      - m_Target: {fileID: 6530733600668937355}
+        m_TargetAssemblyTypeName: ShootProjectiles, Assembly-CSharp
         m_MethodName: set_PointerInput
         m_Mode: 0
         m_Arguments:
@@ -412,6 +413,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  runningAway: 1
 --- !u!195 &4225435152803693931
 NavMeshAgent:
   m_ObjectHideFlags: 0
