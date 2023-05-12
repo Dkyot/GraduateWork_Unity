@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be4a833c9b56ad4eaa5dc73927fbdd8, type: 3}
   m_Name: Prop_SimpleEnemy
   m_EditorClassIdentifier: 
-  propPrefab: {fileID: 6220562986162394308, guid: 905f89d935a846e4781d5bf9f915bd4b, type: 3}
+  propPrefab: {fileID: 4225435152803693934, guid: 783a8ba43aaaeab4ebde0731d6138706, type: 3}
   PropSize: {x: 1, y: 1}
   Corner: 0
   NearWallUP: 0

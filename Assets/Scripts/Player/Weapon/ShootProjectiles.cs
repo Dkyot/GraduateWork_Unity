@@ -13,6 +13,10 @@ public class ShootProjectiles : MonoBehaviour
 
     private Vector2 pointerInput;
 
+    private void Start() {
+        poolManager = FindObjectOfType<PoolManager>();
+    }
+
     public void Shoot() {
         GameObject bullet = poolManager.Spawn(bulletPhysics, transform.position, Quaternion.identity);
         bullet.GetComponent<BulletPhysics>().Setup(poolManager, pointerInput, gameObject.layer);
