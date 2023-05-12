@@ -5,13 +5,14 @@ using UnityEngine.Events;
 public class CombatManager : MonoBehaviour
 {
     public AnimController animController;
+    [SerializeField] private bool shoot;
 
     [SerializeField]
     private ShootProjectiles shootProjectiles;
     
     public void AttackHandler() {
         animController?.weaponAnimator.SetTrigger("Attack");
-        //shootProjectiles.Shoot();
+        if (shoot) shootProjectiles.Shoot();
     }
 
 

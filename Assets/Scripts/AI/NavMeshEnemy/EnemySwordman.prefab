@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 46d5b7ee1aaae3c4d9fd3a54774428d5, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.989607, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -287,7 +287,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5471698, g: 0.45963904, b: 0.12130651, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 2474238961965341560}
   - component: {fileID: 5337701853310680926}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: EnemySwordman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -369,6 +369,7 @@ MonoBehaviour:
   attackingDistance: 2.5
   chasingDistance: 25
   runawayDistance: 5
+  speed: 1.5
   chasingInterval: 0.2
   attackDelay: 0.5
   OnPointerInput:
@@ -413,7 +414,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  runningAway: 1
+  runningAway: 0
 --- !u!195 &4225435152803693931
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -449,6 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animController: {fileID: 428641535355796373}
+  shoot: 0
   shootProjectiles: {fileID: 6530733600668937355}
   AbilityAction:
     m_PersistentCalls:
@@ -622,6 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleOrigin: {fileID: 7447375005021892275}
   radius: 0.9
+  damage: 2
 --- !u!114 &6530733600668937355
 MonoBehaviour:
   m_ObjectHideFlags: 0

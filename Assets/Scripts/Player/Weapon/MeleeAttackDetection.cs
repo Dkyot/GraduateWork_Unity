@@ -7,6 +7,9 @@ public class MeleeAttackDetection : MonoBehaviour
     [SerializeField]
     private float radius;
 
+    [SerializeField]
+    private int damage = 2;
+
     private void OnDrawGizmos() {
         Gizmos.color = Color.blue;
         Vector3 position = circleOrigin.position;
@@ -17,7 +20,7 @@ public class MeleeAttackDetection : MonoBehaviour
         foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius)) {
             CharacterStats health = collider.GetComponent<CharacterStats>();
             if (health == null || this.gameObject.layer == collider.gameObject.layer) continue;
-            health.GetHealthSystem().Damage(2);
+            health.GetHealthSystem().Damage(damage);
         }
     }
 }

@@ -12,7 +12,8 @@ public class NavMeshEnemyAI : MonoBehaviour
     [SerializeField] private float chasingDistance = 25f;
 
     [SerializeField] private float runawayDistance = 5f;
-    //[SerializeField] private float runDis = 2f;
+
+    [SerializeField] private float speed = 2f;
 
     private float chTimer = 0;
     private float aTimer = 0;
@@ -33,13 +34,15 @@ public class NavMeshEnemyAI : MonoBehaviour
 
         target = FindObjectOfType<Player>().transform;
 
-        agent.speed = Random.Range(1.5f, 2.5f);
+        agent.speed = speed + Random.Range(0.5f, 1.5f);
 
         if (runningAway) {
             agent.stoppingDistance = runawayDistance - 0.5f;
             attackingDistance = runawayDistance + 3;
         }
-        else agent.stoppingDistance = stoppingDistance;
+        else {
+            agent.stoppingDistance = stoppingDistance;
+        }
     }
 
     private void Update() {
