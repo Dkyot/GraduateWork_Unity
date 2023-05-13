@@ -15,4 +15,5 @@ MonoBehaviour:
   itemName: Dash Blades
   itemDescription: Dash Blades
   itemCost: 5
+  isSold: 1
   command: {fileID: 1316042179204804772, guid: ee5fc12b5296cf14f922d7aaab6b481b, type: 3}

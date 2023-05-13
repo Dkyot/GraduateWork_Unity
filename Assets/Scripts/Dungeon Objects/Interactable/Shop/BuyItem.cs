@@ -3,13 +3,30 @@ using UnityEngine;
 public class BuyItem : MonoBehaviour
 {
     private Interactable interactable;
-    public ShopItemSO item;
+
+    public ShopAssortmentSO assortment;
+    public ShopItemSO item = null;
 
     private void Start() {
         interactable = GetComponent<Interactable>();
+
+        Change();
+    }
+
+    private void Change() {
+        foreach (ShopItemSO item in assortment.assortment) {
+            if (item.isSold == false) {
+                this.item = item;
+                break;
+            }
+        }
     }
 
     public void Buy() {
+        if (item == null) {
+            Debug.Log("j");
+            return;
+        }
         GameObject player = interactable.input.gameObject;
         CoinStorage storage = player.GetComponentInChildren<CoinStorage>();
         Equipment equipment = player.GetComponentInChildren<Equipment>();
@@ -21,6 +38,8 @@ public class BuyItem : MonoBehaviour
                 item.GetItem(data, equipment.transform, equipment);
                 //equipment.UpdateData();
                 //Debug.Log("успешно");
+
+                item.isSold = true;
             }
             else {
                 //Debug.Log("нужно больше денег");

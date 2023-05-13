@@ -7,6 +7,8 @@ public class ShopItemSO : ScriptableObject
     public string itemDescription;
     public int itemCost;
 
+    public bool isSold;
+
     public Command command;
 
     public void GetItem(PlayerSO data, Transform player, Equipment equipment) {
