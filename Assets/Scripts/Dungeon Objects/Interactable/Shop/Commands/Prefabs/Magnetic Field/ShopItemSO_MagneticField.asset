@@ -15,4 +15,6 @@ MonoBehaviour:
   itemName: 'Magnetic Field '
   itemDescription: Magnetic Field
   itemCost: 2
+  sprite: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
+  isSold: 0
   command: {fileID: 3642423689414310638, guid: a18b84685713c0746910c77c6920a8fc, type: 3}

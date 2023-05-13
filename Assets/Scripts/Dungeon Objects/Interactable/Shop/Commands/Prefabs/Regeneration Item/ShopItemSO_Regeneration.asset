@@ -15,4 +15,6 @@ MonoBehaviour:
   itemName: Regeneration
   itemDescription: Regeneration
   itemCost: 1
+  sprite: {fileID: 21300000, guid: 5d52b20f865aff242bfcb08c3b6f61a5, type: 3}
+  isSold: 0
   command: {fileID: 8720905749038244112, guid: 289854c65b20176479822595c16223af, type: 3}

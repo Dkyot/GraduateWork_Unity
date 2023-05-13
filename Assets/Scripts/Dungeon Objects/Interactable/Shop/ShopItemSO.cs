@@ -7,6 +7,8 @@ public class ShopItemSO : ScriptableObject
     public string itemDescription;
     public int itemCost;
 
+    public Sprite sprite;
+
     public bool isSold;
 
     public Command command;

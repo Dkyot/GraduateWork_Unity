@@ -15,4 +15,6 @@ MonoBehaviour:
   itemName: STAR PLATINUM
   itemDescription: 1
   itemCost: 3
+  sprite: {fileID: 21300000, guid: 9c0d6ec706e01ce448aea81584af092b, type: 3}
+  isSold: 0
   command: {fileID: 7147031572087624552, guid: a39082c62246f6c48acd82fae0ed6a15, type: 3}

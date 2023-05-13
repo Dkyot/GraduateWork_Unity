@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BuyItem : MonoBehaviour
 {
@@ -7,10 +8,14 @@ public class BuyItem : MonoBehaviour
     public ShopAssortmentSO assortment;
     public ShopItemSO item = null;
 
+    [SerializeField] private UnityEvent OnChange;
+    [SerializeField] private UnityEvent OnBuy;
+
     private void Start() {
         interactable = GetComponent<Interactable>();
 
         Change();
+        OnChange?.Invoke();
     }
 
     private void Change() {
@@ -40,6 +45,7 @@ public class BuyItem : MonoBehaviour
                 //Debug.Log("успешно");
 
                 item.isSold = true;
+                OnBuy?.Invoke();
             }
             else {
                 //Debug.Log("нужно больше денег");
