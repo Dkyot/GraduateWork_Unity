@@ -24,11 +24,6 @@ public class PlayerGroundedState : PlayerMovementState
     }
 
     protected virtual void OnMove() {
-        if (stateMachine.reusableData.shouldWalk) {
-            stateMachine.ChangeState(stateMachine.WallkingState);
-            return;
-        }
-
         stateMachine.ChangeState(stateMachine.RunningState);
     }
     #endregion

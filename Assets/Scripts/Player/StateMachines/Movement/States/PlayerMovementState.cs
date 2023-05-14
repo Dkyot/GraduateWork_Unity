@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovementState : IState
 {
@@ -67,20 +66,12 @@ public class PlayerMovementState : IState
     }
 
     protected virtual void AddInputActionsCallbacks() {
-        stateMachine.player.input.playerActions.Walk.started += OnWalkToggleStarted;
-        stateMachine.player.input.playerActions.Walk.canceled += OnWalkToggleStarted;
+        //
     }
 
     protected virtual void RemoveInputActionsCallbacks() {
-        stateMachine.player.input.playerActions.Walk.started -= OnWalkToggleStarted;
-        stateMachine.player.input.playerActions.Walk.canceled -= OnWalkToggleStarted;
+        //
     }
     #endregion
 
-    #region Input Mehtods
-    protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context) {
-        if (context.started) stateMachine.reusableData.shouldWalk = true;
-        else stateMachine.reusableData.shouldWalk = false;
-    }
-    #endregion
 }

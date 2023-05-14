@@ -37,15 +37,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Walk"",
-                    ""type"": ""Button"",
-                    ""id"": ""47b75147-2c98-4e84-aeee-067364be5b9c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Roll"",
                     ""type"": ""Button"",
                     ""id"": ""ea5a8563-3c03-4662-b910-fe8f6557fa56"",
@@ -235,17 +226,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d3037264-e2ec-42f9-978a-ab9ebc2cb2df"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""cc70e41f-477d-493a-976b-5ec228e8b619"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -285,7 +265,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // InGamePlayerInput
         m_InGamePlayerInput = asset.FindActionMap("InGamePlayerInput", throwIfNotFound: true);
         m_InGamePlayerInput_Movement = m_InGamePlayerInput.FindAction("Movement", throwIfNotFound: true);
-        m_InGamePlayerInput_Walk = m_InGamePlayerInput.FindAction("Walk", throwIfNotFound: true);
         m_InGamePlayerInput_Roll = m_InGamePlayerInput.FindAction("Roll", throwIfNotFound: true);
         m_InGamePlayerInput_PointerPosition = m_InGamePlayerInput.FindAction("PointerPosition", throwIfNotFound: true);
         m_InGamePlayerInput_Ability = m_InGamePlayerInput.FindAction("Ability", throwIfNotFound: true);
@@ -352,7 +331,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InGamePlayerInput;
     private IInGamePlayerInputActions m_InGamePlayerInputActionsCallbackInterface;
     private readonly InputAction m_InGamePlayerInput_Movement;
-    private readonly InputAction m_InGamePlayerInput_Walk;
     private readonly InputAction m_InGamePlayerInput_Roll;
     private readonly InputAction m_InGamePlayerInput_PointerPosition;
     private readonly InputAction m_InGamePlayerInput_Ability;
@@ -364,7 +342,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         private @Controls m_Wrapper;
         public InGamePlayerInputActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_InGamePlayerInput_Movement;
-        public InputAction @Walk => m_Wrapper.m_InGamePlayerInput_Walk;
         public InputAction @Roll => m_Wrapper.m_InGamePlayerInput_Roll;
         public InputAction @PointerPosition => m_Wrapper.m_InGamePlayerInput_PointerPosition;
         public InputAction @Ability => m_Wrapper.m_InGamePlayerInput_Ability;
@@ -383,9 +360,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnMovement;
-                @Walk.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnWalk;
-                @Walk.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnWalk;
-                @Walk.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnWalk;
                 @Roll.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnRoll;
                 @Roll.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnRoll;
                 @Roll.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnRoll;
@@ -411,9 +385,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Walk.started += instance.OnWalk;
-                @Walk.performed += instance.OnWalk;
-                @Walk.canceled += instance.OnWalk;
                 @Roll.started += instance.OnRoll;
                 @Roll.performed += instance.OnRoll;
                 @Roll.canceled += instance.OnRoll;
@@ -439,7 +410,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IInGamePlayerInputActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnWalk(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnPointerPosition(InputAction.CallbackContext context);
         void OnAbility(InputAction.CallbackContext context);

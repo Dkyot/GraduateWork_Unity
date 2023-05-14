@@ -4,7 +4,6 @@ public class PlayerMovementStateMachine : StateMachine
     public PlayerStateReusableData reusableData { get; private set;}
     
     public PlayerIdilingState IdilingState   { get; private set;}
-    public PlayerWallkingState WallkingState { get; private set;}
     public PlayerRunningState RunningState   { get; private set;}
     public PlayerRollingState RollingState   { get; private set;}
 
@@ -13,7 +12,6 @@ public class PlayerMovementStateMachine : StateMachine
         reusableData = new PlayerStateReusableData();
 
         IdilingState = new PlayerIdilingState(this);
-        WallkingState = new PlayerWallkingState(this);
         RunningState = new PlayerRunningState(this);
         RollingState = new PlayerRollingState(this);
     }

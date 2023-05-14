@@ -1,5 +1,3 @@
-using UnityEngine.InputSystem;
-
 public class PlayerRunningState : PlayerMovingState
 {
     public PlayerRunningState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
@@ -11,14 +9,6 @@ public class PlayerRunningState : PlayerMovingState
         base.Enter();
 
         stateMachine.reusableData.speedModifier = movementData.runData.speedModifier;
-    }
-    #endregion
-
-    #region Input Mehtods
-    protected override void OnWalkToggleStarted(InputAction.CallbackContext context) {
-        base.OnWalkToggleStarted(context);
-
-        stateMachine.ChangeState(stateMachine.WallkingState);
     }
     #endregion
 }

@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Walk",
-                    "type": "Button",
-                    "id": "47b75147-2c98-4e84-aeee-067364be5b9c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Roll",
                     "type": "Button",
                     "id": "ea5a8563-3c03-4662-b910-fe8f6557fa56",
@@ -208,17 +199,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d3037264-e2ec-42f9-978a-ab9ebc2cb2df",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
