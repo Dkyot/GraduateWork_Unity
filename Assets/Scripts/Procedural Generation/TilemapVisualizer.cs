@@ -1,28 +1,24 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.Tilemaps;
 
 public class TilemapVisualizer : MonoBehaviour
 {
-    [SerializeField]
-    private Tilemap floorTilemap;
-    [SerializeField]
-    private Tilemap wallTilemap;
-    [SerializeField]
-    private TileBase floorTile, wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull,
-                     wallInnerCornerDownLeft, wallInnerCornerDownRight,
-                     wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
+    [SerializeField] private Tilemap floorTilemap;
+    [SerializeField] private Tilemap wallTilemap;
+    [SerializeField] private TileBase fTile, wTop, wSideRight, wSideLeft, wBottom, wFull,
+                                      wInnerCornerDownLeft, wInnerCornerDownRight,
+                                      wDiagonalCornerDownRight, wDiagonalCornerDownLeft, wDiagonalCornerUpRight, wDiagonalCornerUpLeft;
 
-    public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions) {
-        PaintFloorTiles(floorPositions, floorTilemap, floorTile);
+    public void Clear() {
+        floorTilemap.ClearAllTiles();
+        wallTilemap.ClearAllTiles();
     }
-
-    private void PaintFloorTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile) {
-        foreach (Vector2Int position in positions) {
-            PaintSingleTile(tilemap, tile, position);
-        }
+    
+    public void PaintFloorTiles(IEnumerable<Vector2Int> floorPos) {
+        foreach (Vector2Int position in floorPos)
+            PaintSingleTile(floorTilemap, fTile, position);
     }
 
     private void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position) {
@@ -33,26 +29,14 @@ public class TilemapVisualizer : MonoBehaviour
     public void PaintSingleBasicWall(Vector2Int position, string binaryType) {
         int typeAsInt = Convert.ToInt32(binaryType, 2);
         TileBase tile = null;
-        if (WallByteTypes.wallTop.Contains(typeAsInt)) {
-            tile = wallTop;
-        } else if (WallByteTypes.wallSideRight.Contains(typeAsInt)) {
-            tile = wallSideRight;
-        } else if (WallByteTypes.wallSideLeft.Contains(typeAsInt)) {
-            tile = wallSideLeft;
-        } else if (WallByteTypes.wallBottm.Contains(typeAsInt)) {
-            tile = wallBottom;
-        } else if (WallByteTypes.wallFull.Contains(typeAsInt)) {
-            tile = wallFull;
-        }
 
-        if (tile != null) {
-            PaintSingleTile(wallTilemap, tile, position);
-        }
-    }
+        if (WallByteTypes.wallTop.Contains(typeAsInt))            tile = wTop;
+        else if (WallByteTypes.wallSideRight.Contains(typeAsInt)) tile = wSideRight;
+        else if (WallByteTypes.wallSideLeft.Contains(typeAsInt))  tile = wSideLeft;
+        else if (WallByteTypes.wallBottm.Contains(typeAsInt))     tile = wBottom;
+        else if (WallByteTypes.wallFull.Contains(typeAsInt))      tile = wFull;
 
-    public void Clear() {
-        floorTilemap.ClearAllTiles();
-        wallTilemap.ClearAllTiles();
+        if (tile != null) PaintSingleTile(wallTilemap, tile, position);
     }
 
     public void AddWallColider() {
@@ -65,35 +49,23 @@ public class TilemapVisualizer : MonoBehaviour
         
         walls.GetComponent<CompositeCollider2D>().geometryType =  CompositeCollider2D.GeometryType.Polygons;
         walls.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-
         walls.GetComponent<TilemapCollider2D>().usedByComposite = true;
 
     }
 
     public void PaintSingleCornerWall(Vector2Int position, string binaryType) {
-        int typeAsInt = Convert.ToInt32(binaryType, 2);
+        int type = Convert.ToInt32(binaryType, 2);
         TileBase tile = null;
 
-        if (WallByteTypes.wallInnerCornerDownLeft.Contains(typeAsInt)) {
-            tile = wallInnerCornerDownLeft;
-        } else if (WallByteTypes.wallInnerCornerDownRight.Contains(typeAsInt)) {
-            tile = wallInnerCornerDownRight;
-        } else if (WallByteTypes.wallDiagonalCornerDownLeft.Contains(typeAsInt)) {
-            tile = wallDiagonalCornerDownLeft;
-        } else if (WallByteTypes.wallDiagonalCornerDownRight.Contains(typeAsInt)) {
-            tile = wallDiagonalCornerDownRight;
-        } else if (WallByteTypes.wallDiagonalCornerUpRight.Contains(typeAsInt)) {
-            tile = wallDiagonalCornerUpRight;
-        } else if (WallByteTypes.wallDiagonalCornerUpLeft.Contains(typeAsInt)) {
-            tile = wallDiagonalCornerUpLeft;
-        } else if (WallByteTypes.wallFullEightDirections.Contains(typeAsInt)) {
-            tile = wallFull;
-        } else if (WallByteTypes.wallBottmEightDirections.Contains(typeAsInt)) {
-            tile = wallBottom;
-        }
+        if (WallByteTypes.wallInnerCornerDownLeft.Contains(type))          tile = wInnerCornerDownLeft;
+        else if (WallByteTypes.wallInnerCornerDownRight.Contains(type))    tile = wInnerCornerDownRight;
+        else if (WallByteTypes.wallDiagonalCornerDownLeft.Contains(type))  tile = wDiagonalCornerDownLeft;
+        else if (WallByteTypes.wallDiagonalCornerDownRight.Contains(type)) tile = wDiagonalCornerDownRight;
+        else if (WallByteTypes.wallDiagonalCornerUpRight.Contains(type))   tile = wDiagonalCornerUpRight;
+        else if (WallByteTypes.wallDiagonalCornerUpLeft.Contains(type))    tile = wDiagonalCornerUpLeft;
+        else if (WallByteTypes.wallFullEightDirections.Contains(type))     tile = wFull;
+        else if (WallByteTypes.wallBottmEightDirections.Contains(type))    tile = wBottom;
 
-        if (tile != null) {
-            PaintSingleTile(wallTilemap, tile, position);
-        }
+        if (tile != null) PaintSingleTile(wallTilemap, tile, position);
     }
 }
