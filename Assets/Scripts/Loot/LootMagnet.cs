@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class LootMagnet : MonoBehaviour
 {
-    [SerializeField]
-    private Transform circleOrigin;
-    [SerializeField]
-    private float radius;
+    [SerializeField] private Transform circleOrigin;
+    [SerializeField] private float radius;
 
-    [SerializeField]
-    private LayerMask layerMask;
+    [SerializeField] private LayerMask layerMask;
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;

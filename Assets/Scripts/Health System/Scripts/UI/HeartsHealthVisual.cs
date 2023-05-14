@@ -22,8 +22,6 @@ public class HeartsHealthVisual : MonoBehaviour
 
     private List<HeartImage> heartImageList;
 
-    public AnimationClip heartFullAnimationClip;
-
     private void Awake() {
         heartImageList = new List<HeartImage>();
     }
@@ -65,7 +63,6 @@ public class HeartsHealthVisual : MonoBehaviour
     }
 
     private void HeartsHealthSystem_OnOnChangeHeartAmount(object sender, EventArgs e) {
-        //Debug.Log("Hearts amount was changed!");
         ClearUI();
         heartImageList = new List<HeartImage>();
         SetHeartsHealthSystem(characterStats.GetHealthSystem());
@@ -74,21 +71,18 @@ public class HeartsHealthVisual : MonoBehaviour
 
     private void HeartsHealthSystem_OnSet(object sender, EventArgs e) {
         RefreshAllHearts();
-        //Debug.Log("HP was changed!");
     }
 
     private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e) {
-        //Debug.Log("Player is Dead!");
+        //
     }
 
     private void HeartsHealthSystem_OnHealed(object sender, System.EventArgs e) {
         RefreshAllHearts();
-        //Debug.Log("Was Healed!");
     }
 
     private void HeartsHealthSystem_OnDamaged(object sender, System.EventArgs e) {
         RefreshAllHearts();
-        //Debug.Log("Was Damaged!");
     }
 
     private void RefreshAllHearts() {
@@ -115,12 +109,10 @@ public class HeartsHealthVisual : MonoBehaviour
         heartGameObject.GetComponent<RectTransform>().anchoredPosition = anchoredPosition;
         heartGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(35, 35);
 
-        heartGameObject.GetComponent<Animation>().AddClip(heartFullAnimationClip, "HeartFull");
-
         Image heartImageUI = heartGameObject.GetComponent<Image>();
         heartImageUI.sprite = heart4Sprite;
 
-        HeartImage heartImage = new HeartImage(this, heartImageUI, heartGameObject.GetComponent<Animation>());
+        HeartImage heartImage = new HeartImage(this, heartImageUI);
         heartImageList.Add(heartImage);
 
         return heartImage;

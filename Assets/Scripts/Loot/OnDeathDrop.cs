@@ -6,11 +6,9 @@ public class OnDeathDrop : MonoBehaviour
     private CharacterStats characterStats;
     private HeartsHealthSystem heartsHealthSystem;
 
-    [SerializeField]
-    private UnityEvent OnDeath;
+    [SerializeField] private UnityEvent OnDeath;
 
-    void Start()
-    {
+    private void Start() {
         characterStats = GetComponent<CharacterStats>();
         heartsHealthSystem = characterStats.GetHealthSystem();
         if (heartsHealthSystem != null) 

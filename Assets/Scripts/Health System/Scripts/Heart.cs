@@ -12,20 +12,16 @@ public class Heart
     }
 
     public void Damage(int damageAmount) {
-        if (damageAmount >= fragments) {
+        if (damageAmount >= fragments)
             fragments = 0;
-        } 
-        else {
+        else
             fragments -= damageAmount;
-        }
     }
 
     public void Heal(int healAmount) {
-        if (fragments + healAmount > MAX_FRAGMENT_AMOUNT) {
+        if (fragments + healAmount > MAX_FRAGMENT_AMOUNT)
             fragments = MAX_FRAGMENT_AMOUNT;
-        } 
-        else {
+        else
             fragments += healAmount;
-        }
     }
 }

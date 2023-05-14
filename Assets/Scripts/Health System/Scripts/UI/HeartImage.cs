@@ -1,18 +1,14 @@
-using UnityEngine;
 using UnityEngine.UI;
 
 public class HeartImage 
 {
-
     private int fragments;
     private Image heartImage;
     private HeartsHealthVisual heartsHealthVisual;
-    private Animation animation;
 
-    public HeartImage(HeartsHealthVisual heartsHealthVisual, Image heartImage, Animation animation) {
+    public HeartImage(HeartsHealthVisual heartsHealthVisual, Image heartImage) {
         this.heartsHealthVisual = heartsHealthVisual;
         this.heartImage = heartImage;
-        this.animation = animation;
     }
 
     public void SetHeartFraments(int fragments) {
@@ -32,9 +28,5 @@ public class HeartImage
 
     public void AddHeartVisualFragment() {
         SetHeartFraments(fragments + 1);
-    }
-    
-    public void PlayHeartFullAnimation() {
-        animation.Play("HeartFull", PlayMode.StopAll);
     }
 }

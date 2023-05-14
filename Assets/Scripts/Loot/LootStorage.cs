@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LootStorage : MonoBehaviour
 {
-    public List<LootSO> lootList = new List<LootSO>();
+    [SerializeField] private List<LootSO> lootList = new List<LootSO>();
 
     private List<LootSO> GetDroppedItems() {
         int randomNumber = Random.Range(1, 100);

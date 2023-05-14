@@ -18,11 +18,6 @@ public class CharacterStats : MonoBehaviour
             heartsHealth = new HeartsHealthSystem(healthPoints);
     }
 
-    private void Update() {
-        // if (gameObject.tag != "Player")
-        //     Debug.Log(heartsHealth.GetCurrentHP());
-    }
-
     IEnumerator Regeneration(int hp, float timeInterval) {
         for (int i = 0; i < hp; i++) {
             heartsHealth.Heal(1);
