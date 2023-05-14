@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,20 +48,6 @@ public class DungeonData : MonoBehaviour
     }
 
     public void Debuger() {
-        // //Debug.ClearDeveloperConsole();
-        // //Debug.Log(rooms.Count);
-        // //Debug.Log("=======");
-        // foreach (RoomData room in rooms) {
-        //     if (room.edges.Count > 2) {
-        //     Debug.Log(room.center + " " + room.edges.Count + "||| ");
-        //     // Debug.Log("tl:"+room.tr+" br:"+room.bl);
-        //     for (int i = 0; i < room.edges.Count; i++) {
-        //         Debug.Log(room.edges[i].connectedRoom.center + " _" + room.edges[i].edgeWeight);
-        //     }
-        //     // Debug.Log("_______________");
-        //     }
-        // }
-
         int i = 0;
         foreach (RoomData room in rooms) {
             Debug.Log(room.center + " _" + i);
@@ -70,9 +55,7 @@ public class DungeonData : MonoBehaviour
         }
 
         DijkstraAlgorithm deb = new DijkstraAlgorithm();
-        
         deb.RunAlgorithm(CorvertToMatrix(), 0, rooms.Count);
-
     }
 
     public bool EdgeExists(RoomData room1, RoomData room2) {
