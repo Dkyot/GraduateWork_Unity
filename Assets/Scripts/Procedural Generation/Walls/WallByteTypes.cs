@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public static class WallByteTypes
 {
@@ -138,5 +136,4 @@ public static class WallByteTypes
     public static HashSet<int> wallBottmEightDirections = new HashSet<int> {
         0b01000001
     };
-
 }

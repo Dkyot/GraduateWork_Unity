@@ -1,55 +1,53 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public static class WallGenerator
 {
-    public static void CreateWalls(HashSet<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer) {
-        HashSet<Vector2Int> basicWallPositions = FindWallsDirections(floorPositions, Direction2D.cardinalDirectionsList);
-        HashSet<Vector2Int> cornerWallPositions = FindWallsDirections(floorPositions, Direction2D.diagonalDirectionsList);
+    public static void CreateWalls(HashSet<Vector2Int> floorPos, TilemapVisualizer visualizer) {
+        HashSet<Vector2Int> commonWPos = FindWallsDirections(floorPos, Direction2D.cardinalDirectionsList);
+        HashSet<Vector2Int> cornerWPos = FindWallsDirections(floorPos, Direction2D.diagonalDirectionsList);
 
-        CreateBasicWall(tilemapVisualizer, basicWallPositions, floorPositions);
-        CreateCornerWalls(tilemapVisualizer, cornerWallPositions, floorPositions);
+        CreateBasicWall(visualizer, commonWPos, floorPos);
+        CreateCornerWalls(visualizer, cornerWPos, floorPos);
     }
 
-    private static void CreateCornerWalls(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> cornerWallPositions, HashSet<Vector2Int> floorPositions) {
-        foreach (Vector2Int position in cornerWallPositions){
+    private static void CreateCornerWalls(TilemapVisualizer visualizer, HashSet<Vector2Int> cornerWPos, HashSet<Vector2Int> floorPos) {
+        foreach (Vector2Int position in cornerWPos){
             string  neighboursBinaryType = "";
             foreach (Vector2Int direction in Direction2D.eightDirectionsList) {
-                Vector2Int neighbourPosition = position + direction;
-                if (floorPositions.Contains(neighbourPosition)) 
+                Vector2Int neighbourPos = position + direction;
+                if (floorPos.Contains(neighbourPos)) 
                     neighboursBinaryType += "1";
                 else
                     neighboursBinaryType += "0";
             }
-            tilemapVisualizer.PaintSingleCornerWall(position, neighboursBinaryType);
+            visualizer.PaintSingleCornerWall(position, neighboursBinaryType);
         }
     }
 
-    private static void CreateBasicWall(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> basicWallPositions, HashSet<Vector2Int> floorPositions) {
-        foreach (Vector2Int position in basicWallPositions) {
+    private static void CreateBasicWall(TilemapVisualizer visualizer, HashSet<Vector2Int> commonWPos, HashSet<Vector2Int> floorPos) {
+        foreach (Vector2Int position in commonWPos) {
             string  neighboursBinaryType = "";
             foreach (Vector2Int direction in Direction2D.cardinalDirectionsList) {
-                Vector2Int neighbourPosition = position + direction;
-                if (floorPositions.Contains(neighbourPosition)) 
+                Vector2Int neighbourPos = position + direction;
+                if (floorPos.Contains(neighbourPos)) 
                     neighboursBinaryType += "1";
                 else
                     neighboursBinaryType += "0";
             }
-            tilemapVisualizer.PaintSingleBasicWall(position, neighboursBinaryType);
+            visualizer.PaintSingleBasicWall(position, neighboursBinaryType);
         }
     }
 
-    private static HashSet<Vector2Int> FindWallsDirections(HashSet<Vector2Int> floorPositions, List<Vector2Int> directionsList) {
-        HashSet<Vector2Int> wallPositions = new HashSet<Vector2Int>();
-        foreach (Vector2Int position in floorPositions) {
+    private static HashSet<Vector2Int> FindWallsDirections(HashSet<Vector2Int> floorPos, List<Vector2Int> directionsList) {
+        HashSet<Vector2Int> wallPos = new HashSet<Vector2Int>();
+        foreach (Vector2Int position in floorPos) {
             foreach (Vector2Int direction in directionsList) {
-                Vector2Int neighbourPosition = position + direction;
-                if (floorPositions.Contains(neighbourPosition) == false)
-                    wallPositions.Add(neighbourPosition);
+                Vector2Int neighbourPos = position + direction;
+                if (floorPos.Contains(neighbourPos) == false)
+                    wallPos.Add(neighbourPos);
             }
         }
-        return wallPositions;
+        return wallPos;
     }
 }
