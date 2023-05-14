@@ -17,15 +17,16 @@ public class NavMeshEnemyAI : MonoBehaviour
 
     private float chTimer = 0;
     private float aTimer = 0;
+    
     [SerializeField] private float chasingInterval = 0.2f;
     [SerializeField] private float attackDelay = 0.5f;
 
     public UnityEvent<Vector2> OnPointerInput;
     public UnityEvent OnAttack;
 
-    private float distance = 99;
+    [SerializeField] private bool runningAway;
 
-     [SerializeField] private bool runningAway;
+    private float distance = 99;
     
     private void Start() {
         agent = GetComponent<NavMeshAgent>();
@@ -70,6 +71,7 @@ public class NavMeshEnemyAI : MonoBehaviour
         if (distance <= chasingDistance) {
             aTimer += Time.deltaTime;
             OnPointerInput?.Invoke(target.position - transform.position);
+
             if (distance <= attackingDistance) {
                 if (aTimer >= attackDelay) {
                     OnAttack?.Invoke();
@@ -82,14 +84,11 @@ public class NavMeshEnemyAI : MonoBehaviour
     private void TakeDistance() {
         if (chTimer >= chasingInterval) {
             chTimer = 0;
+
             if (distance <= chasingDistance) {
                 if (runningAway) {
-                    if (distance < runawayDistance) {
-                        RunAway();
-                    }
-                    else {
-                        agent.SetDestination(target.position);
-                    }
+                    if (distance < runawayDistance) RunAway();
+                    else agent.SetDestination(target.position);
                 }
                 else {
                     agent.SetDestination(target.position); 

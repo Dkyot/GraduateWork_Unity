@@ -3,30 +3,31 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool paused = false;
-    public GameObject pauseMenu;
-    public GameObject fpsCounter;
-    public GameObject coinCounter;
-    public GameObject health;
-    public GameObject deathScreen;
+    private bool paused;
 
-    public GameObject bossHealthBar;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject fpsCounter;
+    [SerializeField] private GameObject coinCounter;
+    [SerializeField] private GameObject health;
+    [SerializeField] private GameObject deathScreen;
 
-    public PlayerInput playerInput;
+    [SerializeField] private GameObject bossHealthBar;
 
-    public GameObject mobileInput;
+    [SerializeField] private PlayerInput playerInput;
+
+    [SerializeField] private GameObject mobileInput;
 
     private bool death;
 
     public void Death() {
         death = true;
+
         deathScreen.SetActive(true);
         fpsCounter.SetActive(false);
         coinCounter.SetActive(false);
         health.SetActive(false);
         playerInput.inputActions.InGamePlayerInput.Disable();
-
-            mobileInput.SetActive(false);
+        mobileInput.SetActive(false);
 
         if (bossHealthBar != null) bossHealthBar.SetActive(false);
 
@@ -39,10 +40,8 @@ public class PauseMenu : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape) && !death) {
-            if (paused)
-                Play();
-            else
-                Stop();
+            if (paused) Play();
+            else Stop();
         }
     }
 
@@ -52,8 +51,7 @@ public class PauseMenu : MonoBehaviour
         coinCounter.SetActive(true);
         health.SetActive(true);
         playerInput.inputActions.InGamePlayerInput.Enable();
-
-            mobileInput.SetActive(Application.isMobilePlatform);
+        mobileInput.SetActive(Application.isMobilePlatform);
 
         Time.timeScale = 1;
         paused = false;
@@ -65,8 +63,7 @@ public class PauseMenu : MonoBehaviour
         coinCounter.SetActive(false);
         health.SetActive(false);
         playerInput.inputActions.InGamePlayerInput.Disable();
-
-            mobileInput.SetActive(false);
+        mobileInput.SetActive(false);
 
         if (bossHealthBar != null) bossHealthBar.SetActive(false);
 

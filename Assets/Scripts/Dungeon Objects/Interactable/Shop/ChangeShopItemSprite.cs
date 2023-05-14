@@ -8,19 +8,12 @@ public class ChangeShopItemSprite : MonoBehaviour
     [SerializeField] private Sprite defaultSprite;
 
     public void ChangeSprite() {
-        if (shop.item == null) {
-            Debug.Log("не");
-            return;
-        }
-        if (shop.item.sprite == null) {
-            Debug.Log("qw");
-            return;
-        }
+        if (shop.item == null) return;
+        if (shop.item.sprite == null) return;
         itemSprite.sprite = shop.item.sprite;
     }
 
     public void Sold() {
         itemSprite.sprite = defaultSprite;
-        Debug.Log("wwwwwww");
     }
 }

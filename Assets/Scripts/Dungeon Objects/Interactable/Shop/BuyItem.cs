@@ -28,10 +28,7 @@ public class BuyItem : MonoBehaviour
     }
 
     public void Buy() {
-        if (item == null) {
-            Debug.Log("j");
-            return;
-        }
+        if (item == null) return;
         GameObject player = interactable.input.gameObject;
         CoinStorage storage = player.GetComponentInChildren<CoinStorage>();
         Equipment equipment = player.GetComponentInChildren<Equipment>();
@@ -41,14 +38,8 @@ public class BuyItem : MonoBehaviour
             if (item.command.isActive) return;
             if (storage.SpendCoins(item.itemCost)) {
                 item.GetItem(data, equipment.transform, equipment);
-                //equipment.UpdateData();
-                //Debug.Log("успешно");
-
                 item.isSold = true;
                 OnBuy?.Invoke();
-            }
-            else {
-                //Debug.Log("нужно больше денег");
             }
         }
     }

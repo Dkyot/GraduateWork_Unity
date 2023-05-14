@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class ORA : MonoBehaviour
 {
-    void Update()
-    {
+    private void Update() {
         Debug.Log("ORA ORA ORA!");
     }
 }

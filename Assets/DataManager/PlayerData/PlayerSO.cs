@@ -8,7 +8,6 @@ public class PlayerSO : ScriptableObject
 
     public int maxHeartsAmount;
     public int currentHP;
-
     public int coins;
 
     public List<Command> commands = new List<Command>();

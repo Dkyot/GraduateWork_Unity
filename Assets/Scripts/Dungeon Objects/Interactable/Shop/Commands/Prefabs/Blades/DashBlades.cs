@@ -9,10 +9,8 @@ public class DashBlades : MonoBehaviour
     private void Start() {
         attack = GetComponent<MeleeAttackDetection>();
         combatManager = GetComponentInParent<CombatManager>();
-        if (combatManager != null) {
-            //Debug.Log("получилось");
+        if (combatManager != null)
             combatManager.OnDash += OnBladeDash;
-        }
     }
 
     private void OnBladeDash(object sender, EventArgs e) {

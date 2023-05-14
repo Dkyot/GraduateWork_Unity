@@ -9,14 +9,9 @@ public class Equipment : MonoBehaviour
     }
 
     public void UpdateData() {
-        if (data.commands.Count == 0) {
-            //Debug.Log("вещей нет");
-            return;
-        }
+        if (data.commands.Count == 0) return;
 
-        //Debug.Log("вещи есть");
-        foreach (Command c in data.commands) {
+        foreach (Command c in data.commands)
             c.Execute(data, transform, this);
-        }
     }
 }

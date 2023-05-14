@@ -38,15 +38,12 @@ public class Interactable : MonoBehaviour
         if (dist > radius) return;
         
         RaycastHit2D hit = Physics2D.Raycast(touchP, Vector2.zero);
-        if (hit.collider != null) {
+        if (hit.collider != null)
             if (hit.collider.tag == "Interactable") Interact();
-        }
     }
 
     private void PCInteraction() {
-        if (input.playerActions.Interact.IsPressed()) {
-                Interact();
-        }
+        if (input.playerActions.Interact.IsPressed()) Interact();
     }
 
     private void Interact() {
