@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class MeleeAttackDetection : MonoBehaviour
 {
-    [SerializeField]
-    private Transform circleOrigin;
-    [SerializeField]
-    private float radius;
+    [SerializeField] private Transform circleOrigin;
+    [SerializeField] private float radius;
 
-    [SerializeField]
-    private int damage = 2;
+    [SerializeField] private int damage = 2;
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.blue;

@@ -4,10 +4,8 @@ public class ShootProjectiles : MonoBehaviour
 {
     [SerializeField] private PoolManager poolManager;
     
-    [SerializeField]
-    private GameObject bulletPhysics;
-    [SerializeField]
-    private Transform shootPosition;
+    [SerializeField] private GameObject bulletPhysics;
+    [SerializeField] private Transform shootPosition;
 
     public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
 

@@ -36,7 +36,6 @@ public class BulletHellShoot : MonoBehaviour
     }
 
     public void ShootOnce() {
-        //Debug.Log("выстрел");
         foreach(Vector2 vector in shootDirections)
             Shoot(vector);
     }
