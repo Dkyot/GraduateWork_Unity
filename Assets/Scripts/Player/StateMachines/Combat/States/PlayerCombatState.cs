@@ -36,12 +36,12 @@ public class PlayerCombatState : IState
     #region Reusable Mehtods
     protected virtual void AddInputActionsCallbacks() {
         if (Application.isMobilePlatform || mobileDebug) {
-            stateMachine.player.input.playerActions.PointerPosition.started += OnBlockToggleStarted;
-            stateMachine.player.input.playerActions.PointerPosition.canceled += OnBlockToggleStarted;
+            stateMachine.player.input.playerActions.PointerPosition.started += OnAttackToggleStarted;
+            stateMachine.player.input.playerActions.PointerPosition.canceled += OnAttackToggleStarted;
         }
         else {
-            stateMachine.player.input.playerActions.Block.started += OnBlockToggleStarted;
-            stateMachine.player.input.playerActions.Block.canceled += OnBlockToggleStarted;
+            stateMachine.player.input.playerActions.Attack.started += OnAttackToggleStarted;
+            stateMachine.player.input.playerActions.Attack.canceled += OnAttackToggleStarted;
         }
 
         stateMachine.player.input.playerActions.Ability.started += OnAbilityToggleStarted;
@@ -49,12 +49,12 @@ public class PlayerCombatState : IState
 
     protected virtual void RemoveInputActionsCallbacks() {
         if (Application.isMobilePlatform || mobileDebug) {
-            stateMachine.player.input.playerActions.PointerPosition.started -= OnBlockToggleStarted;
-            stateMachine.player.input.playerActions.PointerPosition.canceled -= OnBlockToggleStarted;
+            stateMachine.player.input.playerActions.PointerPosition.started -= OnAttackToggleStarted;
+            stateMachine.player.input.playerActions.PointerPosition.canceled -= OnAttackToggleStarted;
         }
         else {
-            stateMachine.player.input.playerActions.Block.started -= OnBlockToggleStarted;
-            stateMachine.player.input.playerActions.Block.canceled -= OnBlockToggleStarted;
+            stateMachine.player.input.playerActions.Attack.started -= OnAttackToggleStarted;
+            stateMachine.player.input.playerActions.Attack.canceled -= OnAttackToggleStarted;
         }
 
         stateMachine.player.input.playerActions.Ability.started -= OnAbilityToggleStarted;
@@ -66,9 +66,9 @@ public class PlayerCombatState : IState
         stateMachine.ChangeState(stateMachine.AbilityState);
     }
 
-    protected virtual void OnBlockToggleStarted(InputAction.CallbackContext context) {
-        if (context.started) stateMachine.reusableData.shouldBlock = true;
-        else stateMachine.reusableData.shouldBlock = false;
+    protected virtual void OnAttackToggleStarted(InputAction.CallbackContext context) {
+        if (context.started) stateMachine.reusableData.shouldAttack = true;
+        else stateMachine.reusableData.shouldAttack = false;
     }
     #endregion
 }

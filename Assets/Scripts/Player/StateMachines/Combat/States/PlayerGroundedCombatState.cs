@@ -6,12 +6,12 @@ public class PlayerGroundedCombatState : PlayerCombatState
 
     #region Reusable Mehtods
     protected virtual void OnAct() {
-        if (stateMachine.reusableData.shouldUseAbility == false && stateMachine.reusableData.shouldBlock == true)
-            stateMachine.ChangeState(stateMachine.BlockingState);
+        if (stateMachine.reusableData.shouldUseAbility == false && stateMachine.reusableData.shouldAttack == true)
+            stateMachine.ChangeState(stateMachine.AttackingState);
     }
 
     protected virtual void OnInactive() {
-        if (stateMachine.reusableData.shouldUseAbility == false && stateMachine.reusableData.shouldBlock == false)
+        if (stateMachine.reusableData.shouldUseAbility == false && stateMachine.reusableData.shouldAttack == false)
             stateMachine.ChangeState(stateMachine.InactiveState);
     }
     #endregion

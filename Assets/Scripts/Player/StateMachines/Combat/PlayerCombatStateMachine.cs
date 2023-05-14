@@ -4,7 +4,7 @@ public class PlayerCombatStateMachine : StateMachine
     public PlayerStateReusableData reusableData { get; private set;}
     
     public PlayerAbilityState AbilityState  { get; private set;}
-    public PlayerBlockingState BlockingState    { get; private set;}
+    public PlayerAttackingState AttackingState    { get; private set;}
     public PlayerInactiveState InactiveState    { get; private set;}
 
     public PlayerCombatStateMachine(Player player) {
@@ -12,7 +12,7 @@ public class PlayerCombatStateMachine : StateMachine
         reusableData = new PlayerStateReusableData();
 
         AbilityState = new PlayerAbilityState(this);
-        BlockingState = new PlayerBlockingState(this);
+        AttackingState = new PlayerAttackingState(this);
         InactiveState = new PlayerInactiveState(this);
     }
 }

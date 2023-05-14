@@ -73,7 +73,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Block"",
+                    ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""f36ce1b1-ceb4-4298-bd9c-d12732f80fd1"",
                     ""expectedControlType"": ""Button"",
@@ -251,7 +251,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Block"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -289,7 +289,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_InGamePlayerInput_Roll = m_InGamePlayerInput.FindAction("Roll", throwIfNotFound: true);
         m_InGamePlayerInput_PointerPosition = m_InGamePlayerInput.FindAction("PointerPosition", throwIfNotFound: true);
         m_InGamePlayerInput_Ability = m_InGamePlayerInput.FindAction("Ability", throwIfNotFound: true);
-        m_InGamePlayerInput_Block = m_InGamePlayerInput.FindAction("Block", throwIfNotFound: true);
+        m_InGamePlayerInput_Attack = m_InGamePlayerInput.FindAction("Attack", throwIfNotFound: true);
         m_InGamePlayerInput_Interact = m_InGamePlayerInput.FindAction("Interact", throwIfNotFound: true);
         m_InGamePlayerInput_MobileInteract = m_InGamePlayerInput.FindAction("MobileInteract", throwIfNotFound: true);
     }
@@ -356,7 +356,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGamePlayerInput_Roll;
     private readonly InputAction m_InGamePlayerInput_PointerPosition;
     private readonly InputAction m_InGamePlayerInput_Ability;
-    private readonly InputAction m_InGamePlayerInput_Block;
+    private readonly InputAction m_InGamePlayerInput_Attack;
     private readonly InputAction m_InGamePlayerInput_Interact;
     private readonly InputAction m_InGamePlayerInput_MobileInteract;
     public struct InGamePlayerInputActions
@@ -368,7 +368,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Roll => m_Wrapper.m_InGamePlayerInput_Roll;
         public InputAction @PointerPosition => m_Wrapper.m_InGamePlayerInput_PointerPosition;
         public InputAction @Ability => m_Wrapper.m_InGamePlayerInput_Ability;
-        public InputAction @Block => m_Wrapper.m_InGamePlayerInput_Block;
+        public InputAction @Attack => m_Wrapper.m_InGamePlayerInput_Attack;
         public InputAction @Interact => m_Wrapper.m_InGamePlayerInput_Interact;
         public InputAction @MobileInteract => m_Wrapper.m_InGamePlayerInput_MobileInteract;
         public InputActionMap Get() { return m_Wrapper.m_InGamePlayerInput; }
@@ -395,9 +395,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Ability.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnAbility;
                 @Ability.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnAbility;
                 @Ability.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnAbility;
-                @Block.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnBlock;
-                @Block.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnBlock;
-                @Block.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnBlock;
+                @Attack.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnAttack;
                 @Interact.started -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_InGamePlayerInputActionsCallbackInterface.OnInteract;
@@ -423,9 +423,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Ability.started += instance.OnAbility;
                 @Ability.performed += instance.OnAbility;
                 @Ability.canceled += instance.OnAbility;
-                @Block.started += instance.OnBlock;
-                @Block.performed += instance.OnBlock;
-                @Block.canceled += instance.OnBlock;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -443,7 +443,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnRoll(InputAction.CallbackContext context);
         void OnPointerPosition(InputAction.CallbackContext context);
         void OnAbility(InputAction.CallbackContext context);
-        void OnBlock(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnMobileInteract(InputAction.CallbackContext context);
     }

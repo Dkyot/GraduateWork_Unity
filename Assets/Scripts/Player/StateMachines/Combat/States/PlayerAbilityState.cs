@@ -27,8 +27,8 @@ public class PlayerAbilityState : PlayerActiveState
         timer += Time.deltaTime;
 
         if (timer > 1f) {
-            if (stateMachine.reusableData.shouldBlock == true)
-                stateMachine.ChangeState(stateMachine.BlockingState);
+            if (stateMachine.reusableData.shouldAttack == true)
+                stateMachine.ChangeState(stateMachine.AttackingState);
             else 
                 stateMachine.ChangeState(stateMachine.InactiveState);
         }

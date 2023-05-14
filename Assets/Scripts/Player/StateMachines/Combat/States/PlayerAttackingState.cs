@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBlockingState : PlayerActiveState
+public class PlayerAttackingState : PlayerActiveState
 {
-    public PlayerBlockingState(PlayerCombatStateMachine playerCombatStateMachine) : base(playerCombatStateMachine)
+    public PlayerAttackingState(PlayerCombatStateMachine playerCombatStateMachine) : base(playerCombatStateMachine)
     {
     }
 

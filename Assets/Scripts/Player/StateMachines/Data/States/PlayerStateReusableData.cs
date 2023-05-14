@@ -8,5 +8,5 @@ public class PlayerStateReusableData
     public bool shouldWalk { get; set;}
 
     public bool shouldUseAbility { get; set;}
-    public bool shouldBlock { get; set;}
+    public bool shouldAttack { get; set;}
 }
