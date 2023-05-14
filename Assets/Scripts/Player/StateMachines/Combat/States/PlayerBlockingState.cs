@@ -35,7 +35,7 @@ public class PlayerBlockingState : PlayerActiveState
     #endregion
 
     #region Input Mehtods
-    protected override void OnAttackToggleStarted(InputAction.CallbackContext context) {
+    protected override void OnAbilityToggleStarted(InputAction.CallbackContext context) {
         //
     }
     #endregion

@@ -5,17 +5,13 @@ public class BulletPhysics : MonoBehaviour
     private PoolManager poolManager;
     
     private new Rigidbody2D rigidbody2D;
-    [SerializeField]
-    private float moveSpeed = 100f;
-    [SerializeField]
-    private int damageAmount = 2;
+    [SerializeField] private float moveSpeed = 100f;
+    [SerializeField] private int damageAmount = 2;
 
     private LayerMask parentLayer;
-    [SerializeField]
-    private LayerMask wallLayer;
+    [SerializeField] private LayerMask wallLayer;
 
-    [SerializeField]
-    private float ttl = 2f;
+    [SerializeField] private float ttl = 2f;
     private float timer = 0;
 
     public void Setup(PoolManager poolManager, Vector3 shootDir, LayerMask layer) {

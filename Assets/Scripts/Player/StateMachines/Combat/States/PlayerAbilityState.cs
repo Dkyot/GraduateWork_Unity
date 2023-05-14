@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAttackingState : PlayerActiveState
+public class PlayerAbilityState : PlayerActiveState
 {
-    public PlayerAttackingState(PlayerCombatStateMachine playerCombatStateMachine) : base(playerCombatStateMachine)
+    public PlayerAbilityState(PlayerCombatStateMachine playerCombatStateMachine) : base(playerCombatStateMachine)
     {
     }
 
@@ -15,7 +15,7 @@ public class PlayerAttackingState : PlayerActiveState
         
         timer = 0;
         
-        stateMachine.reusableData.shouldAttack = true;
+        stateMachine.reusableData.shouldUseAbility = true;
 
         stateMachine.player.combatManager?.Ability();
 
@@ -37,12 +37,12 @@ public class PlayerAttackingState : PlayerActiveState
     public override void Exit() {
         base.Exit();
 
-        stateMachine.reusableData.shouldAttack = false;
+        stateMachine.reusableData.shouldUseAbility = false;
     }
     #endregion
 
     #region Input Mehtods
-    protected override void OnAttackToggleStarted(InputAction.CallbackContext context) {
+    protected override void OnAbilityToggleStarted(InputAction.CallbackContext context) {
         //
     }
     #endregion

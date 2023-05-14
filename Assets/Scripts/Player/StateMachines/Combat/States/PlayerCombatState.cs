@@ -44,7 +44,7 @@ public class PlayerCombatState : IState
             stateMachine.player.input.playerActions.Block.canceled += OnBlockToggleStarted;
         }
 
-        stateMachine.player.input.playerActions.Attack.started += OnAttackToggleStarted;
+        stateMachine.player.input.playerActions.Ability.started += OnAbilityToggleStarted;
     }
 
     protected virtual void RemoveInputActionsCallbacks() {
@@ -57,13 +57,13 @@ public class PlayerCombatState : IState
             stateMachine.player.input.playerActions.Block.canceled -= OnBlockToggleStarted;
         }
 
-        stateMachine.player.input.playerActions.Attack.started -= OnAttackToggleStarted;
+        stateMachine.player.input.playerActions.Ability.started -= OnAbilityToggleStarted;
     }
     #endregion
 
     #region Input Mehtods
-    protected virtual void OnAttackToggleStarted(InputAction.CallbackContext context) {
-        stateMachine.ChangeState(stateMachine.AttackingState);
+    protected virtual void OnAbilityToggleStarted(InputAction.CallbackContext context) {
+        stateMachine.ChangeState(stateMachine.AbilityState);
     }
 
     protected virtual void OnBlockToggleStarted(InputAction.CallbackContext context) {

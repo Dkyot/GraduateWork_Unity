@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "Ability",
                     "type": "Button",
                     "id": "674460d0-3bc3-4e05-b9a2-d1a68b325b0f",
                     "expectedControlType": "Button",
@@ -108,7 +108,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -119,7 +119,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -9,7 +9,7 @@ public class PlayerInactiveState : PlayerGroundedCombatState
     {
         base.Update();
 
-        if (stateMachine.reusableData.shouldAttack == false && stateMachine.reusableData.shouldBlock == false) {
+        if (stateMachine.reusableData.shouldUseAbility == false && stateMachine.reusableData.shouldBlock == false) {
             return;
         }
 
