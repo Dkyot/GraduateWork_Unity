@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class DungeonData : MonoBehaviour
 {
     public HashSet<Vector2Int> corridors;
@@ -11,7 +10,38 @@ public class DungeonData : MonoBehaviour
         rooms = new List<RoomData>();
         corridors = new HashSet<Vector2Int>();
     }
+    
+    public void AddRoomTypes() {
+        if(rooms.Count >= 6) {
+            rooms[0].roomType = TypesOfRooms.EmptyRoom;
+            rooms[1].roomType = TypesOfRooms.StartRoom;
+            rooms[2].roomType = TypesOfRooms.ExitRoom;
+            rooms[3].roomType = TypesOfRooms.TreasureRoom;
+            rooms[4].roomType = TypesOfRooms.EnemyRoom;
+            rooms[5].roomType = TypesOfRooms.BossRoom;
+        }
+    }
 
+    public RoomData GetStartRoom() {
+        foreach (RoomData room in rooms) {
+            if (room.roomType == TypesOfRooms.StartRoom) 
+                return room;
+        }
+        return null;
+    }
+
+    public void Debuger() {
+        int i = 0;
+        foreach (RoomData room in rooms) {
+            Debug.Log(room.center + " _" + i);
+            i++;
+        }
+
+        DijkstraAlgorithm deb = new DijkstraAlgorithm();
+        deb.RunAlgorithm(CorvertToMatrix(), 0, rooms.Count);
+    }
+
+    #region Graph methods
     public void ResetData() {
         foreach(RoomData room in rooms) {
             foreach(GameObject prop in room.PropObjectReferences) {
@@ -47,17 +77,6 @@ public class DungeonData : MonoBehaviour
         }
     }
 
-    public void Debuger() {
-        int i = 0;
-        foreach (RoomData room in rooms) {
-            Debug.Log(room.center + " _" + i);
-            i++;
-        }
-
-        DijkstraAlgorithm deb = new DijkstraAlgorithm();
-        deb.RunAlgorithm(CorvertToMatrix(), 0, rooms.Count);
-    }
-
     public bool EdgeExists(RoomData room1, RoomData room2) {
         foreach (GraphEdge edge in room1.edges) {
             if (room2.Equals(edge.connectedRoom))
@@ -65,7 +84,9 @@ public class DungeonData : MonoBehaviour
         }
         return false;
     }
+    #endregion
 
+    #region Auxiliary methods
     private int FindEdgeWeight(RoomData room1, RoomData room2) {
         foreach (GraphEdge edge in room1.edges) {
             if (room2.Equals(edge.connectedRoom))
@@ -84,25 +105,7 @@ public class DungeonData : MonoBehaviour
         }
         return graph;
     }
-
-    public void AddRoomTypes() {
-        if(rooms.Count >= 6) {
-            rooms[0].roomType = TypesOfRooms.EmptyRoom;
-            rooms[1].roomType = TypesOfRooms.StartRoom;
-            rooms[2].roomType = TypesOfRooms.ExitRoom;
-            rooms[3].roomType = TypesOfRooms.TreasureRoom;
-            rooms[4].roomType = TypesOfRooms.EnemyRoom;
-            rooms[5].roomType = TypesOfRooms.BossRoom;
-        }
-    }
-
-    public RoomData GetStartRoom() {
-        foreach (RoomData room in rooms) {
-            if (room.roomType == TypesOfRooms.StartRoom) 
-                return room;
-        }
-        return null;
-    }
+    #endregion
 }
 
 public enum TypesOfRooms {

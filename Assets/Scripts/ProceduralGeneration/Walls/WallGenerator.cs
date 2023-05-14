@@ -11,6 +11,7 @@ public static class WallGenerator
         CreateCornerWalls(visualizer, cornerWPos, floorPos);
     }
 
+    #region Methods of creating walls
     private static void CreateCornerWalls(TilemapVisualizer visualizer, HashSet<Vector2Int> cornerWPos, HashSet<Vector2Int> floorPos) {
         foreach (Vector2Int position in cornerWPos){
             string  neighboursBinaryType = "";
@@ -50,4 +51,5 @@ public static class WallGenerator
         }
         return wallPos;
     }
+    #endregion
 }

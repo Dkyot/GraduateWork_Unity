@@ -18,7 +18,7 @@ public class BulletHellShoot : MonoBehaviour
     public bool shouldShoot = true;
 
     private void Awake() {
-        shootDirections = CalculateDiractions();
+        shootDirections = CalculateDirections();
         cooldownTimer = 0;
         burstTimer = 0;
         inBurst = true;
@@ -40,6 +40,7 @@ public class BulletHellShoot : MonoBehaviour
             Shoot(vector);
     }
 
+    #region Delay methods
     private bool Cooldown() {
         if (cooldownTimer >= bulletHellData.cooldown) {
             cooldownTimer = 0;
@@ -56,7 +57,9 @@ public class BulletHellShoot : MonoBehaviour
         }
         return inBurst;
     }
+    #endregion
 
+    #region Auxiliary methods
     private void Rotation() {
         if (bulletHellData.useRotation) {
             for (int i = 0; i < shootDirections.Count; i++) {
@@ -68,15 +71,8 @@ public class BulletHellShoot : MonoBehaviour
             }
         }
     }
-
-    private float GetAngleFromVectorFloat(Vector3 direction) {
-        direction = direction.normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        if (angle < 0) angle += 360;
-        return angle;
-    }
     
-    private List<Vector2> CalculateDiractions() {
+    private List<Vector2> CalculateDirections() {
         List<Vector2> directions = new List<Vector2>();
         
         float angle = 360f / bulletHellData.directionsAmount;
@@ -93,7 +89,7 @@ public class BulletHellShoot : MonoBehaviour
         return Quaternion.AngleAxis(angle, Vector3.forward) * vector;
     }
 
-    public void Shoot(Vector2 vector) {
+    private void Shoot(Vector2 vector) {
         GameObject bullet;
         if (poolManager == null)
             return;
@@ -101,13 +97,16 @@ public class BulletHellShoot : MonoBehaviour
             bullet = poolManager.Spawn(bulletPhysics, transform.position, Quaternion.identity);
         bullet.GetComponent<BulletPhysics>().Setup(poolManager, vector.normalized, gameObject.layer);
     }
+    #endregion
 
+    #region Debug methods
     private void OnDrawGizmos() {
         if (!bulletHellData.useRotation)
-            shootDirections = CalculateDiractions();
+            shootDirections = CalculateDirections();
         Gizmos.color = Color.red;
         if (shootDirections != null)
             foreach (Vector2 vector in shootDirections)
                 Gizmos.DrawRay(transform.position, vector * 2f);
     }
+    #endregion
 }

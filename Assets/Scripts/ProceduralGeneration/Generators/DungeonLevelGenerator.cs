@@ -3,17 +3,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
+public class DungeonLevelGenerator : AbstractDungeonGenerator
 {
-    
-    [SerializeField]
-    private int minRoomWidth = 10;
-    [SerializeField]
-    private int minRoomHeight = 8;
-    [SerializeField]
-    private int dungeonWidth = 40;
-    [SerializeField]
-    private int dungeonHeight = 50;
+    [SerializeField] private int minRoomWidth = 10;
+    [SerializeField] private int minRoomHeight = 8;
+    [SerializeField] private int dungeonWidth = 40;
+    [SerializeField] private int dungeonHeight = 50;
+
     [SerializeField]
     [Range(0, 5)]
     private int offset = 2;
@@ -21,10 +17,8 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
     private DungeonData dungeonData;
     private bool intersectionFlag = false;
 
-    [SerializeField]
-    private UnityEvent OnEndOfGeneration;
-    [SerializeField]
-    private UnityEvent OnEndOfDataExtraction;
+    [SerializeField] private UnityEvent OnEndOfGeneration;
+    [SerializeField] private UnityEvent OnEndOfDataExtraction;
 
     private void Start() {
         GenerateDungeon();
@@ -51,6 +45,7 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
             dungeonHeight = 25;
             dungeonWidth = 25;
         }
+
         do {
             roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
             new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
@@ -60,6 +55,7 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
         floor = CreareSimpleRoom(roomsList);
         
         List<Vector2Int> roomCenters = new List<Vector2Int>();
+
         foreach (BoundsInt room in roomsList) {
             roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
         }
@@ -74,6 +70,7 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
 
     private HashSet<Vector2Int> CreareSimpleRoom(List<BoundsInt> roomsList) {
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+
         foreach (BoundsInt room in roomsList) {
                 HashSet<Vector2Int> roomFloor = new HashSet<Vector2Int>();
                 Vector2Int roomCenter = new Vector2Int(Mathf.RoundToInt(room.center.x), Mathf.RoundToInt(room.center.y));

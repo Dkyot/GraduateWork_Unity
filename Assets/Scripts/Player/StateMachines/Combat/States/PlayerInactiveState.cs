@@ -4,7 +4,7 @@ public class PlayerInactiveState : PlayerGroundedCombatState
     {
     }
     
-    #region IState Methods
+    #region IState methods
     public override void Update()
     {
         base.Update();

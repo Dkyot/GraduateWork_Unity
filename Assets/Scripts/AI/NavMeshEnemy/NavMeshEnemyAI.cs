@@ -55,18 +55,7 @@ public class NavMeshEnemyAI : MonoBehaviour
         TakeDistance();
     }
 
-    private void OnDrawGizmos() {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Vector3 pos = transform.position - (direction * runawayDistance);
-        Gizmos.DrawLine(transform.position, pos);
-    }
-
-    private void RunAway() {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Vector3 pos = transform.position - (direction * runawayDistance);
-        agent.SetDestination(pos);
-    }
-
+    #region Main behaviour methods
     private void Attack() {
         if (distance <= chasingDistance) {
             aTimer += Time.deltaTime;
@@ -96,4 +85,21 @@ public class NavMeshEnemyAI : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region Debug methods
+    private void OnDrawGizmos() {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 pos = transform.position - (direction * runawayDistance);
+        Gizmos.DrawLine(transform.position, pos);
+    }
+    #endregion
+
+    #region Auxiliary methods
+    private void RunAway() {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 pos = transform.position - (direction * runawayDistance);
+        agent.SetDestination(pos);
+    }
+    #endregion
 }

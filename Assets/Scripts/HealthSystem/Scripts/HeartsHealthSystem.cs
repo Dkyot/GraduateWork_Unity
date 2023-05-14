@@ -55,6 +55,33 @@ public class HeartsHealthSystem
         return currentHP;
     }
 
+    public void SetHP(int hp) {
+        if (hp > heartList.Count * 4 || hp <= 0) return;
+        if (hp > GetCurrentHP()) IncreaseHP(hp - GetCurrentHP());
+        else if (hp < GetCurrentHP()) DecreaseHP(GetCurrentHP() - hp);
+
+        if (OnSet != null) OnSet(this, EventArgs.Empty);
+    } 
+
+    public void Damage(int damageAmount) {
+        if (damageAmount <= 0 || isImmortal) return;
+        DecreaseHP(damageAmount);
+        if (OnDamaged != null) OnDamaged(this, EventArgs.Empty);
+        if (IsDead()) {
+            if (OnDead != null) OnDead(this, EventArgs.Empty);
+        }
+    }
+
+    public void Heal(int healAmount) {
+        IncreaseHP(healAmount);
+        if (OnHealed != null) OnHealed(this, EventArgs.Empty);
+    }
+
+    public bool IsDead() {
+        return GetCurrentHP() == 0;
+    }
+
+    #region Auxiliary methods
     private void DecreaseHP(int amount) {
         for (int i = heartList.Count - 1; i >= 0; i--) {
             Heart heart = heartList[i];
@@ -83,30 +110,5 @@ public class HeartsHealthSystem
             }
         }
     }
-
-    public void SetHP(int hp) {
-        if (hp > heartList.Count * 4 || hp <= 0) return;
-        if (hp > GetCurrentHP()) IncreaseHP(hp - GetCurrentHP());
-        else if (hp < GetCurrentHP()) DecreaseHP(GetCurrentHP() - hp);
-
-        if (OnSet != null) OnSet(this, EventArgs.Empty);
-    } 
-
-    public void Damage(int damageAmount) {
-        if (damageAmount <= 0 || isImmortal) return;
-        DecreaseHP(damageAmount);
-        if (OnDamaged != null) OnDamaged(this, EventArgs.Empty);
-        if (IsDead()) {
-            if (OnDead != null) OnDead(this, EventArgs.Empty);
-        }
-    }
-
-    public void Heal(int healAmount) {
-        IncreaseHP(healAmount);
-        if (OnHealed != null) OnHealed(this, EventArgs.Empty);
-    }
-
-    public bool IsDead() {
-        return GetCurrentHP() == 0;
-    }
+    #endregion
 }

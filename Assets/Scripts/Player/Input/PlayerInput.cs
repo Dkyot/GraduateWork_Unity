@@ -9,13 +9,13 @@ public class PlayerInput : MonoBehaviour
     public Controls.InGamePlayerInputActions playerActions { get; private set;}
 
     public UnityEvent<Vector2> OnPointerInput;
+    
+    private bool mobileDebug = false;
 
     private void Awake() {
         inputActions = new Controls();
         playerActions = inputActions.InGamePlayerInput;
     }
-
-    private bool mobileDebug = false;
 
     private void Update() {
         if (Application.isMobilePlatform || mobileDebug)
@@ -24,6 +24,13 @@ public class PlayerInput : MonoBehaviour
             OnPointerInput?.Invoke((GetPointerInput() - (Vector2)transform.position).normalized);
     }
 
+    private Vector2 GetPointerInput() {
+        Vector3 mousePos = inputActions.InGamePlayerInput.PointerPosition.ReadValue<Vector2>();
+        mousePos.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePos);
+    }
+
+    #region InputActions methods
     private void OnEnable() {
         inputActions.Enable();  
     }
@@ -41,10 +48,5 @@ public class PlayerInput : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         action.Enable();
     }
-
-    private Vector2 GetPointerInput() {
-        Vector3 mousePos = inputActions.InGamePlayerInput.PointerPosition.ReadValue<Vector2>();
-        mousePos.z = Camera.main.nearClipPlane;
-        return Camera.main.ScreenToWorldPoint(mousePos);
-    }
+    #endregion
 }

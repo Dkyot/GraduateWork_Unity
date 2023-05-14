@@ -9,7 +9,7 @@ public class PlayerCombatState : IState
         stateMachine = playerCombatStateMachine;
     }
     
-    #region  IState Methods
+    #region  IState methods
     public virtual void Enter() {
         AddInputActionsCallbacks();
     }
@@ -33,7 +33,7 @@ public class PlayerCombatState : IState
 
     bool mobileDebug = false;
 
-    #region Reusable Mehtods
+    #region Input actions methods
     protected virtual void AddInputActionsCallbacks() {
         if (Application.isMobilePlatform || mobileDebug) {
             stateMachine.player.input.playerActions.PointerPosition.started += OnAttackToggleStarted;
@@ -61,7 +61,7 @@ public class PlayerCombatState : IState
     }
     #endregion
 
-    #region Input Mehtods
+    #region Input mehtods
     protected virtual void OnAbilityToggleStarted(InputAction.CallbackContext context) {
         stateMachine.ChangeState(stateMachine.AbilityState);
     }

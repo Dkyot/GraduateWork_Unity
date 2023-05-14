@@ -25,7 +25,6 @@ public class SavePlayerDataBetweenScenes : MonoBehaviour
     }
 
     public void SaveData() {
-        Debug.Log("SaveData");
         int maxH = playerStats.GetHealthSystem().GetHeartList().Count;
         int currHP = playerStats.GetHealthSystem().GetCurrentHP();
         savedData.maxHeartsAmount = maxH;

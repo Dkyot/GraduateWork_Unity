@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    private bool paused;
-
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject fpsCounter;
     [SerializeField] private GameObject coinCounter;
@@ -17,22 +15,8 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private GameObject mobileInput;
 
+    private bool paused;
     private bool death;
-
-    public void Death() {
-        death = true;
-
-        deathScreen.SetActive(true);
-        fpsCounter.SetActive(false);
-        coinCounter.SetActive(false);
-        health.SetActive(false);
-        playerInput.inputActions.InGamePlayerInput.Disable();
-        mobileInput.SetActive(false);
-
-        if (bossHealthBar != null) bossHealthBar.SetActive(false);
-
-        Time.timeScale = 0;
-    }
 
     private void Start() {
         Play();
@@ -45,6 +29,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    #region UI activation methods
     public void Play() {
         pauseMenu.SetActive(false);
         fpsCounter.SetActive(true);
@@ -71,6 +56,23 @@ public class PauseMenu : MonoBehaviour
         paused = true;
     }
 
+    public void Death() {
+        death = true;
+
+        deathScreen.SetActive(true);
+        fpsCounter.SetActive(false);
+        coinCounter.SetActive(false);
+        health.SetActive(false);
+        playerInput.inputActions.InGamePlayerInput.Disable();
+        mobileInput.SetActive(false);
+
+        if (bossHealthBar != null) bossHealthBar.SetActive(false);
+
+        Time.timeScale = 0;
+    }
+    #endregion
+
+    #region Button methods
     public void ToMainMenu() {
         SceneManager.LoadScene("MainMenu");
     }
@@ -78,4 +80,5 @@ public class PauseMenu : MonoBehaviour
     public void ToHub() {
         SceneManager.LoadScene("HubScene");
     }
+    #endregion
 }

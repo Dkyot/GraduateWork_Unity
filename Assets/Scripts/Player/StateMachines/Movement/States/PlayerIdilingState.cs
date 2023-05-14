@@ -7,7 +7,7 @@ public class PlayerIdilingState : PlayerGroundedState
     {
     }
 
-    #region  IState Methods
+    #region  IState methods
     public override void Enter() {
         base.Enter();
 
@@ -26,7 +26,7 @@ public class PlayerIdilingState : PlayerGroundedState
     }
     #endregion
 
-    #region Input Mehtods
+    #region Input mehtods
     protected override void OnRollStarted(InputAction.CallbackContext context) {
         //
     }

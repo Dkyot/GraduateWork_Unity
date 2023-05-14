@@ -28,7 +28,15 @@ public class Interactable : MonoBehaviour
         if (!isMobile)
             PCInteraction();
     }
+    
+    private void Interact() {
+        if(isUsed) return;
+        if (isDisposable) isUsed = true;
+        interactAction?.Invoke();
+        if (onFinishDestroy) Destroy(transform.parent.gameObject);
+    }
 
+    #region Platforms interaction methods
     private void MobileInteraction(InputAction.CallbackContext ctx) { 
         if (!isInRange) return;
         Vector2 touchC = input.playerActions.MobileInteract.ReadValue<Vector2>();
@@ -45,14 +53,9 @@ public class Interactable : MonoBehaviour
     private void PCInteraction() {
         if (input.playerActions.Interact.IsPressed()) Interact();
     }
+    #endregion
 
-    private void Interact() {
-        if(isUsed) return;
-        if (isDisposable) isUsed = true;
-        interactAction?.Invoke();
-        if (onFinishDestroy) Destroy(transform.parent.gameObject);
-    }
-
+    #region OnTrigger methods
     private void OnTriggerEnter2D (Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             isInRange = true;
@@ -72,5 +75,5 @@ public class Interactable : MonoBehaviour
             input = null;
         }
     }
-
+    #endregion
 }

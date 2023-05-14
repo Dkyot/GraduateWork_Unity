@@ -9,8 +9,7 @@ public class WeaponHolderRotation : MonoBehaviour
 
     public UnityEvent<Vector2> OnPointerInput;
 
-    void Update()
-    {
+    private void Update() {
         if (pointerInput == Vector2.zero) return;
         transform.right = Vector3.Lerp(transform.right, pointerInput, 0.1f);
         
@@ -24,7 +23,6 @@ public class WeaponHolderRotation : MonoBehaviour
        
         if (transform.rotation == Quaternion.Euler(0, 180, 0))
             scale.y = 1;
-
 
         transform.localScale = scale;
     }

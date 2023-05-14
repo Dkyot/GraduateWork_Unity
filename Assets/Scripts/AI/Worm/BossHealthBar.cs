@@ -31,16 +31,6 @@ public class BossHealthBar : MonoBehaviour
         maxHealth = bHealth.GetCurrentHP();
     }
 
-    private void HeartsHealthSystem_OnDamaged(object sender, EventArgs e) {
-        fill = (float)bHealth.GetCurrentHP() / maxHealth;
-        healthBar.fillAmount = fill;
-    }
-
-    private void HeartsHealthSystem_OnDead(object sender, EventArgs e) {
-        OnFinish?.Invoke();
-        Destroy(gameObject, 0.5f);
-    }
-
     private void Update() {
         if (!isAppeared) {
             timer += Time.deltaTime;
@@ -50,7 +40,17 @@ public class BossHealthBar : MonoBehaviour
             }
             return;
         }
-
-
     }
+
+    #region Events methods
+    private void HeartsHealthSystem_OnDamaged(object sender, EventArgs e) {
+        fill = (float)bHealth.GetCurrentHP() / maxHealth;
+        healthBar.fillAmount = fill;
+    }
+
+    private void HeartsHealthSystem_OnDead(object sender, EventArgs e) {
+        OnFinish?.Invoke();
+        Destroy(gameObject, 0.5f);
+    }
+    #endregion
 }

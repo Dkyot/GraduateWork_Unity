@@ -62,6 +62,7 @@ public class HeartsHealthVisual : MonoBehaviour
         }
     }
 
+    #region Events methods
     private void HeartsHealthSystem_OnOnChangeHeartAmount(object sender, EventArgs e) {
         ClearUI();
         heartImageList = new List<HeartImage>();
@@ -84,7 +85,9 @@ public class HeartsHealthVisual : MonoBehaviour
     private void HeartsHealthSystem_OnDamaged(object sender, System.EventArgs e) {
         RefreshAllHearts();
     }
+    #endregion
 
+    #region UI methods
     private void RefreshAllHearts() {
         List<Heart> heartList = heartsHealthSystem.GetHeartList();
         for (int i = 0; i < heartImageList.Count; i++) {
@@ -117,4 +120,5 @@ public class HeartsHealthVisual : MonoBehaviour
 
         return heartImage;
     }
+    #endregion
 }

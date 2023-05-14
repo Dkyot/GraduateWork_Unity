@@ -18,6 +18,11 @@ public class CharacterStats : MonoBehaviour
             heartsHealth = new HeartsHealthSystem(healthPoints);
     }
 
+    public HeartsHealthSystem GetHealthSystem() {
+        return heartsHealth;
+    }
+
+    #region Status effects
     IEnumerator Regeneration(int hp, float timeInterval) {
         for (int i = 0; i < hp; i++) {
             heartsHealth.Heal(1);
@@ -31,8 +36,5 @@ public class CharacterStats : MonoBehaviour
             yield return new WaitForSeconds(timeInterval);
         }
     }
-
-    public HeartsHealthSystem GetHealthSystem() {
-        return heartsHealth;
-    }
+    #endregion
 }

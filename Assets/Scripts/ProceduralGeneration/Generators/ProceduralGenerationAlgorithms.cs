@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 public static class ProceduralGenerationAlgorithms
 {
+    #region Methods of generation
     public static List<BoundsInt> BinarySpacePartitioning(BoundsInt space, int minWidth, int minHeight) {
         Queue<BoundsInt> roomQueue = new Queue<BoundsInt>();
         List<BoundsInt> roomsList = new List<BoundsInt>();
@@ -27,7 +28,9 @@ public static class ProceduralGenerationAlgorithms
         }
         return roomsList;
     }
+    #endregion
 
+    #region Split mehtods
     private static void SplitVertically(int minWidth, Queue<BoundsInt> roomQueue, BoundsInt room) {
         var xSplit = Random.Range(1, room.size.x);
         BoundsInt room1 = new BoundsInt(room.min, new Vector3Int(xSplit, room.size.y, room.size.z));
@@ -47,4 +50,5 @@ public static class ProceduralGenerationAlgorithms
         roomQueue.Enqueue(room1);
         roomQueue.Enqueue(room2);
     }
+    #endregion
 }

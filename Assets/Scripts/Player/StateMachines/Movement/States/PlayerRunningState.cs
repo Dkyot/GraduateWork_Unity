@@ -4,7 +4,7 @@ public class PlayerRunningState : PlayerMovingState
     {
     }
 
-    #region IState Methods
+    #region IState methods
     public override void Enter() {
         base.Enter();
 

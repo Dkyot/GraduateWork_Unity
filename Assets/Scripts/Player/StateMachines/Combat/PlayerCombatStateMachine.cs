@@ -10,7 +10,6 @@ public class PlayerCombatStateMachine : StateMachine
     public PlayerCombatStateMachine(Player player) {
         this.player = player;
         reusableData = new PlayerStateReusableData();
-
         AbilityState = new PlayerAbilityState(this);
         AttackingState = new PlayerAttackingState(this);
         InactiveState = new PlayerInactiveState(this);

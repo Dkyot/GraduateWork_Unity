@@ -9,7 +9,7 @@ public class OnDeathSceneSwitcher : MonoBehaviour
     [SerializeField]
     private UnityEvent OnDeath;
 
-    void Start() {
+    private void Start() {
         Time.timeScale = 1;
         characterStats = GetComponent<CharacterStats>();
         heartsHealthSystem = characterStats.GetHealthSystem();

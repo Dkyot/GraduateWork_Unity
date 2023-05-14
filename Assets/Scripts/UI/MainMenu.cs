@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    #region Button methods
     public void PlayGame() {
         SceneManager.LoadScene("StartLevelScene");
     }
@@ -11,4 +12,5 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit();
     }
+    #endregion
 }

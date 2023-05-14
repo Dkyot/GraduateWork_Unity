@@ -9,7 +9,7 @@ public class PlayerAttackingState : PlayerActiveState
 
     private float timer;
 
-    #region IState Methods
+    #region IState methods
     public override void Enter() {
         base.Enter();
         
@@ -17,9 +17,7 @@ public class PlayerAttackingState : PlayerActiveState
 
         stateMachine.player.combatManager?.AttackHandler();
     }
-    #endregion
 
-    #region IState Methods
     public override void Update() {
         base.Update();
 

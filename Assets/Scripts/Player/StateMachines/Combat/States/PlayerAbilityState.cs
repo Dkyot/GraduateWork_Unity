@@ -9,7 +9,7 @@ public class PlayerAbilityState : PlayerActiveState
 
     private float timer;
 
-    #region IState Methods
+    #region IState methods
     public override void Enter() {
         base.Enter();
         
@@ -41,7 +41,7 @@ public class PlayerAbilityState : PlayerActiveState
     }
     #endregion
 
-    #region Input Mehtods
+    #region Input mehtods
     protected override void OnAbilityToggleStarted(InputAction.CallbackContext context) {
         //
     }

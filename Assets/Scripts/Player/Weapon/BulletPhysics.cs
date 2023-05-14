@@ -14,6 +14,13 @@ public class BulletPhysics : MonoBehaviour
     [SerializeField] private float ttl = 2f;
     private float timer = 0;
 
+    private void Update() {
+        timer += Time.deltaTime;
+        if (timer >= ttl) {
+            poolManager.Despawn(this.gameObject);
+        }
+    }
+    
     public void Setup(PoolManager poolManager, Vector3 shootDir, LayerMask layer) {
         if (rigidbody2D == null) {
             rigidbody2D = GetComponent<Rigidbody2D>();
@@ -29,13 +36,6 @@ public class BulletPhysics : MonoBehaviour
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
 
         timer = 0;
-    }
-
-    private void Update() {
-        timer += Time.deltaTime;
-        if (timer >= ttl) {
-            poolManager.Despawn(this.gameObject);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {

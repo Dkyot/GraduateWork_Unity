@@ -60,6 +60,7 @@ public class PropPlacementManager : MonoBehaviour
         OnEndOfPropPlacement?.Invoke();
     }
 
+    #region Methods of placing props
     private void PlaceProps(RoomData room, List<PropSO> wallProps, HashSet<Vector2Int> availableTiles, PlacementOriginCorner placement) {
         HashSet<Vector2Int> tempPositons = new HashSet<Vector2Int>(availableTiles);
         tempPositons.ExceptWith(dungeonData.corridors);
@@ -147,6 +148,7 @@ public class PropPlacementManager : MonoBehaviour
         room.PropObjectReferences.Add(prop);
         return prop;
     }
+    #endregion
 }
 
 public enum PlacementOriginCorner {

@@ -12,7 +12,7 @@ public class PlayerMovementState : IState
         movementData = stateMachine.player.data.groundedData;
     }
     
-    #region  IState Methods
+    #region  IState methods
     public virtual void Enter() {
         AddInputActionsCallbacks();
     }
@@ -34,7 +34,7 @@ public class PlayerMovementState : IState
     }
     #endregion
 
-    #region Main Methods
+    #region Main methods
     private void ReadMovementInput() {
         stateMachine.reusableData.movementInput = stateMachine.player.input.playerActions.Movement.ReadValue<Vector2>();
     }
@@ -48,7 +48,7 @@ public class PlayerMovementState : IState
 
     #endregion
     
-    #region Reusable Mehtods
+    #region Reusable mehtods
     protected Vector3 GetMovementInputDirection() {
         return new Vector3(stateMachine.reusableData.movementInput.x, stateMachine.reusableData.movementInput.y, 0f);
     }
@@ -64,7 +64,9 @@ public class PlayerMovementState : IState
     protected void ResetVelocity() {
         stateMachine.player.rigidbody2D.velocity = Vector3.zero;
     }
+    #endregion
 
+    #region Input actions methods
     protected virtual void AddInputActionsCallbacks() {
         //
     }

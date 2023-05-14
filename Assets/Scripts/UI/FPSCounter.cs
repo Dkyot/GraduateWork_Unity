@@ -4,7 +4,10 @@ using TMPro;
 public class FPSCounter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI counter;
-    private float timer, smoothD, refresh, avgFramarate;
+    private float timer;
+    private float smoothD;
+    private float refresh;
+    private float avgFramarate;
 
     private void Start() {
         counter = GetComponentInChildren<TextMeshProUGUI>();

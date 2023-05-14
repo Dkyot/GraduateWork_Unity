@@ -6,7 +6,7 @@ public class PlayerGroundedState : PlayerMovementState
     {
     }
 
-    #region Reusable Mehtods
+    #region Input actions methods
     protected override void AddInputActionsCallbacks() {
         base.AddInputActionsCallbacks();
 
@@ -22,7 +22,9 @@ public class PlayerGroundedState : PlayerMovementState
 
         stateMachine.player.input.playerActions.Roll.started -= OnRollStarted;
     }
+    #endregion
 
+    #region Reusable Mehtods
     protected virtual void OnMove() {
         stateMachine.ChangeState(stateMachine.RunningState);
     }

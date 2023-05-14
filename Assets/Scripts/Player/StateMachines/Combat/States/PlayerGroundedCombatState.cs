@@ -4,7 +4,7 @@ public class PlayerGroundedCombatState : PlayerCombatState
     {
     }
 
-    #region Reusable Mehtods
+    #region Reusable mehtods
     protected virtual void OnAct() {
         if (stateMachine.reusableData.shouldUseAbility == false && stateMachine.reusableData.shouldAttack == true)
             stateMachine.ChangeState(stateMachine.AttackingState);

@@ -46,6 +46,7 @@ public class DungeonRoomsDataExtractor : MonoBehaviour
         dungeonData.AddRoomTypes();
     }
 
+    #region Debug gizmo
     private void OnDrawGizmosSelected() {
         if (dungeonData == null || showGizmo == false)
             return;
@@ -102,4 +103,5 @@ public class DungeonRoomsDataExtractor : MonoBehaviour
             }
         }
     }
+    #endregion
 }

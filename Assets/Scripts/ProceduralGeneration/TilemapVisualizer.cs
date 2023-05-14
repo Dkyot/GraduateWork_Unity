@@ -7,10 +7,19 @@ public class TilemapVisualizer : MonoBehaviour
 {
     [SerializeField] private Tilemap floorTilemap;
     [SerializeField] private Tilemap wallTilemap;
-    [SerializeField] private TileBase fTile, wTop, wSideRight, wSideLeft, wBottom, wFull,
-                                      wInnerCornerDownLeft, wInnerCornerDownRight,
-                                      wDiagonalCornerDownRight, wDiagonalCornerDownLeft, wDiagonalCornerUpRight, wDiagonalCornerUpLeft;
+    [SerializeField] private TileBase fTile;
+    [SerializeField] private TileBase wTop;
+    [SerializeField] private TileBase wSideRight;
+    [SerializeField] private TileBase wSideLeft;
+    [SerializeField] private TileBase wBottom;
+    [SerializeField] private TileBase wFull;
+    [SerializeField] private TileBase wInnerCornerDownLeft, wInnerCornerDownRight;
+    [SerializeField] private TileBase wDiagonalCornerDownRight;
+    [SerializeField] private TileBase wDiagonalCornerDownLeft;
+    [SerializeField] private TileBase wDiagonalCornerUpRight;
+    [SerializeField] private TileBase wDiagonalCornerUpLeft;
 
+    #region Paint methods
     public void Clear() {
         floorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
@@ -39,20 +48,6 @@ public class TilemapVisualizer : MonoBehaviour
         if (tile != null) PaintSingleTile(wallTilemap, tile, position);
     }
 
-    public void AddWallColider() {
-        var walls = wallTilemap.gameObject;
-
-        if (walls.GetComponent<TilemapCollider2D>() == null) 
-            walls.AddComponent(typeof(TilemapCollider2D));
-        if (walls.GetComponent<CompositeCollider2D>() == null)
-            walls.AddComponent(typeof(CompositeCollider2D));
-        
-        walls.GetComponent<CompositeCollider2D>().geometryType =  CompositeCollider2D.GeometryType.Polygons;
-        walls.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        walls.GetComponent<TilemapCollider2D>().usedByComposite = true;
-
-    }
-
     public void PaintSingleCornerWall(Vector2Int position, string binaryType) {
         int type = Convert.ToInt32(binaryType, 2);
         TileBase tile = null;
@@ -67,5 +62,19 @@ public class TilemapVisualizer : MonoBehaviour
         else if (WallByteTypes.wallBottmEightDirections.Contains(type))    tile = wBottom;
 
         if (tile != null) PaintSingleTile(wallTilemap, tile, position);
+    }
+    #endregion
+
+    public void AddWallColider() {
+        var walls = wallTilemap.gameObject;
+
+        if (walls.GetComponent<TilemapCollider2D>() == null) 
+            walls.AddComponent(typeof(TilemapCollider2D));
+        if (walls.GetComponent<CompositeCollider2D>() == null)
+            walls.AddComponent(typeof(CompositeCollider2D));
+        
+        walls.GetComponent<CompositeCollider2D>().geometryType =  CompositeCollider2D.GeometryType.Polygons;
+        walls.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        walls.GetComponent<TilemapCollider2D>().usedByComposite = true;
     }
 }

@@ -11,7 +11,7 @@ public class PlayerRollingState : PlayerGroundedState
         rollData = movementData.rollData;
     }
 
-    #region IState Methods
+    #region IState methods
     public override void Enter() {
         base.Enter();
         isRolling = true;
@@ -28,7 +28,7 @@ public class PlayerRollingState : PlayerGroundedState
 
     #endregion
 
-    #region Input Mehtods
+    #region Input mehtods
     protected override void OnMove() {
         if (!isRolling) {
             if (stateMachine.reusableData.movementInput != Vector2.zero)
@@ -40,7 +40,7 @@ public class PlayerRollingState : PlayerGroundedState
     }
     #endregion
 
-    #region Main Methods
+    #region Main methods
     protected override void Move()
     {
         if (isRolling) {
