@@ -12,8 +12,7 @@ public class PlayerRollingState : PlayerGroundedState
     }
 
     #region IState Methods
-    public override void Enter()
-    {
+    public override void Enter() {
         base.Enter();
         isRolling = true;
         rollSpeed = rollData.rollSpeed;
@@ -21,8 +20,7 @@ public class PlayerRollingState : PlayerGroundedState
         stateMachine.player.combatManager?.Dash();
     }
 
-    public override void Update()
-    {
+    public override void Update() {
         base.Update();
 
         OnMove();

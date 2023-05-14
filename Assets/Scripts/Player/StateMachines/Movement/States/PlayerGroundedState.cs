@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 using UnityEngine.InputSystem;
 
 public class PlayerGroundedState : PlayerMovementState
@@ -27,8 +23,7 @@ public class PlayerGroundedState : PlayerMovementState
         stateMachine.player.input.playerActions.Roll.started -= OnRollStarted;
     }
 
-    protected virtual void OnMove()
-    {
+    protected virtual void OnMove() {
         if (stateMachine.reusableData.shouldWalk) {
             stateMachine.ChangeState(stateMachine.WallkingState);
             return;

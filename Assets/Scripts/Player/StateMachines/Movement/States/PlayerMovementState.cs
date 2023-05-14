@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,8 +15,6 @@ public class PlayerMovementState : IState
     
     #region  IState Methods
     public virtual void Enter() {
-        //Debug.Log("State: " + GetType().Name);
-
         AddInputActionsCallbacks();
     }
 
@@ -32,7 +27,7 @@ public class PlayerMovementState : IState
     }
 
     public virtual void Update() {
-        
+        //
     }
     
     public virtual void PhysicsUpdate() {
@@ -83,9 +78,7 @@ public class PlayerMovementState : IState
     #endregion
 
     #region Input Mehtods
-    protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)
-    {
-        //stateMachine.reusableData.shouldWalk = !stateMachine.reusableData.shouldWalk;
+    protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context) {
         if (context.started) stateMachine.reusableData.shouldWalk = true;
         else stateMachine.reusableData.shouldWalk = false;
     }

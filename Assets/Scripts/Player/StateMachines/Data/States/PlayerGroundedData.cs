@@ -8,12 +8,4 @@ public class PlayerGroundedData
     [field: SerializeField] public PlayerWalkData walkData { get; private set;}
     [field: SerializeField] public PlayerRunData runData { get; private set;}
     [field: SerializeField] public PlayerRollData rollData { get; private set;}
-
-    // [SerializeField]
-    // private PlayerRunData runData;
-
-    // public PlayerRunData RunData { 
-    //     get {return runData;}
-    //     private set {runData = value;}
-    // }
 }

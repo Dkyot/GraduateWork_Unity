@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,16 +8,14 @@ public class PlayerIdilingState : PlayerGroundedState
     }
 
     #region  IState Methods
-    public override void Enter()
-    {
+    public override void Enter() {
         base.Enter();
 
         stateMachine.reusableData.speedModifier = 0f;
         ResetVelocity();
     }
 
-    public override void Update()
-    {
+    public override void Update() {
         base.Update();
 
         if (stateMachine.reusableData.movementInput == Vector2.zero) {
@@ -32,8 +27,7 @@ public class PlayerIdilingState : PlayerGroundedState
     #endregion
 
     #region Input Mehtods
-    protected override void OnRollStarted(InputAction.CallbackContext context)
-    {
+    protected override void OnRollStarted(InputAction.CallbackContext context) {
         //
     }
     #endregion

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,8 +10,7 @@ public class PlayerBlockingState : PlayerActiveState
     private float timer;
 
     #region IState Methods
-    public override void Enter()
-    {
+    public override void Enter() {
         base.Enter();
         
         timer = 0;
@@ -23,8 +20,7 @@ public class PlayerBlockingState : PlayerActiveState
     #endregion
 
     #region IState Methods
-    public override void Update()
-    {
+    public override void Update() {
         base.Update();
 
         timer += Time.deltaTime;
@@ -39,10 +35,8 @@ public class PlayerBlockingState : PlayerActiveState
     #endregion
 
     #region Input Mehtods
-    protected override void OnAttackToggleStarted(InputAction.CallbackContext context)
-    {
-        //base.OnAttackToggleStarted(context);
-        Debug.Log("нельзя атаковать");
+    protected override void OnAttackToggleStarted(InputAction.CallbackContext context) {
+        //
     }
     #endregion
 }

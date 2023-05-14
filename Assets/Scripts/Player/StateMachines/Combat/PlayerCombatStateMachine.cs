@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerCombatStateMachine : StateMachine
 {
     public Player player { get; private set;}

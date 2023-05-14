@@ -15,8 +15,7 @@ public class Player : MonoBehaviour
 
     public CombatManager combatManager;
 
-    private void Awake()
-    {
+    private void Awake() {
         input = GetComponent<PlayerInput>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         combatManager = GetComponent<CombatManager>();
@@ -25,14 +24,12 @@ public class Player : MonoBehaviour
         combatStateMachine = new PlayerCombatStateMachine(this);
     }
     
-    private void Start()
-    {
+    private void Start() {
         movementStateMachine.ChangeState(movementStateMachine.IdilingState);
         combatStateMachine.ChangeState(combatStateMachine.InactiveState);
     }
 
-    private void Update()
-    {
+    private void Update() {
         movementStateMachine.HandleInput();
         movementStateMachine.Update();
 
@@ -40,8 +37,7 @@ public class Player : MonoBehaviour
         combatStateMachine.Update();
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         movementStateMachine.PhysicsUpdate();
 
         combatStateMachine.PhysicsUpdate();

@@ -2304,6 +2304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animController: {fileID: 665911271}
+  shoot: 0
   shootProjectiles: {fileID: 927409517}
   AbilityAction:
     m_PersistentCalls:
@@ -3359,6 +3360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleOrigin: {fileID: 87225936}
   radius: 1.35
+  damage: 2
 --- !u!114 &927409517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4501,7 +4503,6 @@ MonoBehaviour:
   _heart3Sprite: {fileID: 21300000, guid: b6d2d6186794177449bf23dfa6cf8f4f, type: 3}
   _heart4Sprite: {fileID: 21300000, guid: ca12109f1bf1e4f41bc0ddc095ad0bb2, type: 3}
   characterStats: {fileID: 665911270}
-  heartFullAnimationClip: {fileID: 7400000, guid: 1d943d8e205c73a46825bc10c5644387, type: 2}
 --- !u!1 &1459759234
 GameObject:
   m_ObjectHideFlags: 0
@@ -6201,7 +6202,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1983344173}
-  - component: {fileID: 1983344174}
   m_Layer: 5
   m_Name: Mobile Inputs
   m_TagString: Untagged
@@ -6233,18 +6233,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -1044, y: -544}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1983344174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983344172}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1601f78bfbfa1874cb0d50b8f04ecd65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2046765163
 GameObject:
   m_ObjectHideFlags: 0
