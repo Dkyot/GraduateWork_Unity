@@ -33,6 +33,8 @@ public class NavMeshEnemyAI : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+
         target = FindObjectOfType<Player>().transform;
 
         agent.speed = speed + Random.Range(0.5f, 1.5f);
