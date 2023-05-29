@@ -5,8 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class TilemapVisualizer : MonoBehaviour
 {
-    [SerializeField] private Tilemap floorTilemap;
-    [SerializeField] private Tilemap wallTilemap;
+    [SerializeField] private Tilemap  floorTilemap;
+    [SerializeField] private Tilemap  wallTilemap;
     [SerializeField] private TileBase fTile;
     [SerializeField] private TileBase wTop;
     [SerializeField] private TileBase wSideRight;
@@ -24,26 +24,26 @@ public class TilemapVisualizer : MonoBehaviour
         floorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
     }
-    
-    public void PaintFloorTiles(IEnumerable<Vector2Int> floorPos) {
-        foreach (Vector2Int position in floorPos)
-            PaintSingleTile(floorTilemap, fTile, position);
-    }
 
     private void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position) {
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
         tilemap.SetTile(tilePosition, tile);
     }
 
+    public void PaintFloorTiles(IEnumerable<Vector2Int> floorPos) {
+        foreach (Vector2Int position in floorPos)
+            PaintSingleTile(floorTilemap, fTile, position);
+    }
+
     public void PaintSingleBasicWall(Vector2Int position, string binaryType) {
-        int typeAsInt = Convert.ToInt32(binaryType, 2);
+        int type = Convert.ToInt32(binaryType, 2);
         TileBase tile = null;
 
-        if (WallByteTypes.wallTop.Contains(typeAsInt))            tile = wTop;
-        else if (WallByteTypes.wallSideRight.Contains(typeAsInt)) tile = wSideRight;
-        else if (WallByteTypes.wallSideLeft.Contains(typeAsInt))  tile = wSideLeft;
-        else if (WallByteTypes.wallBottm.Contains(typeAsInt))     tile = wBottom;
-        else if (WallByteTypes.wallFull.Contains(typeAsInt))      tile = wFull;
+        if (WallByteTypes.wallTop.Contains(type))            tile = wTop;
+        else if (WallByteTypes.wallSideRight.Contains(type)) tile = wSideRight;
+        else if (WallByteTypes.wallSideLeft.Contains(type))  tile = wSideLeft;
+        else if (WallByteTypes.wallBottm.Contains(type))     tile = wBottom;
+        else if (WallByteTypes.wallFull.Contains(type))      tile = wFull;
 
         if (tile != null) PaintSingleTile(wallTilemap, tile, position);
     }

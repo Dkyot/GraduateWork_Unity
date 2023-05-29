@@ -1,7 +1,7 @@
 public class PlayerMovementStateMachine : StateMachine
 {
     public Player player { get; private set;}
-    public PlayerStateReusableData reusableData { get; private set;}
+    public PlayerStatesData statesData { get; private set;}
     
     public PlayerIdilingState IdilingState   { get; private set;}
     public PlayerRunningState RunningState   { get; private set;}
@@ -9,7 +9,7 @@ public class PlayerMovementStateMachine : StateMachine
 
     public PlayerMovementStateMachine(Player player) {
         this.player = player;
-        reusableData = new PlayerStateReusableData();
+        statesData = new PlayerStatesData();
 
         IdilingState = new PlayerIdilingState(this);
         RunningState = new PlayerRunningState(this);

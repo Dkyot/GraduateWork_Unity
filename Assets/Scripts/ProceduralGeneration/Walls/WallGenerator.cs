@@ -7,7 +7,7 @@ public static class WallGenerator
         HashSet<Vector2Int> commonWPos = FindWallsDirections(floorPos, Direction2D.cardinalDirectionsList);
         HashSet<Vector2Int> cornerWPos = FindWallsDirections(floorPos, Direction2D.diagonalDirectionsList);
 
-        CreateBasicWall(visualizer, commonWPos, floorPos);
+        CreateCommonWalls(visualizer, commonWPos, floorPos);
         CreateCornerWalls(visualizer, cornerWPos, floorPos);
     }
 
@@ -26,7 +26,7 @@ public static class WallGenerator
         }
     }
 
-    private static void CreateBasicWall(TilemapVisualizer visualizer, HashSet<Vector2Int> commonWPos, HashSet<Vector2Int> floorPos) {
+    private static void CreateCommonWalls(TilemapVisualizer visualizer, HashSet<Vector2Int> commonWPos, HashSet<Vector2Int> floorPos) {
         foreach (Vector2Int position in commonWPos) {
             string  neighboursBinaryType = "";
             foreach (Vector2Int direction in Direction2D.cardinalDirectionsList) {

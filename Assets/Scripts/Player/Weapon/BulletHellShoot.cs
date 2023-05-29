@@ -92,9 +92,10 @@ public class BulletHellShoot : MonoBehaviour
     private void Shoot(Vector2 vector) {
         GameObject bullet;
         if (poolManager == null)
-            return;
+           return;
         else 
-            bullet = poolManager.Spawn(bulletPhysics, transform.position, Quaternion.identity);
+           bullet = poolManager.Spawn(bulletPhysics, transform.position, Quaternion.identity);
+                    //bullet = Instantiate(bulletPhysics, transform.position, Quaternion.identity);
         bullet.GetComponent<BulletPhysics>().Setup(poolManager, vector.normalized, gameObject.layer);
     }
     #endregion

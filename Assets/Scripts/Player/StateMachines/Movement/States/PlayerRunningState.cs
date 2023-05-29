@@ -8,7 +8,7 @@ public class PlayerRunningState : PlayerMovingState
     public override void Enter() {
         base.Enter();
 
-        stateMachine.reusableData.speedModifier = movementData.runData.speedModifier;
+        stateMachine.statesData.speedModifier = movementData.runData.speedModifier;
     }
     #endregion
 }

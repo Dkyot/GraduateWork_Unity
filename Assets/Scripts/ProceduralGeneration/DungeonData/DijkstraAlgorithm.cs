@@ -16,12 +16,24 @@ public class DijkstraAlgorithm
     }
  
     private void Print(int[] distance, int verticesCount) {
-        Debug.Log("Вершина    Расстояние от источника");
         for (int i = 0; i < verticesCount; ++i)
             Debug.Log(i+"--"+distance[i]);
     }
 
-    public void RunAlgorithm(int[,] graph, int source, int verticesCount) {
+    private int TheFurthestRoom(int[] distance, int verticesCount) {
+        int dist = 0;
+        int index = 0;
+
+        for (int i = 0; i < verticesCount; ++i) {
+            if (distance[i] > dist) {
+                dist = distance[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public int RunAlgorithm(int[,] graph, int source, int verticesCount) {
         int[] distance = new int[verticesCount];
         bool[] shortestPathTreeSet = new bool[verticesCount];
         for (int i = 0; i < verticesCount; ++i) {
@@ -36,6 +48,7 @@ public class DijkstraAlgorithm
                 if (!shortestPathTreeSet[v] && Convert.ToBoolean(graph[u, v]) && distance[u] != int.MaxValue && distance[u] + graph[u, v] < distance[v])
                     distance[v] = distance[u] + graph[u, v];
         }
-        Print(distance, verticesCount);
+        //Print(distance, verticesCount);
+        return TheFurthestRoom(distance, verticesCount);
     }
 }

@@ -28,14 +28,14 @@ public class DungeonLevelGenerator : AbstractDungeonGenerator
         dungeonData = GetComponent<DungeonData>();
         dungeonData.ResetData();
 
-        CreateRooms();
+        CreateLevel();
 
         OnEndOfGeneration?.Invoke();
         OnEndOfDataExtraction?.Invoke();
     }
 
     #region Methods of building a dungeon
-    private void CreateRooms() {
+    private void CreateLevel() {
         List<BoundsInt> roomsList;
 
         if ((dungeonWidth * dungeonHeight)/6 < minRoomWidth * minRoomHeight) {
@@ -47,12 +47,12 @@ public class DungeonLevelGenerator : AbstractDungeonGenerator
         }
 
         do {
-            roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
+            roomsList = ProceduralGenerationAlgorithms.AlgorithmBSP(
             new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
         } while (roomsList.Count < 7 || roomsList.Count > 12);
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
-        floor = CreareSimpleRoom(roomsList);
+        floor = CreareRoom(roomsList);
         
         List<Vector2Int> roomCenters = new List<Vector2Int>();
 
@@ -64,11 +64,13 @@ public class DungeonLevelGenerator : AbstractDungeonGenerator
         dungeonData.corridors = corridors;
         floor.UnionWith(corridors);
 
+        dungeonData.Debuger();
+
         tilemapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
     }
 
-    private HashSet<Vector2Int> CreareSimpleRoom(List<BoundsInt> roomsList) {
+    private HashSet<Vector2Int> CreareRoom(List<BoundsInt> roomsList) {
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
 
         foreach (BoundsInt room in roomsList) {
@@ -98,10 +100,12 @@ public class DungeonLevelGenerator : AbstractDungeonGenerator
             Vector2Int closest = FindClosestPointTo(currentRoomCenter, roomCenters);
             roomCenters.Remove(closest);
             HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest);
+
             if (intersectionFlag == false)
                 dungeonData.AddEdge(currentRoomCenter, closest, (int)Vector2.Distance(currentRoomCenter, closest));
             else
                 intersectionFlag = false;
+
             currentRoomCenter = closest;
             corridors.UnionWith(newCorridor);
         }
@@ -117,7 +121,7 @@ public class DungeonLevelGenerator : AbstractDungeonGenerator
                     position += Vector2Int.up;
                 else if (destination.y < position.y)
                     position += Vector2Int.down;
-                CheckRoomEnter(position, corridor, currentRoomCenter, destination);
+                CheckRoomEnter(position, currentRoomCenter, destination);
                 corridor.Add(position);
             }
             while (position.x != destination.x) {
@@ -125,30 +129,27 @@ public class DungeonLevelGenerator : AbstractDungeonGenerator
                     position += Vector2Int.right;
                 else if (destination.x < position.x)
                     position += Vector2Int.left;
-                CheckRoomEnter(position, corridor, currentRoomCenter, destination);
+                CheckRoomEnter(position, currentRoomCenter, destination);
                 corridor.Add(position);
             }
         return corridor;
     }
 
-    private void CheckRoomEnter(Vector2Int position, HashSet<Vector2Int> corridor, Vector2Int currentRoomCenter, Vector2Int destination) {
+    private void CheckRoomEnter(Vector2Int position, Vector2Int currentRoomCenter, Vector2Int destination) {
         foreach (RoomData room in dungeonData.rooms) {
             if (!room.Equals(dungeonData.FindRoom(currentRoomCenter)) && !room.Equals(dungeonData.FindRoom(destination))) {
-                if (position.x >= room.bl.x && position.x <= room.tr.x) {
-                    if (position.y >= room.bl.y && position.y <= room.tr.y) {                       
-                        if (!dungeonData.EdgeExists(dungeonData.FindRoom(currentRoomCenter), room)) {
-                            dungeonData.AddEdge(currentRoomCenter, room.center, (int)Vector2.Distance(currentRoomCenter, room.center));
-                            intersectionFlag = true;                            
-                        }
-                        if (!dungeonData.EdgeExists(dungeonData.FindRoom(destination), room)) {
-                            dungeonData.AddEdge(destination, room.center, (int)Vector2.Distance(destination, room.center));
-                            intersectionFlag = true;                           
-                        }
-                        if (dungeonData.EdgeExists(dungeonData.FindRoom(currentRoomCenter), room) && dungeonData.EdgeExists(dungeonData.FindRoom(destination), room)) {
-                            intersectionFlag = true;
-                        }
-                        
+                if ((position.x >= room.bl.x && position.x <= room.tr.x) && (position.y >= room.bl.y && position.y <= room.tr.y)){                   
+                    if (!dungeonData.EdgeExists(dungeonData.FindRoom(currentRoomCenter), room)) {
+                        dungeonData.AddEdge(currentRoomCenter, room.center, (int)Vector2.Distance(currentRoomCenter, room.center));
+                        intersectionFlag = true;                            
                     }
+                    if (!dungeonData.EdgeExists(dungeonData.FindRoom(destination), room)) {
+                         dungeonData.AddEdge(destination, room.center, (int)Vector2.Distance(destination, room.center));
+                        intersectionFlag = true;                           
+                    }
+                    if (dungeonData.EdgeExists(dungeonData.FindRoom(currentRoomCenter), room) && dungeonData.EdgeExists(dungeonData.FindRoom(destination), room)) {
+                        intersectionFlag = true;
+                    }                       
                 }
             }
         }

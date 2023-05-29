@@ -67,8 +67,8 @@ public class PlayerCombatState : IState
     }
 
     protected virtual void OnAttackToggleStarted(InputAction.CallbackContext context) {
-        if (context.started) stateMachine.reusableData.shouldAttack = true;
-        else stateMachine.reusableData.shouldAttack = false;
+        if (context.started) stateMachine.statesData.shouldAttack = true;
+        else stateMachine.statesData.shouldAttack = false;
     }
     #endregion
 }

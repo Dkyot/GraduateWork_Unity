@@ -43,85 +43,52 @@ public class PropPlacementManager : MonoBehaviour
             if (cornerProps.Count != 0) PlaceCornerProps(room, cornerProps);
 
             List<PropSO> leftWallProps = propsToPlace.roomProps.Where(x => x.NearWallLeft).ToList();
-            PlaceProps(room, leftWallProps, room.NearWallTilesLeft, PlacementOriginCorner.BottomLeft);
+            PlaceProps(room, leftWallProps, room.NearWallTilesLeft);
 
             List<PropSO> rightWallProps = propsToPlace.roomProps.Where(x => x.NearWallRight).ToList();
-            PlaceProps(room, rightWallProps, room.NearWallTilesRight, PlacementOriginCorner.TopRight);
+            PlaceProps(room, rightWallProps, room.NearWallTilesRight);
 
             List<PropSO> topWallProps = propsToPlace.roomProps.Where(x => x.NearWallUP).ToList();
-            PlaceProps(room, topWallProps, room.NearWallTilesUp, PlacementOriginCorner.TopLeft);
+            PlaceProps(room, topWallProps, room.NearWallTilesUp);
 
             List<PropSO> downWallProps = propsToPlace.roomProps.Where(x => x.NearWallDown).ToList();
-            PlaceProps(room, downWallProps, room.NearWallTilesDown, PlacementOriginCorner.BottomLeft);
+            PlaceProps(room, downWallProps, room.NearWallTilesDown);
 
             List<PropSO> innerProps = propsToPlace.roomProps.Where(x => x.Inner).ToList();
-            PlaceProps(room, innerProps, room.InnerTiles, PlacementOriginCorner.BottomLeft);
+            PlaceProps(room, innerProps, room.InnerTiles);
         }
         OnEndOfPropPlacement?.Invoke();
     }
 
     #region Methods of placing props
-    private void PlaceProps(RoomData room, List<PropSO> wallProps, HashSet<Vector2Int> availableTiles, PlacementOriginCorner placement) {
+    private void PlaceProps(RoomData room, List<PropSO> props, HashSet<Vector2Int> availableTiles) {
         HashSet<Vector2Int> tempPositons = new HashSet<Vector2Int>(availableTiles);
         tempPositons.ExceptWith(dungeonData.corridors);
 
-        foreach (PropSO propToPlace in wallProps) {
+        foreach (PropSO propToPlace in props) {
             int quantity  = UnityEngine.Random.Range(propToPlace.PlacementQuantityMin, propToPlace.PlacementQuantityMax +1);
 
             for (int i = 0; i < quantity; i++) {
                 tempPositons.ExceptWith(room.PropPositions);
                 List<Vector2Int> availablePositions = tempPositons.OrderBy(x => Guid.NewGuid()).ToList();
-                if (TryPlacingPropBruteForce(room, propToPlace, availablePositions, placement) == false)
+                if (TryPlacing(room, propToPlace, availablePositions) == false)
                     break;
             }
-
         }
     }
 
-    private bool TryPlacingPropBruteForce(RoomData room, PropSO propToPlace, List<Vector2Int> availablePositions, PlacementOriginCorner placement) {
+    private bool TryPlacing(RoomData room, PropSO propToPlace, List<Vector2Int> availablePositions) {
         for (int i = 0; i < availablePositions.Count; i++) {
             Vector2Int position = availablePositions[i];
 
             if (room.PropPositions.Contains(position))
                 continue;
 
-            List<Vector2Int> freePositionsAround  = TryToFitProp(propToPlace, availablePositions, position, placement);
-
-            if (freePositionsAround.Count == 1) {
-                PlacePropGameObjectAt(room, position, propToPlace);
-                foreach (Vector2Int pos in freePositionsAround) {
-                    room.PropPositions.Add(pos);
-                }
-                return true;
-            }
+            PlaceObject(room, position, propToPlace);
+            room.PropPositions.Add(position);
+            return true;
         }
         return false;
-    }
-
-    private List<Vector2Int> TryToFitProp(PropSO prop, List<Vector2Int> availablePositions, Vector2Int originPosition, PlacementOriginCorner placement) {
-        List<Vector2Int> freePositions = new List<Vector2Int>();
-
-        if (placement == PlacementOriginCorner.BottomLeft) {
-            Vector2Int tempPos = originPosition;
-            if (availablePositions.Contains(tempPos))
-                freePositions.Add(tempPos);
-        }
-        else if (placement == PlacementOriginCorner.BottomRight) {
-            Vector2Int tempPos = originPosition;
-            if (availablePositions.Contains(tempPos))
-                freePositions.Add(tempPos);
-        }
-        else if (placement == PlacementOriginCorner.TopLeft) {
-            Vector2Int tempPos = originPosition;
-            if (availablePositions.Contains(tempPos))
-                freePositions.Add(tempPos);
-        }
-        else {
-            Vector2Int tempPos = originPosition;
-            if (availablePositions.Contains(tempPos))
-                freePositions.Add(tempPos);
-        }
-        return freePositions;
     }
 
     private void PlaceCornerProps(RoomData room, List<PropSO> cornerProps) {
@@ -130,30 +97,20 @@ public class PropPlacementManager : MonoBehaviour
         foreach (Vector2Int cornerTile in room.CornerTiles) {
             if (UnityEngine.Random.value < tempChance) {
                 PropSO propToPlace = cornerProps[UnityEngine.Random.Range(0, cornerProps.Count)];
-                PlacePropGameObjectAt(room, cornerTile, propToPlace);
-            }
-            else {
-                tempChance = Mathf.Clamp01(tempChance + 0.1f);
+                PlaceObject(room, cornerTile, propToPlace);
             }
         }
     }
 
-    private GameObject PlacePropGameObjectAt(RoomData room, Vector2Int placementPostion, PropSO propToPlace) {
+    private void PlaceObject(RoomData room, Vector2Int placementPostion, PropSO propToPlace) {
         GameObject prop = Instantiate(propToPlace.propPrefab);
         prop.transform.localPosition = new Vector3((placementPostion.x + 0.5f) * 2.5f, (placementPostion.y + 0.5f) * 2.5f, -1f);
         prop.transform.SetParent(parentObject);
         prop.transform.localPosition = new Vector3(prop.transform.localPosition.x, prop.transform.localPosition.y, -1f);
+        prop.transform.rotation = Quaternion.Euler(Vector3.zero);
         
         room.PropPositions.Add(placementPostion);
         room.PropObjectReferences.Add(prop);
-        return prop;
     }
     #endregion
-}
-
-public enum PlacementOriginCorner {
-    BottomLeft,
-    BottomRight,
-    TopLeft,
-    TopRight
 }

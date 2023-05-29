@@ -11,14 +11,14 @@ public class PlayerIdilingState : PlayerGroundedState
     public override void Enter() {
         base.Enter();
 
-        stateMachine.reusableData.speedModifier = 0f;
+        stateMachine.statesData.speedModifier = 0f;
         ResetVelocity();
     }
 
     public override void Update() {
         base.Update();
 
-        if (stateMachine.reusableData.movementInput == Vector2.zero) {
+        if (stateMachine.statesData.movementInput == Vector2.zero) {
             return;
         }
 

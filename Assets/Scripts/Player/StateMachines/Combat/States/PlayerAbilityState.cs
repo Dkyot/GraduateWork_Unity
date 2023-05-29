@@ -15,7 +15,7 @@ public class PlayerAbilityState : PlayerActiveState
         
         timer = 0;
         
-        stateMachine.reusableData.shouldUseAbility = true;
+        stateMachine.statesData.shouldUseAbility = true;
 
         stateMachine.player.combatManager?.Ability();
 
@@ -27,7 +27,7 @@ public class PlayerAbilityState : PlayerActiveState
         timer += Time.deltaTime;
 
         if (timer > 1f) {
-            if (stateMachine.reusableData.shouldAttack == true)
+            if (stateMachine.statesData.shouldAttack == true)
                 stateMachine.ChangeState(stateMachine.AttackingState);
             else 
                 stateMachine.ChangeState(stateMachine.InactiveState);
@@ -37,7 +37,7 @@ public class PlayerAbilityState : PlayerActiveState
     public override void Exit() {
         base.Exit();
 
-        stateMachine.reusableData.shouldUseAbility = false;
+        stateMachine.statesData.shouldUseAbility = false;
     }
     #endregion
 

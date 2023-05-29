@@ -36,7 +36,7 @@ public class PlayerMovementState : IState
 
     #region Main methods
     private void ReadMovementInput() {
-        stateMachine.reusableData.movementInput = stateMachine.player.input.playerActions.Movement.ReadValue<Vector2>();
+        stateMachine.statesData.movementInput = stateMachine.player.input.playerActions.Movement.ReadValue<Vector2>();
     }
 
     protected virtual void Move() {
@@ -50,11 +50,11 @@ public class PlayerMovementState : IState
     
     #region Reusable mehtods
     protected Vector3 GetMovementInputDirection() {
-        return new Vector3(stateMachine.reusableData.movementInput.x, stateMachine.reusableData.movementInput.y, 0f);
+        return new Vector3(stateMachine.statesData.movementInput.x, stateMachine.statesData.movementInput.y, 0f);
     }
 
     protected float GetMovementSpeed() {
-        return movementData.baseSpeed * stateMachine.reusableData.speedModifier;
+        return movementData.baseSpeed * stateMachine.statesData.speedModifier;
     }
 
     protected Vector3 GetPlayerVelocity() {

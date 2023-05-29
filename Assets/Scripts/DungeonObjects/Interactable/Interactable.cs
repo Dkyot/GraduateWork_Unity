@@ -51,6 +51,7 @@ public class Interactable : MonoBehaviour
     }
 
     private void PCInteraction() {
+        if (!isInRange) return;
         if (input.playerActions.Interact.IsPressed()) Interact();
     }
     #endregion

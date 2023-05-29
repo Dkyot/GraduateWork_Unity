@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerRollingState : PlayerGroundedState
+public class PlayerRollingState : PlayerMovingState
 {
     private PlayerRollData rollData;
     private bool isRolling;
@@ -31,7 +31,7 @@ public class PlayerRollingState : PlayerGroundedState
     #region Input mehtods
     protected override void OnMove() {
         if (!isRolling) {
-            if (stateMachine.reusableData.movementInput != Vector2.zero)
+            if (stateMachine.statesData.movementInput != Vector2.zero)
                 base.OnMove();
             else
                 stateMachine.ChangeState(stateMachine.IdilingState);
@@ -48,7 +48,7 @@ public class PlayerRollingState : PlayerGroundedState
             if (rollSpeed < rollData.rollSpeedMinimum)
                 isRolling = false;
         }
-        stateMachine.reusableData.speedModifier = rollSpeed;
+        stateMachine.statesData.speedModifier = rollSpeed;
         base.Move();
     }
     #endregion

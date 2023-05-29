@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5b4619c30494e46a26be6d1f66b1fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   magneticField: {fileID: 7435015256436558726, guid: c6060d158bb0605459e745ba35a3ed01, type: 3}

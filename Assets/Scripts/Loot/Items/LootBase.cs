@@ -21,11 +21,11 @@ public abstract class LootBase : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        DropingMove();
-        if (stopped && isMagnetic) MagnetToTarget();
+        DroppingMove();
+        if (stopped && isMagnetic && hasTarget) MagnetToTarget();
     }
 
-    private void DropingMove() {
+    private void DroppingMove() {
         if (rigidbody2D.velocity == Vector2.zero || stopped) return;
         if (time > timeToStop) {
             rigidbody2D.velocity = Vector2.zero;
@@ -38,10 +38,8 @@ public abstract class LootBase : MonoBehaviour
     }
 
     private void MagnetToTarget() {
-        if (hasTarget) {
-            Vector2 targetDirection = (targetTransform.position - transform.position).normalized;
-            rigidbody2D.velocity = new Vector2(targetDirection.x, targetDirection.y) * magnetSpeed;
-        }
+        Vector2 targetDirection = (targetTransform.position - transform.position).normalized;
+        rigidbody2D.velocity = new Vector2(targetDirection.x, targetDirection.y) * magnetSpeed;
     }
 
     public void SetTarget(Transform transform) {

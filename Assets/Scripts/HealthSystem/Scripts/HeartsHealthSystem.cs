@@ -38,11 +38,6 @@ public class HeartsHealthSystem
         if (OnChangeHeartAmount != null) OnChangeHeartAmount(this, EventArgs.Empty);
     }
 
-    private void RefreshAllHearts() {
-        int currHP = GetCurrentHP();
-        IncreaseHP(heartList.Count * 4 - currHP);
-    }
-
     public List<Heart> GetHeartList() {
         return heartList;
     }
@@ -77,11 +72,16 @@ public class HeartsHealthSystem
         if (OnHealed != null) OnHealed(this, EventArgs.Empty);
     }
 
-    public bool IsDead() {
+    #region Auxiliary methods
+    private void RefreshAllHearts() {
+        int currHP = GetCurrentHP();
+        IncreaseHP(heartList.Count * 4 - currHP);
+    }
+
+    private bool IsDead() {
         return GetCurrentHP() == 0;
     }
 
-    #region Auxiliary methods
     private void DecreaseHP(int amount) {
         for (int i = heartList.Count - 1; i >= 0; i--) {
             Heart heart = heartList[i];

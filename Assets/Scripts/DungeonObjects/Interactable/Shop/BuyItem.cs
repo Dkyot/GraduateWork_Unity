@@ -28,19 +28,28 @@ public class BuyItem : MonoBehaviour
     }
 
     public void Buy() {
-        if (item == null) return;
+        if (item == null) {
+            Debug.Log("a");
+            return;
+        }
         GameObject player = interactable.input.gameObject;
         CoinStorage storage = player.GetComponentInChildren<CoinStorage>();
         Equipment equipment = player.GetComponentInChildren<Equipment>();
         PlayerSO data = player.GetComponent<Player>().data;
         
         if (storage != null) {
-            if (item.command.isActive) return;
+            if (item.command.isActive) {
+                Debug.Log("b");
+                return;
+            }
             if (storage.SpendCoins(item.itemCost)) {
                 item.GetItem(data, equipment.transform, equipment);
                 item.isSold = true;
                 OnBuy?.Invoke();
             }
+        }
+        else {
+            Debug.Log("c");
         }
     }
 }

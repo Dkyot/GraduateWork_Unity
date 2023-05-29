@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be4a833c9b56ad4eaa5dc73927fbdd8, type: 3}
   m_Name: Prop_EnemyShooter
   m_EditorClassIdentifier: 
-  propPrefab: {fileID: 3285240565494205789, guid: 14681b0b9eec9f44187e2985ddc7a65c, type: 3}
-  PropSize: {x: 1, y: 1}
+  propPrefab: {fileID: 52196192004553692, guid: 00ed764518e013a4b919fedcff3398db, type: 3}
   Corner: 0
   NearWallUP: 0
   NearWallDown: 0
@@ -22,6 +21,3 @@ MonoBehaviour:
   Inner: 1
   PlacementQuantityMin: 2
   PlacementQuantityMax: 2
-  PlaceAsGroup: 0
-  GroupMinCount: 1
-  GroupMaxCount: 1

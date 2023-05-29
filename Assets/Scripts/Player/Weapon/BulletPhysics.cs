@@ -18,6 +18,7 @@ public class BulletPhysics : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= ttl) {
             poolManager.Despawn(this.gameObject);
+                    //Destroy(gameObject);
         }
     }
     

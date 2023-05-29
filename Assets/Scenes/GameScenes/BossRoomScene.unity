@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animController: {fileID: 665911271}
-  shoot: 0
+  shoot: 1
   shootProjectiles: {fileID: 927409517}
   AbilityAction:
     m_PersistentCalls:
@@ -9749,7 +9749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de47b098dfb1624da58b9d0a9dac743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 1
+  healthPoints: 10
   playerData: {fileID: 0}
 --- !u!212 &1470897948559408468
 SpriteRenderer:

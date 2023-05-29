@@ -13,12 +13,21 @@ public class DungeonData : MonoBehaviour
     
     public void AddRoomTypes() {
         if(rooms.Count >= 6) {
-            rooms[0].roomType = TypesOfRooms.EmptyRoom;
-            rooms[1].roomType = TypesOfRooms.StartRoom;
-            rooms[2].roomType = TypesOfRooms.ExitRoom;
-            rooms[3].roomType = TypesOfRooms.TreasureRoom;
-            rooms[4].roomType = TypesOfRooms.EnemyRoom;
-            rooms[5].roomType = TypesOfRooms.BossRoom;
+            rooms[0].roomType = TypesOfRooms.StartRoom;
+
+            DijkstraAlgorithm dijkstra = new DijkstraAlgorithm();
+            int exit = dijkstra.RunAlgorithm(CorvertToMatrix(), 0, rooms.Count);
+            
+            //rooms[exit].roomType = TypesOfRooms.ExitRoom;
+
+            // распределить остаток
+            
+             rooms[1].roomType = TypesOfRooms.EmptyRoom;
+             rooms[3].roomType = TypesOfRooms.TreasureRoom;
+             rooms[4].roomType = TypesOfRooms.EnemyRoom;
+             rooms[5].roomType = TypesOfRooms.BossRoom;
+             rooms[exit].roomType = TypesOfRooms.ExitRoom;
+             rooms[6].roomType = TypesOfRooms.EnemyRoom;
         }
     }
 
@@ -28,17 +37,6 @@ public class DungeonData : MonoBehaviour
                 return room;
         }
         return null;
-    }
-
-    public void Debuger() {
-        int i = 0;
-        foreach (RoomData room in rooms) {
-            Debug.Log(room.center + " _" + i);
-            i++;
-        }
-
-        DijkstraAlgorithm deb = new DijkstraAlgorithm();
-        deb.RunAlgorithm(CorvertToMatrix(), 0, rooms.Count);
     }
 
     #region Graph methods
@@ -104,6 +102,25 @@ public class DungeonData : MonoBehaviour
             }
         }
         return graph;
+    }
+    
+    public void Debuger() {
+        // ClearConsolLog();
+
+        // int i = 0;
+        // foreach (RoomData room in rooms) {
+        //     Debug.Log(room.center + " _" + i);
+        //     i++;
+        // }
+
+        // DijkstraAlgorithm dijkstra = new DijkstraAlgorithm();
+        // dijkstra.RunAlgorithm(CorvertToMatrix(), 0, rooms.Count);
+    }
+
+    private void ClearConsolLog() {
+        System.Type log = System.Type.GetType("UnityEditor.LogEntries, UnityEditor.dll");
+        System.Reflection.MethodInfo clearMethod = log.GetMethod("Clear", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
+        clearMethod.Invoke(null, null);
     }
     #endregion
 }
