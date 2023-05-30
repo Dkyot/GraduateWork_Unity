@@ -15,3 +15,6 @@ MonoBehaviour:
   roomProps:
   - {fileID: 11400000, guid: ce41efdac4570c941bb82a7ca3d5cc52, type: 2}
   - {fileID: 11400000, guid: 5ccef8f5a2bb069489d2939b47fbfb27, type: 2}
+  - {fileID: 11400000, guid: 2d8d1e64446a000439ff2edf7fd7db18, type: 2}
+  - {fileID: 11400000, guid: af8001ee3bd2b1043877463b0c5b485d, type: 2}
+  - {fileID: 11400000, guid: 8beda3135cda8a7449cdf57ac6cf54b7, type: 2}

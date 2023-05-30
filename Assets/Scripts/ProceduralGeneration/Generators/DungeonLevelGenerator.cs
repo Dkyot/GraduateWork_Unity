@@ -49,7 +49,7 @@ public class DungeonLevelGenerator : AbstractDungeonGenerator
         do {
             roomsList = ProceduralGenerationAlgorithms.AlgorithmBSP(
             new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
-        } while (roomsList.Count < 7 || roomsList.Count > 12);
+        } while (roomsList.Count < 7 || roomsList.Count > 15);
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
         floor = CreareRoom(roomsList);

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,6 +8,9 @@ public class BuyItem : MonoBehaviour
 
     public ShopAssortmentSO assortment;
     public ShopItemSO item = null;
+
+    [SerializeField] private TextMeshProUGUI itemCost;
+    [SerializeField] private TextMeshProUGUI itemName;
 
     [SerializeField] private UnityEvent OnChange;
     [SerializeField] private UnityEvent OnBuy;
@@ -22,14 +26,20 @@ public class BuyItem : MonoBehaviour
         foreach (ShopItemSO item in assortment.assortment) {
             if (item.isSold == false) {
                 this.item = item;
+                UpdateItemInfo();
                 break;
             }
         }
     }
 
+    private void UpdateItemInfo() {
+        itemCost.text = item.itemCost.ToString();
+        itemName.text = item.itemName.ToString();
+    }
+
     public void Buy() {
         if (item == null) {
-            Debug.Log("a");
+            //Debug.Log("a");
             return;
         }
         GameObject player = interactable.input.gameObject;
@@ -39,17 +49,17 @@ public class BuyItem : MonoBehaviour
         
         if (storage != null) {
             if (item.command.isActive) {
-                Debug.Log("b");
+                //Debug.Log("b");
                 return;
             }
             if (storage.SpendCoins(item.itemCost)) {
+                OnBuy?.Invoke();
                 item.GetItem(data, equipment.transform, equipment);
                 item.isSold = true;
-                OnBuy?.Invoke();
             }
         }
         else {
-            Debug.Log("c");
+            //Debug.Log("c");
         }
     }
 }
