@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: bhPattern_worm
   m_EditorClassIdentifier: 
   directionsAmount: 16
-  cooldown: 3.5
+  cooldown: 1.8
   useBurst: 0
   cooldownBetweenBursts: 0
   useRotation: 0
