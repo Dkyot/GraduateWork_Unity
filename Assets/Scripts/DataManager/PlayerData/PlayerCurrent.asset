@@ -17,10 +17,10 @@ MonoBehaviour:
     <runData>k__BackingField:
       <speedModifier>k__BackingField: 1
     <rollData>k__BackingField:
-      <rollSpeedMultiplier>k__BackingField: 8
-      <rollSpeed>k__BackingField: 20
+      <rollSpeedMultiplier>k__BackingField: 6
+      <rollSpeed>k__BackingField: 15
       <rollSpeedMinimum>k__BackingField: 5
   maxHeartsAmount: 4
-  currentHP: 12
-  coins: 98
+  currentHP: 16
+  coins: 1
   commands: []

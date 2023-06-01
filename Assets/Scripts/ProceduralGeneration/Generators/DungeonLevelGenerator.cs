@@ -14,6 +14,8 @@ public class DungeonLevelGenerator : AbstractDungeonGenerator
     [Range(0, 5)]
     private int offset = 2;
 
+    [SerializeField] private int minRoomsAmount = 7;
+
     private DungeonData dungeonData;
     private bool intersectionFlag = false;
 
@@ -49,7 +51,7 @@ public class DungeonLevelGenerator : AbstractDungeonGenerator
         do {
             roomsList = ProceduralGenerationAlgorithms.AlgorithmBSP(
             new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
-        } while (roomsList.Count < 7 || roomsList.Count > 15);
+        } while (roomsList.Count < minRoomsAmount || roomsList.Count > 15);
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
         floor = CreareRoom(roomsList);

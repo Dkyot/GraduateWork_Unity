@@ -13,21 +13,37 @@ public class DungeonData : MonoBehaviour
     
     public void AddRoomTypes() {
         if(rooms.Count >= 6) {
+            List<int> roomIndexes = new List<int>();
+            for (int i = 0; i < rooms.Count; i++)
+                roomIndexes.Add(i);
+
+            //Debug.Log(roomIndexes.Count);
+
             rooms[0].roomType = TypesOfRooms.StartRoom;
+            roomIndexes.Remove(0);
 
             DijkstraAlgorithm dijkstra = new DijkstraAlgorithm();
             int exit = dijkstra.RunAlgorithm(CorvertToMatrix(), 0, rooms.Count);
-            
-            //rooms[exit].roomType = TypesOfRooms.ExitRoom;
+            rooms[exit].roomType = TypesOfRooms.ExitRoom;
+            roomIndexes.Remove(exit);
 
-            // распределить остаток
-            
-             rooms[1].roomType = TypesOfRooms.EmptyRoom;
-             rooms[3].roomType = TypesOfRooms.TreasureRoom;
-             rooms[4].roomType = TypesOfRooms.EnemyRoom;
-             rooms[5].roomType = TypesOfRooms.BossRoom;
-             rooms[exit].roomType = TypesOfRooms.ExitRoom;
-             rooms[6].roomType = TypesOfRooms.EnemyRoom;
+            int randomRoom = Random.Range(0, roomIndexes.Count);
+            rooms[roomIndexes[randomRoom]].roomType = TypesOfRooms.TreasureRoom;
+            roomIndexes.RemoveAt(randomRoom);
+
+            randomRoom = Random.Range(0, roomIndexes.Count);
+            rooms[roomIndexes[randomRoom]].roomType = TypesOfRooms.BossRoom;
+            roomIndexes.RemoveAt(randomRoom);
+
+            rooms[roomIndexes[0]].roomType = TypesOfRooms.EnemyRoom;
+            roomIndexes.RemoveAt(0);
+
+            rooms[roomIndexes[0]].roomType = TypesOfRooms.EnemyRoom;
+            roomIndexes.RemoveAt(0);
+
+            if (roomIndexes.Count > 0)
+                rooms[roomIndexes[0]].roomType = TypesOfRooms.BossRoom;
+
         }
     }
 
