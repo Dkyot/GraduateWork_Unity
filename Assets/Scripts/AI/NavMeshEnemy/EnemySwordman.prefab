@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de47b098dfb1624da58b9d0a9dac743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 1
+  healthPoints: 4
   playerData: {fileID: 0}
 --- !u!114 &4225435152803693929
 MonoBehaviour:
@@ -389,7 +389,7 @@ MonoBehaviour:
   attackingDistance: 2.5
   chasingDistance: 25
   runawayDistance: 5
-  speed: 1.5
+  speed: 1.8
   chasingInterval: 0.2
   attackDelay: 0.5
   OnPointerInput:

@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de47b098dfb1624da58b9d0a9dac743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 1
+  healthPoints: 3
   playerData: {fileID: 0}
 --- !u!114 &52196192004553691
 MonoBehaviour:
@@ -606,5 +606,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolManager: {fileID: 0}
-  bulletPhysics: {fileID: 4546647228140594423, guid: 74d9841c431b8694e93c0271ea6b04d6, type: 3}
+  bulletPhysics: {fileID: 4546647228140594423, guid: 0011d32e7c10b3f4ab3ebfa7494364f4, type: 3}
   shootPosition: {fileID: 3898642392367868810}
