@@ -14,15 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <groundedData>k__BackingField:
     <baseSpeed>k__BackingField: 5
-    <walkData>k__BackingField:
-      <speedModifier>k__BackingField: 0.22
     <runData>k__BackingField:
       <speedModifier>k__BackingField: 1
     <rollData>k__BackingField:
       <rollSpeedMultiplier>k__BackingField: 8
       <rollSpeed>k__BackingField: 20
       <rollSpeedMinimum>k__BackingField: 5
-  maxHeartsAmount: 4
+  maxHeartsAmount: 3
   currentHP: 0
   coins: 0
-  useMagneticField: 0
+  commands: []
