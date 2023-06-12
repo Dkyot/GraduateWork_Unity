@@ -39,7 +39,6 @@ public class BuyItem : MonoBehaviour
 
     public void Buy() {
         if (item == null) {
-            //Debug.Log("a");
             return;
         }
         GameObject player = interactable.input.gameObject;
@@ -49,7 +48,6 @@ public class BuyItem : MonoBehaviour
         
         if (storage != null) {
             if (item.command.isActive) {
-                //Debug.Log("b");
                 return;
             }
             if (storage.SpendCoins(item.itemCost)) {
@@ -59,7 +57,6 @@ public class BuyItem : MonoBehaviour
             }
         }
         else {
-            //Debug.Log("c");
         }
     }
 }
