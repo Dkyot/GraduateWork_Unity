@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class OnCollisionExtraHeart : LootBase
 {
-    private void OnCollisionEnter2D(Collision2D collider) {
+    private void OnTriggerEnter2D (Collider2D collider) {
         if (collider.gameObject.CompareTag("Player")) {
             CharacterStats player = collider.gameObject.GetComponent<CharacterStats>();
             if (player != null) {
@@ -10,6 +10,7 @@ public class OnCollisionExtraHeart : LootBase
                 int currentHP = health.GetCurrentHP();
                 health.AddHeart();
                 health.SetHP(currentHP);
+                //Debug.Log("++");
                 Destroy(gameObject);
             }
         }

@@ -387,9 +387,9 @@ MonoBehaviour:
   target: {fileID: 0}
   stoppingDistance: 2
   attackingDistance: 2.5
-  chasingDistance: 25
+  chasingDistance: 15
   runawayDistance: 5
-  speed: 1.8
+  speed: 2.8
   chasingInterval: 0.2
   attackDelay: 0.5
   OnPointerInput:

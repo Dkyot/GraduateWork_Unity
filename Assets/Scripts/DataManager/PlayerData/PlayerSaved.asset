@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <groundedData>k__BackingField:
     <baseSpeed>k__BackingField: 5
-    <walkData>k__BackingField:
-      <speedModifier>k__BackingField: 0.22
     <runData>k__BackingField:
       <speedModifier>k__BackingField: 1
     <rollData>k__BackingField:
@@ -24,5 +22,5 @@ MonoBehaviour:
       <rollSpeedMinimum>k__BackingField: 5
   maxHeartsAmount: 4
   currentHP: 16
-  coins: 10
+  coins: 4
   commands: []

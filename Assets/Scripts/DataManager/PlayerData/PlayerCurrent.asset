@@ -22,5 +22,5 @@ MonoBehaviour:
       <rollSpeedMinimum>k__BackingField: 5
   maxHeartsAmount: 4
   currentHP: 16
-  coins: 1
+  coins: 4
   commands: []

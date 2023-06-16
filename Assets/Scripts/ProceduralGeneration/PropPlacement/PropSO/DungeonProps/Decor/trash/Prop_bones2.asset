@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be4a833c9b56ad4eaa5dc73927fbdd8, type: 3}
+  m_Name: Prop_bones2
+  m_EditorClassIdentifier: 
+  propPrefab: {fileID: 934629582308710085, guid: 5c4734e4d4353e34ca679f40e747bdb8, type: 3}
+  Corner: 1
+  NearWallUP: 1
+  NearWallDown: 1
+  NearWallRight: 1
+  NearWallLeft: 1
+  Inner: 1
+  PlacementQuantityMin: 1
+  PlacementQuantityMax: 2

@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScenes/HubScene.unity
     guid: 3ba491009e9b72f44a586368415e06fb
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/GhostsLevelScene.unity
+    guid: 80b43f05f96521248a722c5057ea2dd4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 5ca88a32c9947e040b57a7c095f0fc03, type: 2}

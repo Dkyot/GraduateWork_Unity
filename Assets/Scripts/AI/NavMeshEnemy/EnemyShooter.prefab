@@ -171,7 +171,7 @@ MonoBehaviour:
   target: {fileID: 0}
   stoppingDistance: 2
   attackingDistance: 2.5
-  chasingDistance: 25
+  chasingDistance: 15
   runawayDistance: 5
   speed: 3
   chasingInterval: 0.2
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootList:
-  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
+  - {fileID: 11400000, guid: 6354ae236c8b5ed48a3cc4f98db4e2f0, type: 2}
 --- !u!50 &8073231491374105068
 Rigidbody2D:
   serializedVersion: 4

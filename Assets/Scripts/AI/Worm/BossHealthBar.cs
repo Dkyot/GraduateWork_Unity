@@ -19,6 +19,8 @@ public class BossHealthBar : MonoBehaviour
 
     public UnityEvent OnFinish;
 
+    public BWCounter bWCounter;
+
     private void Start() {
         timer = 0;
         fill = 1f;
@@ -49,6 +51,7 @@ public class BossHealthBar : MonoBehaviour
     }
 
     private void HeartsHealthSystem_OnDead(object sender, EventArgs e) {
+        bWCounter.wormIsDear = true;
         OnFinish?.Invoke();
         Destroy(gameObject, 0.5f);
     }

@@ -238,7 +238,7 @@ MonoBehaviour:
   runawayDistance: 5
   speed: 10
   chasingInterval: 2
-  attackDelay: 4
+  attackDelay: 2
   OnPointerInput:
     m_PersistentCalls:
       m_Calls: []
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootList:
-  - {fileID: 11400000, guid: 345acc4db2b26c34aa76e69b8bca744e, type: 2}
+  - {fileID: 11400000, guid: 6354ae236c8b5ed48a3cc4f98db4e2f0, type: 2}
 --- !u!50 &6712357473814755181
 Rigidbody2D:
   serializedVersion: 4

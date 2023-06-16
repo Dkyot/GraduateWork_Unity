@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomProps:
   - {fileID: 11400000, guid: 5ccef8f5a2bb069489d2939b47fbfb27, type: 2}
-  - {fileID: 11400000, guid: 8beda3135cda8a7449cdf57ac6cf54b7, type: 2}
+  - {fileID: 11400000, guid: beafb5e1ba19ebc4a8fa18326824fb9e, type: 2}
+  - {fileID: 11400000, guid: ce7bb50ea320fec469d058d961971dcf, type: 2}
+  - {fileID: 11400000, guid: 14118fec9b22dd0459d42c7753c6da54, type: 2}
+  - {fileID: 11400000, guid: 3301ee9a72052ed45bf040a10b8e6b6c, type: 2}
+  - {fileID: 11400000, guid: ee158b1c586eba648806cbdc4b2a558b, type: 2}
+  - {fileID: 11400000, guid: 7491cce8c7594284b96637a04bcc18bf, type: 2}
+  - {fileID: 11400000, guid: bd616d4de2784024980b058b43c0749d, type: 2}

@@ -15,6 +15,6 @@ MonoBehaviour:
   lootPrefab: {fileID: 611655139965786079, guid: 2b319e02bcc5ce944a887eb8d2cf6776, type: 3}
   lootName: heal
   dropChance: 100
-  minAmountOfLoot: 3
-  maxAmountOfLoot: 6
+  minAmountOfLoot: 2
+  maxAmountOfLoot: 5
   dropForce: 15

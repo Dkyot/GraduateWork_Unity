@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: Prop_EnemySwordman
   m_EditorClassIdentifier: 
   propPrefab: {fileID: 4225435152803693934, guid: 783a8ba43aaaeab4ebde0731d6138706, type: 3}
-  PropSize: {x: 1, y: 1}
   Corner: 0
   NearWallUP: 0
   NearWallDown: 0
   NearWallRight: 0
   NearWallLeft: 0
   Inner: 1
-  PlacementQuantityMin: 3
+  PlacementQuantityMin: 1
   PlacementQuantityMax: 3
-  PlaceAsGroup: 0
-  GroupMinCount: 1
-  GroupMaxCount: 1

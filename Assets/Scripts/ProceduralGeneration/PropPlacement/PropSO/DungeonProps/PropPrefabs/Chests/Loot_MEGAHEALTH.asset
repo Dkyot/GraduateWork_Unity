@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4cb588578f821e409b0c5e51dabdde3, type: 3}
-  m_Name: Loot_WormBossCoins
+  m_Name: Loot_MEGAHEALTH
   m_EditorClassIdentifier: 
-  lootPrefab: {fileID: 3387268431183589636, guid: 5e45ef368a650c84a960c9c73c97108c, type: 3}
-  lootName: Coins
+  lootPrefab: {fileID: 9198471814543197592, guid: 97419b13e88009d488b3dc7aaee30f35, type: 3}
+  lootName: Trash
   dropChance: 100
-  minAmountOfLoot: 20
-  maxAmountOfLoot: 20
-  dropForce: 5
+  minAmountOfLoot: 1
+  maxAmountOfLoot: 1
+  dropForce: 0
