@@ -12903,6 +12903,7 @@ MonoBehaviour:
   bossHealthBar: {fileID: 0}
   playerInput: {fileID: 665911265}
   mobileInput: {fileID: 1548648318}
+  settings: {fileID: 11400000, guid: 836ccb1e1bcb2ed488f2805750f54f55, type: 2}
 --- !u!1 &1891426220
 GameObject:
   m_ObjectHideFlags: 0

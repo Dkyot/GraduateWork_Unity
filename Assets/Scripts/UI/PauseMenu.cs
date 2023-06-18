@@ -15,10 +15,13 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private GameObject mobileInput;
 
+    [SerializeField] private SettingsSO settings;
+
     private bool paused;
     private bool death;
 
     private void Start() {
+        fpsCounter.SetActive(false);
         Play();
     }
 
@@ -32,7 +35,8 @@ public class PauseMenu : MonoBehaviour
     #region UI activation methods
     public void Play() {
         pauseMenu.SetActive(false);
-        fpsCounter.SetActive(true);
+        if (settings.showFPS)
+            fpsCounter.SetActive(true);
         coinCounter.SetActive(true);
         health.SetActive(true);
         playerInput.inputActions.InGamePlayerInput.Enable();
