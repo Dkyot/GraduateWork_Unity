@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ed81d87f289514e844924599745c83, type: 3}
   m_Name: sett_
   m_EditorClassIdentifier: 
-  soundVolume: 0.88854164
+  soundVolume: 0.5
   showFPS: 1
